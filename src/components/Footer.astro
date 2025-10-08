@@ -1,0 +1,18 @@
+---
+const { locale } = Astro.props;
+const t = {
+  es:{addr:'C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona', hours:'L–V 9:00–19:00', rights:'© 2025 Clínica Dental. Todos los derechos reservados.'},
+  ca:{addr:'C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona', hours:'Dl–Dv 9:00–19:00', rights:'© 2025 Clínica Dental. Tots els drets reservats.'},
+  en:{addr:'C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona', hours:'Mon–Fri 9:00–19:00', rights:'© 2025 Dental Clinic. All rights reserved.'}
+}[locale];
+---
+<footer class="footer">
+  <div class="container">
+    <div class="grid3">
+      <div><strong>📍</strong> {t.addr}</div>
+      <div><strong>🕘</strong> {t.hours}</div>
+      <div><strong>☎️</strong> +34 600 000 000 · <strong>✉️</strong> citas@clinica.example</div>
+    </div>
+    <p style="margin-top:12px;color:var(--text-600);font-size:14px">{t.rights}</p>
+  </div>
+</footer>

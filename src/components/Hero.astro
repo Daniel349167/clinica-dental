@@ -1,0 +1,20 @@
+---
+const { locale } = Astro.props;
+const t = {
+  es:{tag:'Sonríe con confianza', sub:'Odontología integral con especialistas en estética, ortodoncia e implantes.', cta:'Pedir cita'},
+  ca:{tag:'Somriu amb confiança', sub:'Odontologia integral amb especialistes en estètica, ortodòncia i implants.', cta:'Demanar cita'},
+  en:{tag:'Smile with confidence', sub:'Comprehensive dentistry with specialists in aesthetics, orthodontics and implants.', cta:'Book appointment'}
+}[locale];
+---
+<section class="hero">
+  <div>
+    <span class="badge"># {t.tag}</span>
+    <h1>{t.sub}</h1>
+    <p style="color:var(--text-600)">Financiación disponible · Evaluación sin costo · Urgencias el mismo día</p>
+    <a href="#cita" class="btn">{t.cta}</a>
+  </div>
+  <div class="panel">
+    <strong>⭐ 4.9/5</strong> (326 reseñas)
+    <p style="margin:8px 0 0;color:var(--text-600)">“Excelente atención, me explicaron todo y el tratamiento fue indoloro.”</p>
+  </div>
+</section>

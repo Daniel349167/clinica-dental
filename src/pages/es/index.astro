@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+import Footer from "../../components/Footer.astro";
+import Chatbot from "../../components/Chatbot.vue";
+
+const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
+---
+<BaseLayout title="Clínica Dental | Sonríe con confianza" description="Odontología integral: estética, ortodoncia e implantes en Barcelona." locale="es" {alternates}>
+  <Header locale="es" currentPath="/es/" />
+  <main class="container">
+    <Hero locale="es" />
+  </main>
+
+  <Services locale="es" />
+
+  <section id="cita" class="container">
+    <h2>Solicitar cita</h2>
+    <div class="card">
+      <p>Déjanos tus datos y te llamamos para confirmar la hora disponible.</p>
+      <!-- el formulario real lo añadimos en el paso backend -->
+      <a class="btn" href="mailto:citas@clinica.example?subject=Cita&body=Hola,%20quiero%20una%20cita.">Enviar por correo</a>
+    </div>
+  </section>
+
+  <Footer locale="es" />
+  <Chatbot client:visible locale="es" />
+</BaseLayout>

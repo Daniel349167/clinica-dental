@@ -1,0 +1,31 @@
+---
+const { locale } = Astro.props;
+const t = {
+  es:{title:'Tratamientos destacados', items:[
+    ['Estética dental','Carillas, blanqueamiento, diseño de sonrisa.'],
+    ['Ortodoncia y alineadores','Invisalign® y brackets de baja fricción.'],
+    ['Implantes dentales','Implantes guiados por cirugía digital.'],
+  ]},
+  ca:{title:'Tractaments destacats', items:[
+    ['Estètica dental','Carilles, emblanquiment, disseny de somriure.'],
+    ['Ortodòncia i alineadors','Invisalign® i bràquets de baixa fricció.'],
+    ['Implants dentals','Implants guiats per cirurgia digital.'],
+  ]},
+  en:{title:'Featured treatments', items:[
+    ['Cosmetic dentistry','Veneers, whitening, smile design.'],
+    ['Orthodontics & aligners','Invisalign® and low-friction braces.'],
+    ['Dental implants','Computer-guided implant surgery.'],
+  ]}
+}[locale];
+---
+<section class="container">
+  <h2 style="margin-bottom:12px">{t.title}</h2>
+  <div class="grid3">
+    {t.items.map(([h,p]) => (
+      <div class="card">
+        <h3 style="margin:0">{h}</h3>
+        <p style="margin:6px 0 0;color:var(--text-600)">{p}</p>
+      </div>
+    ))}
+  </div>
+</section>

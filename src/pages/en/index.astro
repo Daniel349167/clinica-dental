@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+import Footer from "../../components/Footer.astro";
+import Chatbot from "../../components/Chatbot.vue";
+const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
+---
+<BaseLayout title="Dental Clinic | Smile with confidence" description="Comprehensive dentistry: aesthetics, orthodontics and implants in Barcelona." locale="en" {alternates}>
+  <Header locale="en" currentPath="/en/" />
+  <main class="container">
+    <Hero locale="en" />
+  </main>
+  <Services locale="en" />
+  <section id="cita" class="container">
+    <h2>Request appointment</h2>
+    <div class="card">
+      <p>Leave your details and we’ll call you to confirm the next available time.</p>
+      <a class="btn" href="mailto:citas@clinica.example?subject=Appointment&body=Hi,%20I’d%20like%20an%20appointment.">Send by email</a>
+    </div>
+  </section>
+  <Footer locale="en" />
+  <Chatbot client:visible locale="en" />
+</BaseLayout>

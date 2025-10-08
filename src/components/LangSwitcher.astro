@@ -1,0 +1,9 @@
+---
+const { currentPath, locale } = Astro.props;
+const to = (l:string) => currentPath.replace(/^\/(es|ca|en)/, `/${l}`);
+---
+<div class="langswitch">
+  <a href={to('es')} class={locale==='es'?'active':''}>ESP</a>
+  <a href={to('ca')} class={locale==='ca'?'active':''}>CAT</a>
+  <a href={to('en')} class={locale==='en'?'active':''}>ENG</a>
+</div>

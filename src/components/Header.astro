@@ -1,0 +1,19 @@
+---
+import LangSwitcher from "./LangSwitcher.astro";
+const { locale, currentPath } = Astro.props;
+const nav = {
+  es:[['/es','Inicio'],['/es/tratamientos','Tratamientos'],['/es/nosotros','Nosotros'],['/es/blog','Blog']],
+  ca:[['/ca','Inici'],['/ca/tractaments','Tractaments'],['/ca/nosaltres','Nosaltres'],['/ca/blog','Blog']],
+  en:[['/en','Home'],['/en/treatments','Treatments'],['/en/about','About'],['/en/blog','Blog']]
+}[locale];
+---
+<header class="header">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <a href={nav[0][0]} style="font-size:20px;font-weight:800;">🦷 Dental Sueca</a>
+    <nav class="nav">
+      {nav.map(([href,label]) => <a href={href}>{label}</a>)}
+      <LangSwitcher {currentPath} {locale} />
+      <a class="btn" href={`${nav[0][0]}#cita`}>Pedir cita</a>
+    </nav>
+  </div>
+</header>
