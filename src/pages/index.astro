@@ -1,14 +1,6 @@
 ---
-/* Redirige la raíz a /es/ */
-const target = '/es/';
+import { redirect } from 'astro:redirects';
+
+// Redirige inmediatamente a /es/
+redirect('/es/');
 ---
-<html lang="es">
-  <head>
-    <meta http-equiv="refresh" content={`0; url=${target}`} />
-    <link rel="canonical" href={target} />
-    <title>Redirigiendo…</title>
-  </head>
-  <body>
-    <p>Redirigiendo a <a href={target}>{target}</a>…</p>
-  </body>
-</html>
