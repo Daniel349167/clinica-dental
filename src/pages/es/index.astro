@@ -4,7 +4,6 @@ import Header from "../../components/Header.astro";
 import Hero from "../../components/Hero.astro";
 import Services from "../../components/Services.astro";
 import Footer from "../../components/Footer.astro";
-import Chatbot from "../../components/Chatbot.vue";
 
 const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 ---
@@ -26,5 +25,4 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
   </section>
 
   <Footer locale="es" />
-  <Chatbot client:visible locale="es" />
 </BaseLayout>

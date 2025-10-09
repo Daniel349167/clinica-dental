@@ -20,5 +20,17 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
   </head>
   <body>
     <slot />
+     <!-- CRISP CHAT -->
+    <script is:inline>
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
+      (function() {
+        const d = document;
+        const s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
   </body>
 </html>
