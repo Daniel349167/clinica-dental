@@ -1,36 +1,35 @@
----
-import "../pages/_app.css"; 
-const { title = 'Clínica Dental', description = 'Odontología integral en Barcelona', locale='es', alternates } = Astro.props;
----
-<html lang={locale}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    {alternates && (
-      <>
-        <link rel="alternate" hrefLang="es" href={alternates.es} />
-        <link rel="alternate" hrefLang="ca" href={alternates.ca} />
-        <link rel="alternate" hrefLang="en" href={alternates.en} />
-        <link rel="alternate" hrefLang="x-default" href={alternates.es} />
-      </>
-    )}
-    <link rel="stylesheet" href="/_astro/_app.css" />
-  </head>
-  <body>
-    <slot />
-     <!-- CRISP CHAT -->
-    <script is:inline>
-      window.$crisp = [];
-      window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
-      (function() {
-        const d = document;
-        const s = d.createElement("script");
-        s.src = "https://client.crisp.chat/l.js";
-        s.async = 1;
-        d.getElementsByTagName("head")[0].appendChild(s);
-      })();
-    </script>
-  </body>
-</html>
+  ---
+  import "../pages/_app.css"; 
+  const { title = 'Clínica Dental', description = 'Odontología integral en Barcelona', locale='es', alternates } = Astro.props;
+  ---
+  <html lang={locale}>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      {alternates && (
+        <>
+          <link rel="alternate" hrefLang="es" href={alternates.es} />
+          <link rel="alternate" hrefLang="ca" href={alternates.ca} />
+          <link rel="alternate" hrefLang="en" href={alternates.en} />
+          <link rel="alternate" hrefLang="x-default" href={alternates.es} />
+        </>
+      )}
+    </head>
+    <body>
+      <slot />
+      <!-- CRISP CHAT -->
+      <script is:inline>
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
+        (function() {
+          const d = document;
+          const s = d.createElement("script");
+          s.src = "https://client.crisp.chat/l.js";
+          s.async = 1;
+          d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+      </script>
+    </body>
+  </html>

@@ -1,19 +1,134 @@
 ---
 import LangSwitcher from "./LangSwitcher.astro";
+
 const { locale, currentPath } = Astro.props;
+
 const nav = {
-  es:[['/es','Inicio'],['/es/tratamientos','Tratamientos'],['/es/nosotros','Nosotros'],['/es/blog','Blog']],
-  ca:[['/ca','Inici'],['/ca/tractaments','Tractaments'],['/ca/nosaltres','Nosaltres'],['/ca/blog','Blog']],
-  en:[['/en','Home'],['/en/treatments','Treatments'],['/en/about','About'],['/en/blog','Blog']]
+  es: [
+    ["/es", "Inicio"],
+    ["/es/nosotros", "Nosotros"],
+    ["/es/tratamientos", "Tratamientos"],
+    ["/es/blog", "Blog"],
+  ],
+  ca: [
+    ["/ca", "Inici"],
+    ["/ca/nosaltres", "Nosaltres"],
+    ["/ca/tractaments", "Tractaments"],
+    ["/ca/blog", "Blog"],
+  ],
+  en: [
+    ["/en", "Home"],
+    ["/en/about", "About"],
+    ["/en/treatments", "Treatments"],
+    ["/en/blog", "Blog"],
+  ],
 }[locale];
 ---
-<header class="header">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
-    <a href={nav[0][0]} style="font-size:20px;font-weight:800;">🦷 Dental Sueca</a>
-    <nav class="nav">
-      {nav.map(([href,label]) => <a href={href}>{label}</a>)}
-      <LangSwitcher {currentPath} {locale} />
-      <a class="btn" href={`${nav[0][0]}#cita`}>Pedir cita</a>
-    </nav>
+
+<header class="site-header">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="contact">
+        <span class="addr">C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona</span>
+        <span class="sep">|</span>
+        <span class="tel">Teléfono: <span class="telnum">+34 614 37 57 92</span></span>
+      </div>
+
+      <nav class="langs" aria-label="Idioma">
+        <LangSwitcher {currentPath} {locale} />
+      </nav>
+    </div>
+  </div>
+
+  <!-- MAINBAR -->
+  <div class="mainbar">
+    <div class="container mainbar__inner">
+      <a href={nav[0][0]} class="logo" aria-label="Dental Sueca">
+        <img src="/assets/logo.svg" alt="Dental Sueca" />
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+      </nav>
+
+      <a class="cta" href={`${nav[0][0]}#cita`}>PEDIR CITA</a>
+    </div>
   </div>
 </header>
+
+<style>
+/* ===== Topbar ===== */
+.topbar{
+  background:#f1f2f3;
+  color:var(--text-600);
+  font-size:15px;
+}
+.topbar__inner{
+  height:44px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.contact{
+  display:flex;
+  align-items:baseline;      /* alinea dirección y teléfono por la línea base */
+  gap:10px;
+  white-space:nowrap;
+  line-height:1.1;
+}
+.contact span{ display:inline-block; }
+.contact .sep{ color:#90a2b5; }
+.contact .tel{ font-size:16px; }
+.contact .telnum{ font-weight:400; color:#2d4a67; } /* sin negrita */
+
+/* ===== Mainbar ===== */
+.mainbar{
+  background:#fff;
+  border-bottom:1px solid #eef3f8;
+}
+.mainbar__inner{
+  height:84px;
+  display:flex; align-items:center;
+  gap:24px;
+}
+
+/* Logo con aire fijo a la derecha */
+.logo{ display:inline-flex; align-items:center; text-decoration:none; margin-right:96px; }
+.logo img{ height:56px; width:auto; display:block; }
+
+/* Menú: a la derecha y cerca del CTA */
+.nav{
+  display:flex; align-items:center;
+  gap:44px;                /* espacio entre items del menú */
+  margin-left:auto;        /* empuja el menú hacia la derecha */
+  margin-right:48px;       /* hueco controlado entre menú y CTA */
+}
+.nav > a,
+.nav > a:link,
+.nav > a:visited{
+  color:#3a3a3a;
+  text-decoration:none;
+  font-size:24px;          /* grande como referencia */
+  font-weight:400;
+}
+.nav > a:hover{ color:var(--brand-500); }
+
+/* CTA: celeste del tema, más largo y no tan alto */
+.cta,
+.cta:link,
+.cta:visited{
+  display:inline-block;
+  background:var(--brand-500);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+  font-size:18px;
+  padding:9px 28px;
+  border-radius:8px;
+  line-height:1;
+  transition:filter .15s ease-in-out, transform .06s ease-in-out;
+}
+.cta:hover{ filter:brightness(0.95); }
+.cta:active{ transform:translateY(1px); }
+</style>

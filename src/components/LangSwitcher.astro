@@ -1,9 +1,61 @@
 ---
-const { currentPath, locale } = Astro.props;
-const to = (l:string) => currentPath.replace(/^\/(es|ca|en)/, `/${l}`);
+const { locale, currentPath } = Astro.props;
+
+// Path actual sin prefijo /es /ca /en
+const rest = (currentPath || "/").replace(/^\/(es|ca|en)/, "") || "/";
+
+const langs = [
+  { code: "es", label: "ESP", href: "/es" + (rest === "/" ? "" : rest) },
+  { code: "ca", label: "CAT", href: "/ca" + (rest === "/" ? "" : rest) },
+  { code: "en", label: "ENG", href: "/en" + (rest === "/" ? "" : rest) },
+];
 ---
+
 <div class="langswitch">
-  <a href={to('es')} class={locale==='es'?'active':''}>ESP</a>
-  <a href={to('ca')} class={locale==='ca'?'active':''}>CAT</a>
-  <a href={to('en')} class={locale==='en'?'active':''}>ENG</a>
+  {langs.map(({ code, label, href }) => (
+    <a
+      href={href}
+      class={code === locale ? "active" : ""}
+      aria-current={code === locale ? "page" : undefined}
+    >
+      {/* subrayado SOLO en este span */}
+      <span class="label">{label}</span>
+    </a>
+  ))}
 </div>
+
+<style>
+.langswitch{
+  display:flex; align-items:center;
+}
+
+/* enlaces base */
+.langswitch a,
+.langswitch a:link,
+.langswitch a:visited{
+  color: var(--text-600);
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.1;
+}
+
+/* guiones (nunca se subrayan) */
+.langswitch a + a::before{
+  content: " - ";
+  color: #90a2b5;
+  margin: 0 8px;              /* un poco más de aire */
+}
+
+/* subrayado del ACTIVO: solo el texto, con color de marca */
+.langswitch a .label{
+  display:inline-block;       /* necesario para border-bottom exacto */
+  padding-bottom: 2px;
+  border-bottom: 0 solid transparent;
+}
+.langswitch a.active .label,
+.langswitch a[aria-current="page"] .label,
+.langswitch a[aria-current="true"] .label{
+  border-bottom-width: 2px;
+  border-bottom-color: var(--brand-500);
+}
+</style>
