@@ -1,18 +1,102 @@
 ---
-const { locale } = Astro.props;
-const t = {
-  es:{addr:'C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona', hours:'L–V 9:00–19:00', rights:'© 2025 Clínica Dental. Todos los derechos reservados.'},
-  ca:{addr:'C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona', hours:'Dl–Dv 9:00–19:00', rights:'© 2025 Clínica Dental. Tots els drets reservats.'},
-  en:{addr:'C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona', hours:'Mon–Fri 9:00–19:00', rights:'© 2025 Dental Clinic. All rights reserved.'}
+const { locale = 'es' } = Astro.props;
+const year = new Date().getFullYear();
+
+const i18n = {
+  es: {
+    contacto: "CONTACTO",
+    horario: "HORARIO",
+    lv: "Lunes a viernes:",
+    horas: "10:00 a 14:00 y 16:00 a 20:00",
+    urgencias: "Atendemos urgencias dentales",
+    privacidad: "Política de privacidad",
+    cookies: "Política de cookies",
+    derechos: `© ${year} Dental Sueca. All rights reserved.`,
+    dir1: "C. de Muntaner 555,",
+    dir2: "Esc. A, Planta 3 - 2,",
+    dir3: "Sarrià-Sant Gervasi.",
+    phone: "+34 614 37 57 92",
+  },
+  ca: {
+    contacto: "CONTACTE",
+    horario: "HORARI",
+    lv: "De dilluns a divendres:",
+    horas: "10:00 a 14:00 i 16:00 a 20:00",
+    urgencias: "Atenem urgències dentals",
+    privacidad: "Política de privacitat",
+    cookies: "Política de cookies",
+    derechos: `© ${year} Dental Sueca. Tots els drets reservats.`,
+    dir1: "C. de Muntaner 555,",
+    dir2: "Esc. A, Planta 3 - 2,",
+    dir3: "Sarrià-Sant Gervasi.",
+    phone: "+34 614 37 57 92",
+  },
+  en: {
+    contacto: "CONTACT",
+    horario: "SCHEDULE",
+    lv: "Mon–Fri:",
+    horas: "10:00–14:00 & 16:00–20:00",
+    urgencias: "We attend dental emergencies",
+    privacidad: "Privacy policy",
+    cookies: "Cookie policy",
+    derechos: `© ${year} Dental Sueca. All rights reserved.`,
+    dir1: "C. de Muntaner 555,",
+    dir2: "Esc. A, Planta 3 - 2,",
+    dir3: "Sarrià-Sant Gervasi.",
+    phone: "+34 614 37 57 92",
+  },
 }[locale];
 ---
-<footer class="footer">
-  <div class="container">
-    <div class="grid3">
-      <div><strong>📍</strong> {t.addr}</div>
-      <div><strong>🕘</strong> {t.hours}</div>
-      <div><strong>☎️</strong> +34 600 000 000 · <strong>✉️</strong> citas@clinica.example</div>
+
+<footer class="site-footer">
+  <div class="footer__top">
+    <div class="container footer__grid">
+      <!-- Logo (más pequeño y más a la derecha por offset del grid) -->
+      <div class="footer__logo">
+        <img src="/assets/logo.svg" alt="Dental Sueca" />
+      </div>
+
+      <!-- CONTACTO -->
+      <div class="footer__col">
+        <h4>{i18n.contacto}</h4>
+        <p>{i18n.dir1}</p>
+        <p>{i18n.dir2}</p>
+        <p>{i18n.dir3}</p>
+        <p class="footer__phone">{i18n.phone}</p>  <!-- sin negrita -->
+
+        <div class="social" aria-label="Redes sociales">
+          {/*
+            Coloca tus SVGs sin relleno blanco en:
+            /assets/icons/facebook.svg
+            /assets/icons/instagram.svg
+            /assets/icons/tiktok.svg
+            /assets/icons/linkedin.svg
+          */}
+          <a href="#" aria-label="Facebook"><img src="/assets/icons/facebook.svg" alt="" /></a>
+          <a href="#" aria-label="Instagram"><img src="/assets/icons/instagram.svg" alt="" /></a>
+          <a href="#" aria-label="TikTok"><img src="/assets/icons/tiktok.svg" alt="" /></a>
+          <a href="#" aria-label="LinkedIn"><img src="/assets/icons/linkedin.svg" alt="" /></a>
+        </div>
+      </div>
+
+      <!-- HORARIO -->
+      <div class="footer__col">
+        <h4>{i18n.horario}</h4>
+        <p class="footer__bold">{i18n.lv}</p>
+        <p>{i18n.horas}</p>
+        <p>{i18n.urgencias}</p>
+
+        <div class="footer__links">
+          <a href="/privacidad">{i18n.privacidad}</a>
+          <a href="/cookies">{i18n.cookies}</a>
+        </div>
+      </div>
     </div>
-    <p style="margin-top:12px;color:var(--text-600);font-size:14px">{t.rights}</p>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom__inner">
+      {i18n.derechos}
+    </div>
   </div>
 </footer>

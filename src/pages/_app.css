@@ -1,11 +1,17 @@
 :root{
-  --brand-900:#1c4b8e; /* base azul oscuro */
-  --brand-500:#00b1ef; /* acento */
-  --brand-50:#e9f9ff;  /* fondos suaves */
+  --brand-900:#1c4b8e; /* azul oscuro base */
+  --brand-500:#00b1ef; /* acento celeste */
+  --brand-50:#e9f9ff;  /* fondo suave */
   --text-900:#0b1b2a;
   --text-600:#37516d;
   --bg:#ffffff;
   --radius:18px;
+
+  /* offset para empujar footer a la derecha (ajústalo a gusto) */
+  --footer-offset-left: 120px;
+
+  /* tamaño de iconos sociales */
+  --social-size: 44px;
 }
 
 *{box-sizing:border-box}
@@ -16,9 +22,11 @@ body{
   background:var(--bg);
   line-height:1.5;
 }
-/* ↓ un poco más ancho y menos padding para “abrir” el contenido */
-.container{max-width:1260px;margin:0 auto;padding:0px}
 
+/* contenedor */
+.container{max-width:1260px;margin:0 auto;padding:0}
+
+/* utilidades */
 .btn{
   display:inline-block; padding:12px 18px; border-radius:var(--radius);
   background:var(--brand-500); color:#fff; text-decoration:none; font-weight:600;
@@ -29,16 +37,548 @@ body{
   background:#fff; border:1px solid #eef3f8; border-radius:var(--radius);
   padding:24px; box-shadow:0 1px 2px rgba(16,24,40,.04);
 }
-.nav{display:flex; gap:16px; align-items:center}
+
+/* ============ HERO (si lo usas) ============ */
 .hero{
   display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:center;
   padding:38px 0;
 }
 .hero h1{font-size:clamp(28px,4vw,44px); margin:0 0 12px}
-.hero p{font-size:18px; color:#eaf6ff; margin:0 0 18px}
+.hero p{font-size:18px; color:#2b4b66; margin:0 0 18px}
 .hero .panel{background:var(--brand-50); border-radius:var(--radius); padding:18px}
-.footer{background:#f6fbff; border-top:1px solid #e8eef5; padding:24px 0; margin-top:40px}
-.langswitch a{opacity:.8; margin-right:8px}
-.langswitch a.active{opacity:1; text-decoration:underline}
 .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-@media (max-width:860px){ .hero{grid-template-columns:1fr} .grid3{grid-template-columns:1fr} }
+
+/* (header base que no toca tu switcher) */
+.topbar{ background:#f1f2f3; color:var(--text-600); font-size:15px; border-bottom:1px solid #e7edf2; }
+.topbar__inner{ height:44px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.contact{ display:flex; align-items:baseline; gap:10px; white-space:nowrap; line-height:1.1; }
+.contact .sep{ color:#90a2b5; }
+.contact .tel{ font-size:16px; }
+.contact .telnum{ font-weight:400; color:#2d4a67; }
+
+/* ====================== FOOTER ====================== */
+.site-footer{width:100%; background:var(--brand-50);}
+
+/* zona superior */
+.footer__top{
+  background:var(--brand-50);
+  padding:16px 0 32px;
+}
+
+/* grid más a la derecha y con mayor separación logo ↔ columnas */
+.footer__grid{
+  display:grid;
+  grid-template-columns: 1.6fr 1fr 1fr; /* logo | contacto | horario */
+  align-items:flex-start;
+  gap:60px;                               /* separa logo del contacto */
+  margin-left: 140px;                     /* más desplazado a la derecha */
+}
+
+/* logo más pequeño */
+.footer__logo{display:flex; align-items:center;}
+.footer__logo img{height:48px; width:auto; display:block;}
+
+/* columnas (menos grandes / menos negrita) */
+.footer__col h4{
+  margin:0 0 10px;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:.2px;
+  color:var(--text-900);
+}
+.footer__col p{margin:8px 0; color:var(--text-900); font-size:17px;}
+.footer__bold{font-weight:700;}
+.footer__phone{margin-top:8px; font-weight:400;} /* teléfono sin negrita */
+
+/* enlaces políticas */
+.footer__links{display:flex; flex-direction:column; gap:8px; margin-top:8px}
+.footer__links a{color:var(--text-900); text-decoration:none; font-size:17px;}
+.footer__links a:hover{text-decoration:underline}
+
+/* Redes – solo un borde, sin doble contorno */
+.social{
+  display:flex;
+  gap:6px; 
+  margin-top:10px;
+  margin-left:-6px;
+  margin-bottom:-14px;
+}
+.social a{
+  width:44px; height:44px;
+  display:grid; place-items:center;
+  background:transparent;
+  overflow:hidden;
+  padding:0;
+  transition:transform .06s ease-in-out, box-shadow .15s ease-in-out, background .15s;
+}
+.social a:hover{
+  background:#e6f7ff;           /* tono muy suave al hover */
+  box-shadow:0 2px 8px rgba(28,75,142,0.14);
+  transform:translateY(-1px);
+}
+/* iconos sociales: tamaño más grande y centrado */
+.social img{
+  width:72%;                 /* antes 55% — ahora ocupa más del círculo */
+  height:72%;
+  display:block;
+  object-fit:contain;        /* mantiene proporción */
+  margin:auto;               /* lo centra en el círculo */
+  transform:translateY(1px); /* leve corrección vertical óptica */
+}
+
+
+/* barra inferior */
+.footer__bottom{
+  background:var(--brand-500);
+  color:#fff;
+  text-align:center;
+  padding:14px 0;
+}
+.footer__bottom__inner{
+  font-size:16px;
+  font-weight:400; /* sin negrita */
+  letter-spacing:.1px;
+}
+
+/* =================== RESPONSIVE (footer) =================== */
+@media (max-width:1100px){
+  .footer__grid{ margin-left: 90px; }
+}
+@media (max-width:900px){
+  .footer__grid{ margin-left: 40px; gap:40px; }
+}
+@media (max-width:860px){
+  .footer__grid{
+    grid-template-columns:1fr;
+    gap:22px;
+    margin-left:0;
+  }
+}
+
+
+/* ========================================================= */
+/* === HOME: Hero de fondo con overlay y CTA grande ======== */
+/* ========================================================= */
+.hero-landing{
+  position:relative; min-height:560px; width:100%;
+  display:grid; place-items:center; overflow:hidden;
+  isolation:isolate;
+}
+.hero-landing::before{
+  content:""; position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  background-repeat:no-repeat; z-index:-2;
+  /* la imagen se setea inline en el index.astro vía style="--hero:url(...)" */
+  background-image:var(--hero, none);
+}
+.hero-landing::after{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(0deg, rgba(0,0,0,.18), rgba(0,0,0,.18)); /* overlay más ligero */
+}
+.hero-landing .hero__inner{
+  width:100%; max-width:1260px; padding:0 16px;
+  display:flex; align-items:center;
+}
+.hero-landing .hero__copy{
+  max-width:720px; color:#fff;
+}
+.hero-landing h1{
+  font-weight:600;             /* menos grueso para acercarse a la ref */
+  letter-spacing:.2px;
+  font-size:clamp(30px,4.4vw,64px);
+  margin:0 0 10px;
+  line-height:1.05;
+}
+.hero-landing p{
+  font-size:clamp(18px,2vw,28px);
+  font-weight:700; margin:0 0 22px;
+}
+
+/* Título con icono a la izquierda */
+.hero__title{
+  display:flex; align-items:center; gap:18px;
+}
+/* Icono grande (ocupa casi la altura de 2 líneas) */
+.hero__mark{
+  height:145px;                /* ajusta si quieres aún más grande */
+  width:auto; flex:0 0 auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+}
+
+/* Botón del héroe: más largo, menos alto, colocado bajo la 2ª línea */
+.btn-hero{
+  padding:8px 28px;
+  font-size:22px;
+  font-weight:700;
+  border-radius:14px;
+  margin-top:8px;
+  margin-left: calc(145px + 18px); /* icono (145) + gap (18) */
+}
+
+@media (max-width:560px){
+  .hero-landing{min-height:440px}
+  .hero-landing h1{font-size:34px}
+  .hero-landing p{font-size:18px}
+  .btn-hero{ margin-left:0; }        /* en móvil, botón alineado a la izquierda */
+}
+
+
+/* ========================================================= */
+/* ====== ABOUT (ajustes para parecerse a la referencia) === */
+/* ========================================================= */
+
+.section--about{
+  padding-top:70px;
+}
+
+/* Asegura grid en la sección about */
+.about{ display:grid; }
+
+/* Grilla compacta (texto | imagen) */
+.about.about--compact{
+  grid-template-columns:1.2fr 0.8fr;  /* texto | imagen */
+  align-items:start;                  /* sube el bloque de texto */
+}
+
+/* ===== Padding interno solo para la columna de TEXTO del about ===== */
+.about.about--compact .about__text{
+  /* ajusta este valor a gusto */
+  padding-left: 50px;          /* ⬅️ padding pedido para que no arranque al borde */
+  padding-right: 70px;
+}
+
+/* Mantener dos columnas en desktop/tablet; apilar recién en ≤700px */
+@media (max-width:1024px){
+  .about.about--compact{
+    grid-template-columns:1.1fr 0.9fr; /* seguimos en 2 columnas hasta 1024 */
+    gap:26px;
+
+      .about.about--compact .about__text{
+    padding-left: 24px;
+  }
+  }
+}
+@media (max-width:700px){
+  .about.about--compact{
+    grid-template-columns:1fr;        /* texto arriba, imagen abajo */
+    gap:22px;
+  }
+
+    .about.about--compact .about__text{
+    padding-left: 0;
+  }
+}
+
+/* Título principal */
+.about__title{
+  margin:0 0 5px;
+  color:var(--brand-900);
+  font-weight:600;
+  letter-spacing:.2px;
+  font-size:clamp(26px,2.6vw,40px);
+}
+
+/* Línea “Tu sonrisa…” */
+.section--about .lead{
+  margin:0 0 14px;
+  color:var(--text-900);
+  font-size:22px;
+  font-weight:600;
+}
+
+/* “¿Por qué confiar en nosotros?” */
+.section--about .subtitle{
+  margin:18px 0 8px;
+  font-size:22px;
+  font-weight:600;
+  color:var(--text-900);
+}
+
+/* Cuerpo y bullets */
+.section--about p{
+  font-size:20px;
+  line-height:1.6;
+}
+.section--about .ul{
+  font-size:20px;
+  line-height:1.5;
+}
+.section--about .ul li{ margin:8px 0; }
+
+/* Imagen derecha un poco más pequeña */
+.about__img--sm{
+  max-width:450px;
+  justify-self:center;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  margin-top: 50px;
+  margin-left: 30px;
+}
+.about__img--sm img{
+  width:100%; height:auto; display:block;
+}
+
+
+/* ========================================================= */
+/* === HOME: Tratamientos (seis tarjetas) ================== */
+/* ========================================================= */
+.treatments{ padding-top:70px; text-align:center; }
+
+/* Logo mark arriba del título */
+.treatments__mark{
+  display:grid;
+  place-items:center;
+  margin-bottom:8px;
+}
+.treatments__mark img{
+  height:66px;
+  width:auto;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.08));
+}
+
+/* Título principal */
+.treatments h2,
+.treatments .treatments__title{
+  text-align:center;
+  margin:0 0 18px;
+  color:var(--brand-900);
+  font-weight:600;
+  letter-spacing:.2px;
+  font-size:clamp(26px,2.6vw,40px);
+}
+
+/* Grilla de tratamientos */
+.treatments__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+  margin-top:10px;
+}
+
+/* Tarjetas */
+.tcard{
+  background:#fff;
+  border:1.5px solid #000000; /* borde más oscuro */
+  border-radius:18px;
+  padding:28px;
+  text-align:center;
+  box-shadow:0 1px 2px rgba(16,24,40,.03);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.tcard:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(28,75,142,0.1);
+}
+.tcard img{
+  width:88px; height:88px; object-fit:contain; margin:0 auto 10px;
+}
+.tcard h3{
+  font-size:24px; /* menos voluminoso */
+  font-weight:600;
+  margin:6px 0 6px;
+}
+.tcard p{
+  font-size:19px;
+  color:var(--text-600);
+  margin:0;
+}
+
+/* Responsive */
+@media (max-width:860px){
+  .treatments__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .treatments__grid{grid-template-columns:1fr}
+}
+
+/* ============================================= */
+/* =============== CTA strip (banner) ========== */
+/* ============================================= */
+.cta-strip{
+  /* gradiente izquierda→derecha (brand-900 a brand-500) */
+  background: linear-gradient(90deg, #1c4b8e 0%, #00b1ef 100%);
+  color:#fff;
+  padding: 48px 0;              /* alto de la franja */
+  margin-top:70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-strip__inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;                     /* separación entre marca, título y botón */
+  text-align:center;
+}
+
+.cta-strip__mark{
+  height:56px;                  /* tamaño del logo como en la referencia */
+  width:auto;
+  display:block;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.12));
+}
+
+.cta-strip__title{
+  margin:0;
+  font-weight:600;
+  letter-spacing:.2px;
+  font-size: clamp(22px, 3.4vw, 36px); /* grande en desktop, legible en móvil */
+  line-height:1.2;
+  color:#fff;                   /* texto blanco sobre el gradiente */
+}
+
+/* Botón estilo CTA sobre el gradiente */
+.btn-cta{
+  background:var(--brand-500);           /* un toque más claro que --brand-500 */
+  border-radius:10px;
+  padding:5px 28px;
+  font-weight:600;
+  font-size:22px;
+  margin-top: 15px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.15);
+}
+.btn-cta:hover{
+  filter:none;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+
+/* Responsive: un poco más de respiro en móviles */
+@media (max-width:560px){
+  .cta-strip{ padding: 40px 0; }
+  .cta-strip__mark{ height:48px; }
+  .btn-cta{ font-size:16px; padding:11px 20px; }
+}
+
+
+/* =================== INSTALACIONES =================== */
+.section-title{
+  text-align:center;
+  margin:0 0 18px;
+  color:var(--brand-900);
+  font-weight:600;
+  letter-spacing:.2px;
+  font-size:clamp(26px,2.6vw,40px);
+}
+
+.facilities{ margin-top: 70px; }
+.facilities__grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.facility{
+  width:96%;
+  margin:0;
+  border-radius:16px;
+  overflow:hidden;  
+  box-shadow: 0 8px 26px rgba(16,24,40,.08);
+}
+.facility img{
+  width:100%;
+  display:block;
+}
+
+@media (max-width:1024px){
+  .facilities__grid{ grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width:760px){
+  .facilities__grid{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width:520px){
+  .facilities__grid{ grid-template-columns: 1fr; }
+  .facility img{ height:200px; }
+}
+
+/* =================== RESEÑAS (GOOGLE) =================== */
+.reviews{ padding-top: 70px; }
+.reviews__grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:22px;
+  margin-top:40px;
+}
+.r-card{
+  background:#fff;
+  border:1px solid #d8e1ee;      /* borde suave como la ref */
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 1px 2px rgba(16,24,40,.03);
+}
+
+.r-card__head{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:8px;
+}
+.r-author{ display:flex; align-items:center; gap:10px; }
+.r-avatar{
+  width:36px; height:36px; border-radius:50%; object-fit:cover; flex:0 0 auto;
+  background:#e9eef6;
+  display:block;
+}
+.r-avatar--initial{
+  display:grid; place-items:center; color:#fff; font-weight:700;
+  background:var(--brand-900);
+}
+
+.r-name{
+  font-size:16px; line-height:1.1; margin:0;
+  color:var(--text-900); font-weight:700;
+}
+.r-date{
+  font-size:12px; color:#8aa0b7; margin-top:2px;
+}
+.r-g{ width:22px; height:auto; opacity:.9; }
+
+.r-stars{ display:flex; align-items:center; gap:4px; margin:4px 0 10px; }
+.star{
+  width:18px; height:18px; flex:0 0 auto;
+  fill:#ffb400;                  /* dorado */
+  display:block;
+}
+
+/* “verificado” (azul) */
+.r-verified{
+  display:inline-grid; place-items:center; margin-left:6px;
+  width:18px; height:18px; position:relative;
+}
+.r-verified svg{ width:100%; height:100%; fill:#2b7fff; opacity:.95; }
+.r-verified .check{
+  position:absolute; inset:3px;
+  fill:#fff;
+}
+
+.r-text{
+  margin:0;
+  color:var(--text-900);
+  font-size:15px;
+  line-height:1.45;
+}
+
+/* badge inferior tipo Trustindex */
+.reviews__badge{
+  display:flex; justify-content:flex-end;
+  margin-top:10px;
+}
+.reviews__badge span{
+  display:inline-block;
+  background:#2ecc71;
+  color:#fff;
+  font-size:13px;
+  border-radius:12px;
+  padding:6px 10px;
+}
+
+/* Responsive reseñas */
+@media (max-width:1100px){
+  .reviews__grid{ grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width:820px){
+  .reviews__grid{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width:520px){
+  .reviews__grid{ grid-template-columns: 1fr; }
+}

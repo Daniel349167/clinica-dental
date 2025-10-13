@@ -1,28 +1,233 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
-import Hero from "../../components/Hero.astro";
-import Services from "../../components/Services.astro";
 import Footer from "../../components/Footer.astro";
 
 const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 ---
+
 <BaseLayout title="Clínica Dental | Sonríe con confianza" description="Odontología integral: estética, ortodoncia e implantes en Barcelona." locale="es" {alternates}>
   <Header locale="es" currentPath="/es/" />
-  <main class="container">
-    <Hero locale="es" />
-  </main>
 
-  <Services locale="es" />
-
-  <section id="cita" class="container">
-    <h2>Solicitar cita</h2>
-    <div class="card">
-      <p>Déjanos tus datos y te llamamos para confirmar la hora disponible.</p>
-      <!-- el formulario real lo añadimos en el paso backend -->
-      <a class="btn" href="mailto:citas@clinica.example?subject=Cita&body=Hola,%20quiero%20una%20cita.">Enviar por correo</a>
+<!-- HERO con imagen de fondo -->
+<section class="hero-landing" style="--hero:url(/assets/hero.png)">
+  <div class="hero__inner container">
+    <div class="hero__copy">
+      <h1 class="hero__title">
+        <img class="hero__mark" src="/assets/mark-hero.svg" alt="" />
+        <span>
+          Tu mejor sonrisa<br/>
+          empieza aquí
+        </span>
+      </h1>
+      <!-- Botón alineado bajo la segunda línea del título -->
+      <a class="btn btn-hero" href="#cita">PIDE TU CITA</a>
     </div>
-  </section>
+  </div>
+</section>
+
+
+<!-- Bloque: Clínica Dental Sueca -->
+<section class="section section--about container">
+  <div class="about about--compact">
+    <div class="about__text">
+      <h2 class="about__title">Clínica Dental Sueca</h2>
+      <p class="lead">Tu sonrisa, tu mejor carta de presentación.</p>
+
+      <p>En nuestra clínica dental trabajamos para que cada paciente disfrute de una sonrisa sana, estética y natural. Sabemos que no es solo cuestión de dientes, sino de confianza, bienestar y seguridad personal.</p>
+
+      <p>Unimos innovación tecnológica con la experiencia de nuestros especialistas para ofrecerte tratamientos modernos, eficaces y adaptados a ti. Nuestro espacio está diseñado para transmitirte calma y confianza, con un enfoque claro: cuidar de tu salud y realzar tu mejor versión.</p>
+
+      <div class="subtitle">¿Por qué confiar en nosotros?</div>
+      <ul class="ul">
+        <li>Experiencia sólida de un equipo especializado en todas las áreas de la odontología.</li>
+        <li>Tecnología avanzada para resultados predecibles y de alta calidad.</li>
+        <li>Atención cercana y personalizada desde el primer día.</li>
+      </ul>
+    </div>
+
+    <div class="about__img about__img--sm">
+      <img src="/assets/about.png" alt="Paciente feliz en clínica dental" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- Tratamientos -->
+<section class="treatments container">
+  <!-- NUEVO: logo-mark arriba y centrado -->
+  <div class="treatments__mark">
+    <img src="/assets/logo-mark.svg" alt="DentLogo" />
+  </div>
+
+  <h2 class="treatments__title">Tratamientos dentales</h2>
+
+  <div class="treatments__grid">
+    <article class="tcard">
+      <img src="/assets/icons/ortodoncia.svg" alt="" />
+      <h3>Ortodoncia y alineadores</h3>
+      <p>Alineamos tu sonrisa con tratamientos modernos y discretos. Desde brackets estéticos hasta ortodoncia invisible.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/icons/implante.svg" alt="" />
+      <h3>Implantes dentales</h3>
+      <p>Recupera la funcionalidad y estética con implantes de última generación. Resultados duraderos y naturales.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/icons/estetica.svg" alt="" />
+      <h3>Estética dental</h3>
+      <p>Carillas, blanqueamiento y diseño de sonrisa para mejorar la armonía y luminosidad de tu rostro.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/icons/rehabilitacion.svg" alt="" />
+      <h3>Rehabilitación oral</h3>
+      <p>Tratamiento integral que combina prótesis, implantes y técnicas para devolver la funcionalidad.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/icons/endodoncia.svg" alt="" />
+      <h3>Endodoncia</h3>
+      <p>Salvamos dientes dañados o infectados, eliminando el dolor y evitando su extracción.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/icons/odontopediatria.svg" alt="" />
+      <h3>Odontopediatría</h3>
+      <p>Cuidamos la sonrisa infantil con prevención, control de hábitos y ortodoncia temprana.</p>
+    </article>
+  </div>
+</section>
+
+<!-- CTA consulta gratis -->
+<section class="cta-strip">
+  <div class="cta-strip__inner container">
+    <img class="cta-strip__mark" src="/assets/mark-hero.svg" alt="DentLogo" />
+    <h2 class="cta-strip__title">Primera consulta y diagnóstico gratuito</h2>
+    <a class="btn btn-cta" href="#agenda" aria-label="Agendar tu cita">
+      AGENDA TU CITA
+    </a>
+  </div>
+</section>
+
+<!-- ================== INSTALACIONES ================== -->
+<section class="facilities container">
+  <h2 class="section-title">Instalaciones</h2>
+
+  <div class="facilities__grid">
+    <figure class="facility">
+      <img src="/assets/inst1.png" alt="inst1" />
+    </figure>
+    <figure class="facility">
+      <img src="/assets/inst2.png" alt="inst2" />
+    </figure>
+    <figure class="facility">
+      <img src="/assets/inst3.png" alt="inst3" />
+    </figure>
+  </div>
+</section>
+
+<!-- ========== RESEÑAS: ¿Qué opinan nuestros pacientes? ========== -->
+<section class="reviews container">
+  <h2 class="section-title">¿Qué opinan nuestros pacientes?</h2>
+
+  <div class="reviews__grid">
+    <!-- Card 1 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <img class="r-avatar" src="/assets/reviews/a1.jpg" alt="Norma Miryam" />
+          <div>
+            <h3 class="r-name">Norma Miryam Felic...</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/google-g.svg" alt="Google" />
+      </header>
+
+      <div class="r-stars" aria-label="5 de 5">
+        <!-- 5 estrellas -->
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <!-- verificado -->
+        <span class="r-verified" title="Opinión verificada" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg>
+          <svg class="check" viewBox="0 0 24 24"><path d="M9.5 13.5l-2-2 1.4-1.4 0 0L10 10.7l5.1-5.1L16.5 7l-7 6.5z"/></svg>
+        </span>
+      </div>
+
+      <p class="r-text">Trato y profesionales inmejorables!</p>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <img class="r-avatar" src="/assets/reviews/a2.jpg" alt="Maria Molle" />
+          <div>
+            <h3 class="r-name">Maria Molle</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/google-g.svg" alt="Google" />
+      </header>
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <span class="r-verified" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg><svg class="check" viewBox="0 0 24 24"><path d="M9.5 13.5l-2-2 1.4-1.4L10 10.7l5.1-5.1L16.5 7l-7 6.5z"/></svg></span>
+      </div>
+      <p class="r-text">La meva clínica de confiança, no la canvio per cap altre!!!</p>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <div class="r-avatar r-avatar--initial">A</div>
+          <div>
+            <h3 class="r-name">Aleix Masip</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/google-g.svg" alt="Google" />
+      </header>
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <span class="r-verified" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg><svg class="check" viewBox="0 0 24 24"><path d="M9.5 13.5l-2-2 1.4-1.4L10 10.7l5.1-5.1L16.5 7l-7 6.5z"/></svg></span>
+      </div>
+      <p class="r-text">Molt amables!</p>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <img class="r-avatar" src="/assets/reviews/a4.jpg" alt="Judit Garcia" />
+          <div>
+            <h3 class="r-name">Judit Garcia Santa...</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/google-g.svg" alt="Google" />
+      </header>
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <span class="r-verified" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg><svg class="check" viewBox="0 0 24 24"><path d="M9.5 13.5l-2-2 1.4-1.4L10 10.7l5.1-5.1L16.5 7l-7 6.5z"/></svg></span>
+      </div>
+      <p class="r-text">Súper contenta con el trato recibido, súper amables y muy profesionales!!!</p>
+    </article>
+  </div>
+
+  <!-- Badge opcional -->
+  <div class="reviews__badge">
+    <span>Verificado por: Trustindex</span>
+  </div>
+</section>
+
 
   <Footer locale="es" />
 </BaseLayout>

@@ -1,23 +1,100 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
-import Hero from "../../components/Hero.astro";
-import Services from "../../components/Services.astro";
 import Footer from "../../components/Footer.astro";
+
 const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 ---
+
 <BaseLayout title="Clínica Dental | Somriu amb confiança" description="Odontologia integral: estètica, ortodòncia i implants a Barcelona." locale="ca" {alternates}>
   <Header locale="ca" currentPath="/ca/" />
-  <main class="container">
-    <Hero locale="ca" />
-  </main>
-  <Services locale="ca" />
-  <section id="cita" class="container">
-    <h2>Sol·licitar cita</h2>
-    <div class="card">
-      <p>Deixa’ns les teves dades i et trucarem per confirmar l’hora disponible.</p>
-      <a class="btn" href="mailto:citas@clinica.example?subject=Cita&body=Hola,%20vull%20una%20cita.">Enviar per correu</a>
+
+  <!-- HERO -->
+  <section class="hero-landing" style="--hero:url(/assets/hero-ca.jpg)">
+    <div class="hero__inner container">
+      <div class="hero__copy">
+        <h1>El teu millor somriure comença aquí</h1>
+        <p>Somriu amb confiança</p>
+        <a class="btn" href="#cita">DEMANAR CITA</a>
+      </div>
     </div>
   </section>
+
+  <!-- Sobre la clínica -->
+  <section class="section container">
+    <div class="about">
+      <div>
+        <h2>Clínica Dental Sueca</h2>
+        <p class="lead"><strong>El teu somriure, la teva millor carta de presentació.</strong></p>
+
+        <p>Treballem perquè cada pacient gaudeixi d’un somriure sa, estètic i natural. Sabem que no és només una qüestió de dents, sinó de confiança, benestar i seguretat personal.</p>
+
+        <p>Combinen innovació tecnològica amb l’experiència dels nostres especialistes per oferir tractaments moderns, eficaços i adaptats a tu. Un espai dissenyat per transmetre calma i confiança, amb un enfocament clar: cuidar la teva salut i realçar la teva millor versió.</p>
+
+        <div class="subtitle">Per què confiar en nosaltres?</div>
+        <ul class="ul">
+          <li>Experiència sòlida en totes les àrees de l’odontologia.</li>
+          <li>Tecnologia avançada per a resultats predictibles i d’alta qualitat.</li>
+          <li>Atenció propera i personalitzada des del primer dia.</li>
+        </ul>
+      </div>
+
+      <div class="about__img">
+        <img src="/assets/about.jpg" alt="Pacient feliç a la clínica dental" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Tractaments -->
+  <section class="treatments container">
+    <h2><img src="/assets/logo-mark.svg" alt="" style="height:40px; vertical-align:middle; margin-right:10px" />Tractaments dentals</h2>
+
+    <div class="treatments__grid">
+      <article class="tcard">
+        <img src="/assets/icons/ortodoncia.svg" alt="" />
+        <h3>Ortodòncia i alineadors</h3>
+        <p>Alineem el teu somriure amb tractaments moderns i discrets. Des de bràquets estètics fins a ortodòncia invisible.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/implante.svg" alt="" />
+        <h3>Implants dentals</h3>
+        <p>Recupera funcionalitat i estètica amb implants d’última generació. Resultats duradors i naturals.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/estetica.svg" alt="" />
+        <h3>Estètica dental</h3>
+        <p>Carilles, emblanquiment i disseny de somriure per millorar l’harmonia i la lluminositat.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/rehabilitacion.svg" alt="" />
+        <h3>Rehabilitació oral</h3>
+        <p>Tractament integral que combina pròtesis, implants i altres tècniques.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/endodoncia.svg" alt="" />
+        <h3>Endodòncia</h3>
+        <p>Salvem dents danyades o infectades, eliminant el dolor i evitant l’extracció.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/odontopediatria.svg" alt="" />
+        <h3>Odontopediatria</h3>
+        <p>Tenim cura del somriure infantil amb prevenció, control d’hàbits i ortodòncia primerenca.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="cita" class="section container" style="padding-top:28px">
+    <div class="card">
+      <h2 style="margin-top:0">Sol·licitar cita</h2>
+      <p>Deixa’ns les teves dades i et trucarem per confirmar l’hora disponible.</p>
+      <a class="btn" href="mailto:cites@clinica.example?subject=Cita&body=Hola,%20voldria%20demanar%20cita.">Enviar per correu</a>
+    </div>
+  </section>
+
   <Footer locale="ca" />
 </BaseLayout>

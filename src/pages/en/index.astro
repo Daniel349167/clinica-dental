@@ -1,23 +1,100 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
-import Hero from "../../components/Hero.astro";
-import Services from "../../components/Services.astro";
 import Footer from "../../components/Footer.astro";
+
 const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 ---
+
 <BaseLayout title="Dental Clinic | Smile with confidence" description="Comprehensive dentistry: aesthetics, orthodontics and implants in Barcelona." locale="en" {alternates}>
   <Header locale="en" currentPath="/en/" />
-  <main class="container">
-    <Hero locale="en" />
-  </main>
-  <Services locale="en" />
-  <section id="cita" class="container">
-    <h2>Request appointment</h2>
-    <div class="card">
-      <p>Leave your details and we’ll call you to confirm the next available time.</p>
-      <a class="btn" href="mailto:citas@clinica.example?subject=Appointment&body=Hi,%20I’d%20like%20an%20appointment.">Send by email</a>
+
+  <!-- HERO -->
+  <section class="hero-landing" style="--hero:url(/assets/hero-en.jpg)">
+    <div class="hero__inner container">
+      <div class="hero__copy">
+        <h1>Your best smile starts here</h1>
+        <p>Smile with confidence</p>
+        <a class="btn" href="#cita">BOOK APPOINTMENT</a>
+      </div>
     </div>
   </section>
+
+  <!-- About -->
+  <section class="section container">
+    <div class="about">
+      <div>
+        <h2>Dental Sueca Clinic</h2>
+        <p class="lead"><strong>Your smile is your best introduction.</strong></p>
+
+        <p>We work so every patient enjoys a healthy, aesthetic and natural smile. It’s not only about teeth—it’s about confidence, well-being and personal safety.</p>
+
+        <p>We combine cutting-edge technology with experienced specialists to offer modern and effective treatments adapted to you. Our space is designed to convey calm and trust, with a clear focus: caring for your health and highlighting your best version.</p>
+
+        <div class="subtitle">Why trust us?</div>
+        <ul class="ul">
+          <li>Strong experience across all dental specialties.</li>
+          <li>Advanced technology for predictable, high-quality results.</li>
+          <li>Close, personalized care from day one.</li>
+        </ul>
+      </div>
+
+      <div class="about__img">
+        <img src="/assets/about.jpg" alt="Happy patient at dental clinic" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatments -->
+  <section class="treatments container">
+    <h2><img src="/assets/logo-mark.svg" alt="" style="height:40px; vertical-align:middle; margin-right:10px" />Dental treatments</h2>
+
+    <div class="treatments__grid">
+      <article class="tcard">
+        <img src="/assets/icons/ortodoncia.svg" alt="" />
+        <h3>Orthodontics & aligners</h3>
+        <p>Modern, discreet treatments from aesthetic braces to invisible orthodontics.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/implante.svg" alt="" />
+        <h3>Dental implants</h3>
+        <p>Regain function and aesthetics with next-gen implants. Durable, natural results.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/estetica.svg" alt="" />
+        <h3>Cosmetic dentistry</h3>
+        <p>Veneers, whitening and smile design to improve harmony and brightness.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/rehabilitacion.svg" alt="" />
+        <h3>Oral rehabilitation</h3>
+        <p>Comprehensive care combining prosthetics, implants and other techniques.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/endodoncia.svg" alt="" />
+        <h3>Endodontics</h3>
+        <p>We save damaged or infected teeth, relieving pain and avoiding extraction.</p>
+      </article>
+
+      <article class="tcard">
+        <img src="/assets/icons/odontopediatria.svg" alt="" />
+        <h3>Pediatric dentistry</h3>
+        <p>We take care of children’s smiles with prevention, habit control and early orthodontics.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="cita" class="section container" style="padding-top:28px">
+    <div class="card">
+      <h2 style="margin-top:0">Request appointment</h2>
+      <p>Leave your details and we will call you back to confirm a time.</p>
+      <a class="btn" href="mailto:appointments@clinic.example?subject=Appointment&body=Hello,%20I%20would%20like%20an%20appointment.">Send email</a>
+    </div>
+  </section>
+
   <Footer locale="en" />
 </BaseLayout>
