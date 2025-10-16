@@ -3,6 +3,7 @@ import LangSwitcher from "./LangSwitcher.astro";
 
 const { locale, currentPath } = Astro.props;
 
+// Navegación por idioma
 const nav = {
   es: [
     ["/es", "Inicio"],
@@ -23,6 +24,28 @@ const nav = {
     ["/en/blog", "Blog"],
   ],
 }[locale];
+
+// Textos dinámicos
+const texts = {
+  es: {
+    address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
+    phoneLabel: "Teléfono",
+    bookCta: "PEDIR CITA",
+    ariaLang: "Idioma",
+  },
+  ca: {
+    address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
+    phoneLabel: "Telèfon",
+    bookCta: "DEMANA CITA",
+    ariaLang: "Idioma",
+  },
+  en: {
+    address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
+    phoneLabel: "Phone",
+    bookCta: "BOOK NOW",
+    ariaLang: "Language",
+  },
+}[locale];
 ---
 
 <header class="site-header">
@@ -30,12 +53,15 @@ const nav = {
   <div class="topbar">
     <div class="container topbar__inner">
       <div class="contact">
-        <span class="addr">C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona</span>
+        <span class="addr">{texts.address}</span>
         <span class="sep">|</span>
-        <span class="tel">Teléfono: <span class="telnum">+34 614 37 57 92</span></span>
+        <span class="tel">
+          {texts.phoneLabel}:
+          <span class="telnum">+34 614 37 57 92</span>
+        </span>
       </div>
 
-      <nav class="langs" aria-label="Idioma">
+      <nav class="langs" aria-label={texts.ariaLang}>
         <LangSwitcher {currentPath} {locale} />
       </nav>
     </div>
@@ -52,83 +78,7 @@ const nav = {
         {nav.map(([href, label]) => <a href={href}>{label}</a>)}
       </nav>
 
-      <a class="cta" href={`${nav[0][0]}#cita`}>PEDIR CITA</a>
+      <a class="cta" href={`${nav[0][0]}#cita`}>{texts.bookCta}</a>
     </div>
   </div>
 </header>
-
-<style>
-/* ===== Topbar ===== */
-.topbar{
-  background:#f1f2f3;
-  color:var(--text-600);
-  font-size:15px;
-}
-.topbar__inner{
-  height:44px;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.contact{
-  display:flex;
-  align-items:baseline;      /* alinea dirección y teléfono por la línea base */
-  gap:10px;
-  white-space:nowrap;
-  line-height:1.1;
-}
-.contact span{ display:inline-block; }
-.contact .sep{ color:#90a2b5; }
-.contact .tel{ font-size:16px; }
-.contact .telnum{ font-weight:400; color:#2d4a67; } /* sin negrita */
-
-/* ===== Mainbar ===== */
-.mainbar{
-  background:#fff;
-  border-bottom:1px solid #eef3f8;
-}
-.mainbar__inner{
-  height:84px;
-  display:flex; align-items:center;
-  gap:24px;
-}
-
-/* Logo con aire fijo a la derecha */
-.logo{ display:inline-flex; align-items:center; text-decoration:none; margin-right:96px; }
-.logo img{ height:56px; width:auto; display:block; }
-
-/* Menú: a la derecha y cerca del CTA */
-.nav{
-  display:flex; align-items:center;
-  gap:44px;                /* espacio entre items del menú */
-  margin-left:auto;        /* empuja el menú hacia la derecha */
-  margin-right:48px;       /* hueco controlado entre menú y CTA */
-}
-.nav > a,
-.nav > a:link,
-.nav > a:visited{
-  color:#3a3a3a;
-  text-decoration:none;
-  font-size:24px;          /* grande como referencia */
-  font-weight:400;
-}
-.nav > a:hover{ color:var(--brand-500); }
-
-/* CTA: celeste del tema, más largo y no tan alto */
-.cta,
-.cta:link,
-.cta:visited{
-  display:inline-block;
-  background:var(--brand-500);
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.3px;
-  font-size:18px;
-  padding:9px 28px;
-  border-radius:8px;
-  line-height:1;
-  transition:filter .15s ease-in-out, transform .06s ease-in-out;
-}
-.cta:hover{ filter:brightness(0.95); }
-.cta:active{ transform:translateY(1px); }
-</style>

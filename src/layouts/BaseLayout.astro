@@ -1,35 +1,129 @@
-  ---
-  import "../pages/_app.css"; 
-  const { title = 'Clínica Dental', description = 'Odontología integral en Barcelona', locale='es', alternates } = Astro.props;
-  ---
-  <html lang={locale}>
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {alternates && (
-        <>
-          <link rel="alternate" hrefLang="es" href={alternates.es} />
-          <link rel="alternate" hrefLang="ca" href={alternates.ca} />
-          <link rel="alternate" hrefLang="en" href={alternates.en} />
-          <link rel="alternate" hrefLang="x-default" href={alternates.es} />
-        </>
-      )}
-    </head>
-    <body>
-      <slot />
-      <!-- CRISP CHAT -->
-      <script is:inline>
-        window.$crisp = [];
-        window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
-        (function() {
-          const d = document;
-          const s = d.createElement("script");
-          s.src = "https://client.crisp.chat/l.js";
-          s.async = 1;
-          d.getElementsByTagName("head")[0].appendChild(s);
-        })();
-      </script>
-    </body>
-  </html>
+---
+import "../pages/_app.css";
+const { title = 'Clínica Dental', description = 'Odontología integral en Barcelona', locale='es', alternates } = Astro.props;
+---
+
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    {alternates && (
+      <>
+        <link rel="alternate" hrefLang="es" href={alternates.es} />
+        <link rel="alternate" hrefLang="ca" href={alternates.ca} />
+        <link rel="alternate" hrefLang="en" href={alternates.en} />
+        <link rel="alternate" hrefLang="x-default" href={alternates.es} />
+      </>
+    )}
+  </head>
+
+  <body>
+    <slot />
+
+    <!-- =======================
+         BOTÓN PERSONALIZADO CRISP
+         ======================= -->
+    <button id="chat-fab" class="chat-fab" aria-label="Abrir chat">
+      <!-- Reemplaza por tu imagen -->
+      <img src="/assets/icons/chat.svg" alt="Chat" />
+    </button>
+
+    <!-- =======================
+         CRISP CHAT (Loader)
+         ======================= -->
+    <script is:inline>
+      // Cola Crisp
+      window.$crisp = window.$crisp || [];
+
+      // 1) OCULTAR LAUNCHER NATIVO (vía API oficial)
+      // Si tu cuenta Crisp soporta esta config, el launcher nativo no se mostrará.
+      // (Dejamos además un fallback abajo por si tu plan/no-flag no la respeta)
+      window.$crisp.push(["config", "hide:launcher", true]);
+
+      // ID de tu web en Crisp
+      window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
+
+      // Carga del script
+      (function () {
+        const d = document;
+        const s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
+
+    <!-- =======================
+         INTEGRACIÓN DEL BOTÓN + FALLBACKS
+         ======================= -->
+    <script is:inline>
+      // 2) TOGGLE: abrir/cerrar chat con el mismo botón
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("chat-fab");
+        if (btn) {
+          btn.addEventListener("click", function () {
+            // Si el método toggle no estuviera disponible en tu build, forzamos open/close detectando estado
+            try {
+              window.$crisp?.push(["do", "chat:toggle"]);
+            } catch (e) {
+              // fallback muy simple: si está abierto, cierra; si no, abre
+              const opened = document.documentElement.classList.contains("crisp-client");
+              window.$crisp?.push(["do", opened ? "chat:close" : "chat:open"]);
+            }
+          });
+        }
+      });
+
+      // 3) Fallback robusto: ocultar cualquier launcher nativo que aparezca
+      function hideCrispLauncherAggressively() {
+        try {
+          const root = document.querySelector(".crisp-client, #crisp-chatbox");
+          if (!root) return;
+
+          // Probables nodos del launcher nativo:
+          const candidates = root.querySelectorAll(
+            '.crisp-button, [data-testid="chat-widget-button"], a[href*="crisp.chat"], [class*="launcher"], [class*="button"]'
+          );
+          candidates.forEach((el) => {
+            // Evita tocar la ventana del chat; sólo el botón flotante
+            const isButtonLike =
+              (el.tagName === "A" || el.tagName === "BUTTON" || el.getAttribute("role") === "button");
+            if (isButtonLike || /button|launcher/i.test(el.className)) {
+              el.style.setProperty("display", "none", "important");
+              el.style.setProperty("visibility", "hidden", "important");
+              el.style.setProperty("opacity", "0", "important");
+              el.style.setProperty("pointer-events", "none", "important");
+            }
+          });
+        } catch (_) {}
+      }
+
+      window.addEventListener("crisp:ready", function () {
+        // CSS extra por si el API no oculta el launcher en tu plan
+        const style = document.createElement("style");
+        style.textContent = `
+          .crisp-client .crisp-button,
+          .crisp-client [data-testid="chat-widget-button"],
+          .crisp-client [class*="crisp-"][class*="button"],
+          #crisp-chatbox .crisp-button {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+          }
+        `;
+        document.head.appendChild(style);
+
+        // Intento inmediato de ocultar cualquier nodo que haya quedado
+        hideCrispLauncherAggressively();
+
+        // Observa mutaciones para ocultar re-inserciones del botón nativo
+        const obs = new MutationObserver(() => hideCrispLauncherAggressively());
+        obs.observe(document.body, { childList: true, subtree: true });
+      });
+    </script>
+  </body>
+</html>

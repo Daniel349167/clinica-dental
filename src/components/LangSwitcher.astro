@@ -25,37 +25,67 @@ const langs = [
 </div>
 
 <style>
-.langswitch{
-  display:flex; align-items:center;
+.langswitch {
+  display: flex;
+  align-items: baseline; /* alinea todas las siglas por la línea base */
+  line-height: 1;
 }
 
 /* enlaces base */
 .langswitch a,
 .langswitch a:link,
-.langswitch a:visited{
+.langswitch a:visited {
   color: var(--text-600);
   font-weight: 700;
   text-decoration: none;
-  line-height: 1.1;
+  display: inline-flex;
+  align-items: baseline; /* misma línea base que el texto */
+  line-height: 1;
 }
 
-/* guiones (nunca se subrayan) */
-.langswitch a + a::before{
+/* guiones (no afectan alineación) */
+.langswitch a + a::before {
   content: " - ";
   color: #90a2b5;
-  margin: 0 8px;              /* un poco más de aire */
+  margin: 0 10px;
+  display: inline-block;
+  line-height: 1;
 }
 
-/* subrayado del ACTIVO: solo el texto, con color de marca */
-.langswitch a .label{
-  display:inline-block;       /* necesario para border-bottom exacto */
-  padding-bottom: 2px;
-  border-bottom: 0 solid transparent;
+/* texto del idioma */
+.langswitch a .label {
+  display: inline-block;
+  position: relative; /* necesario para colocar el pseudo-elemento debajo */
+  line-height: 1;
+  padding-bottom: 0;  /* sin padding que altere altura */
+  border: 0;
+  box-shadow: none;
 }
-.langswitch a.active .label,
-.langswitch a[aria-current="page"] .label,
-.langswitch a[aria-current="true"] .label{
-  border-bottom-width: 2px;
-  border-bottom-color: var(--brand-500);
+
+/* subrayado visual controlado con ::after */
+.langswitch a.active .label::after,
+.langswitch a[aria-current="page"] .label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;                 /* ↓ controla cuánto baja la línea */
+  height: 2px;                  /* grosor de la línea */
+  background: var(--brand-500); /* color del subrayado */
+  border-radius: 1px;           /* suaviza bordes */
 }
+
+/* efecto hover sutil */
+.langswitch a:hover .label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background: rgba(0, 177, 239, 0.3);
+  border-radius: 1px;
+}
+
+
 </style>

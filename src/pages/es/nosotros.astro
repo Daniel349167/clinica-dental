@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = { es: "/es/nosotros", ca: "/ca/nosaltres", en: "/en/about" };
+---
+
+<BaseLayout
+  title="Nosotros | Clínica Dental"
+  description="Conócenos: equipo, valores y experiencia."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/nosotros" />
+
+  <!-- =========================
+       HERO - NOSOTROS (ES)
+       Fondo imagen + icono + título + botón
+       ========================= -->
+  <section class="hero-nosotros" style="--hero:url(/assets/hero-nosotros.jpg)" aria-label="Sección de bienvenida">
+    <div class="hero-nosotros__shade"></div>
+
+    <div class="hero-nosotros__inner container">
+      <img class="hero-nosotros__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="hero-nosotros__title">Innovación y experiencia</h1>
+      <a class="btn hero-nosotros__cta" href="#equipo" aria-label="Ir a equipo">BIENVENIDOS</a>
+    </div>
+  </section>
+
+  <!-- Aquí podrás seguir con las siguientes secciones: Equipo, Valores, Historia, etc. -->
+
+  <Footer locale="es" />
+</BaseLayout>
+
+<style>
+/* ====== HERO NOSOTROS ====== */
+.hero-nosotros{
+  position: relative;
+  min-height: clamp(320px, 48vw, 520px);
+  display: grid;
+  align-items: center;
+  background: center/cover no-repeat var(--hero, url(/assets/hero-nosotros.jpg));
+  overflow: hidden;
+}
+
+/* Velo azul + oscurecido como en el index */
+.hero-nosotros__shade{
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.45) 100%),
+    linear-gradient(0deg, rgba(0,177,239,.28), rgba(0,177,239,.28));
+}
+
+.hero-nosotros__inner{
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 5vw, 44px) 0;
+  text-align: center;
+  color: #fff;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+/* Icono */
+.hero-nosotros__icon{
+  width: clamp(42px, 6vw, 72px);
+  height: auto;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,.25));
+}
+
+/* Título */
+.hero-nosotros__title{
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: clamp(28px, 4.8vw, 56px);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* Botón */
+.hero-nosotros__cta{
+  margin-top: 6px;
+  background: var(--brand-500);
+  font-weight: 800;
+  padding: 14px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.hero-nosotros__cta:hover{ filter: brightness(.95); }
+</style>

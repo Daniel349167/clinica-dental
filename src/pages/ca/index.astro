@@ -9,92 +9,313 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 <BaseLayout title="Clínica Dental | Somriu amb confiança" description="Odontologia integral: estètica, ortodòncia i implants a Barcelona." locale="ca" {alternates}>
   <Header locale="ca" currentPath="/ca/" />
 
-  <!-- HERO -->
-  <section class="hero-landing" style="--hero:url(/assets/hero-ca.jpg)">
-    <div class="hero__inner container">
-      <div class="hero__copy">
-        <h1>El teu millor somriure comença aquí</h1>
-        <p>Somriu amb confiança</p>
-        <a class="btn" href="#cita">DEMANAR CITA</a>
+<!-- HERO amb imatge de fons -->
+<section class="hero-landing" style="--hero:url(/assets/hero.png)">
+  <div class="hero__inner container">
+    <div class="hero__copy">
+      <h1 class="hero__title">
+        <img class="hero__mark" src="/assets/mark-hero.svg" alt="" />
+        <span>
+          El teu millor somriure<br/>
+          comença aquí
+        </span>
+      </h1>
+      <!-- Botó alineat sota la segona línia del títol -->
+      <a class="btn btn-hero" href="#cita">DEMANA LA TEVA CITA</a>
+    </div>
+  </div>
+</section>
+
+<!-- Bloc: Clínica Dental Sueca -->
+<section class="section section--about container">
+  <div class="about about--compact">
+    <div class="about__text">
+      <h2 class="about__title">Clínica Dental Sueca</h2>
+      <p class="lead">El teu somriure, la teva millor carta de presentació.</p>
+
+      <p>A la nostra clínica dental treballem perquè cada pacient gaudeixi d’un somriure sa, estètic i natural. Sabem que no és només una qüestió de dents, sinó de confiança, benestar i seguretat personal.</p>
+
+      <p>Unim innovació tecnològica amb l’experiència dels nostres especialistes per oferir-te tractaments moderns, eficaços i adaptats a tu. El nostre espai està dissenyat per transmetre’t calma i confiança, amb un objectiu clar: cuidar de la teva salut i realçar la teva millor versió.</p>
+
+      <div class="subtitle">Per què confiar en nosaltres?</div>
+      <ul class="ul">
+        <li>Experiència sòlida d’un equip especialitzat en totes les àrees de l’odontologia.</li>
+        <li>Tecnologia avançada per a resultats predictibles i d’alta qualitat.</li>
+        <li>Atenció propera i personalitzada des del primer dia.</li>
+      </ul>
+    </div>
+
+    <div class="about__img about__img--sm">
+      <img src="/assets/about.png" alt="Pacient feliç a la clínica dental" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- Tractaments -->
+<section class="treatments container">
+  <!-- Nou: logo-mark a dalt i centrat -->
+  <div class="treatments__mark">
+    <img src="/assets/logo-mark.svg" alt="DentLogo" />
+  </div>
+
+  <h2 class="treatments__title">Tractaments dentals</h2>
+
+  <div class="treatments__grid">
+    <article class="tcard">
+      <img src="/assets/ortodoncia.svg" alt="" />
+      <h3>Ortodòncia i alineadors</h3>
+      <p>Alineem el teu somriure amb tractaments moderns i discrets. Des de brackets estètics fins a ortodòncia invisible.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/implante.svg" alt="" />
+      <h3>Implants dentals</h3>
+      <p>Recupera la funcionalitat i l’estètica amb implants d’última generació. Resultats duradors i naturals.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/estetica.svg" alt="" />
+      <h3>Estètica dental</h3>
+      <p>Carilles, blanquejament i disseny de somriure per millorar l’harmonia i la lluminositat del teu rostre.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/rehabilitacion.svg" alt="" />
+      <h3>Rehabilitació oral</h3>
+      <p>Tractament integral que combina pròtesis, implants i tècniques per retornar la funcionalitat.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/endodoncia.svg" alt="" />
+      <h3>Endodòncia</h3>
+      <p>Salvem dents danyats o infectats, eliminant el dolor i evitant l’extracció.</p>
+    </article>
+
+    <article class="tcard">
+      <img src="/assets/odontopediatria.svg" alt="" />
+      <h3>Odontopediatria</h3>
+      <p>Tenim cura del somriure infantil amb prevenció, control d’hàbits i ortodòncia primerenca.</p>
+    </article>
+  </div>
+</section>
+
+<!-- CTA consulta gratis -->
+<section class="cta-strip">
+  <div class="cta-strip__inner container">
+    <img class="cta-strip__mark" src="/assets/mark-hero.svg" alt="DentLogo" />
+    <h2 class="cta-strip__title">Primera consulta i diagnòstic gratuïts</h2>
+    <a class="btn btn-cta" href="#agenda" aria-label="Reserva la teva cita">
+      RESERVA LA TEVA CITA
+    </a>
+  </div>
+</section>
+
+<!-- ================== INSTAL·LACIONS ================== -->
+<section class="facilities container">
+  <h2 class="section-title">Instal·lacions</h2>
+
+  <div class="facilities__grid">
+    <figure class="facility">
+      <img src="/assets/inst1.png" alt="instal·lació 1" />
+    </figure>
+    <figure class="facility">
+      <img src="/assets/inst2.png" alt="instal·lació 2" />
+    </figure>
+    <figure class="facility">
+      <img src="/assets/inst3.png" alt="instal·lació 3" />
+    </figure>
+  </div>
+</section>
+
+<!-- ========== RESENYES: Què opinen els nostres pacients? ========== -->
+<section class="reviews container">
+  <h2 class="section-title">Què opinen els nostres pacients?</h2>
+
+  <div class="reviews__grid">
+    <!-- Card 1 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <img class="r-avatar" src="/assets/persona1.png" alt="Norma Miryam" />
+          <div>
+            <h3 class="r-name">Norma Miryam Felic...</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+      </header>
+
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <!-- verificat -->
+        <span class="r-verified" title="Opinió verificada" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg>
+          <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
+        </span>
       </div>
-    </div>
-  </section>
 
-  <!-- Sobre la clínica -->
-  <section class="section container">
-    <div class="about">
-      <div>
-        <h2>Clínica Dental Sueca</h2>
-        <p class="lead"><strong>El teu somriure, la teva millor carta de presentació.</strong></p>
+      <p class="r-text">Tracte i professionals immillorables!</p>
+    </article>
 
-        <p>Treballem perquè cada pacient gaudeixi d’un somriure sa, estètic i natural. Sabem que no és només una qüestió de dents, sinó de confiança, benestar i seguretat personal.</p>
-
-        <p>Combinen innovació tecnològica amb l’experiència dels nostres especialistes per oferir tractaments moderns, eficaços i adaptats a tu. Un espai dissenyat per transmetre calma i confiança, amb un enfocament clar: cuidar la teva salut i realçar la teva millor versió.</p>
-
-        <div class="subtitle">Per què confiar en nosaltres?</div>
-        <ul class="ul">
-          <li>Experiència sòlida en totes les àrees de l’odontologia.</li>
-          <li>Tecnologia avançada per a resultats predictibles i d’alta qualitat.</li>
-          <li>Atenció propera i personalitzada des del primer dia.</li>
-        </ul>
+    <!-- Card 2 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <img class="r-avatar" src="/assets/persona2.png" alt="Maria Molle" />
+          <div>
+            <h3 class="r-name">Maria Molle</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+      </header>
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
       </div>
+      <p class="r-text">La meva clínica de confiança, no la canvio per cap altra!!!</p>
+    </article>
 
-      <div class="about__img">
-        <img src="/assets/about.jpg" alt="Pacient feliç a la clínica dental" loading="lazy" />
+    <!-- Card 3 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <div class="r-avatar r-avatar--initial">A</div>
+          <div>
+            <h3 class="r-name">Aleix Masip</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+      </header>
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
       </div>
-    </div>
-  </section>
+      <p class="r-text">Molt amables!</p>
+    </article>
 
-  <!-- Tractaments -->
-  <section class="treatments container">
-    <h2><img src="/assets/logo-mark.svg" alt="" style="height:40px; vertical-align:middle; margin-right:10px" />Tractaments dentals</h2>
+    <!-- Card 4 -->
+    <article class="r-card">
+      <header class="r-card__head">
+        <div class="r-author">
+          <img class="r-avatar" src="/assets/persona3.png" alt="Judit Garcia" />
+          <div>
+            <h3 class="r-name">Judit Garcia Santa...</h3>
+            <div class="r-date">03/06/2025</div>
+          </div>
+        </div>
+        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+      </header>
+      <div class="r-stars" aria-label="5 de 5">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+        <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
+      </div>
+      <p class="r-text">Molt contenta amb el tracte rebut, molt amables i molt professionals!!!</p>
+    </article>
+  </div>
 
-    <div class="treatments__grid">
-      <article class="tcard">
-        <img src="/assets/icons/ortodoncia.svg" alt="" />
-        <h3>Ortodòncia i alineadors</h3>
-        <p>Alineem el teu somriure amb tractaments moderns i discrets. Des de bràquets estètics fins a ortodòncia invisible.</p>
-      </article>
+  <!-- Distintiu Trustindex -->
+  <div class="reviews__badge">
+    <span>Verificat per: Trustindex
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
+        <circle cx="128" cy="128" r="100" stroke="currentColor" stroke-width="22" fill="none"/>
+        <rect x="120" y="112" width="16" height="72" rx="4" fill="currentColor"/>
+        <circle cx="128" cy="88" r="10" fill="currentColor"/>
+      </svg>
+    </span>
+  </div>
 
-      <article class="tcard">
-        <img src="/assets/icons/implante.svg" alt="" />
-        <h3>Implants dentals</h3>
-        <p>Recupera funcionalitat i estètica amb implants d’última generació. Resultats duradors i naturals.</p>
-      </article>
+</section>
 
-      <article class="tcard">
-        <img src="/assets/icons/estetica.svg" alt="" />
-        <h3>Estètica dental</h3>
-        <p>Carilles, emblanquiment i disseny de somriure per millorar l’harmonia i la lluminositat.</p>
-      </article>
+<!-- ========== UBICACIÓ / MAPA ========== -->
+<section class="location">
+  <div class="location__wrap">
+    <iframe
+      class="location__map"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=41.4050801,2.1352314&z=15&output=embed">
+    </iframe>
 
-      <article class="tcard">
-        <img src="/assets/icons/rehabilitacion.svg" alt="" />
-        <h3>Rehabilitació oral</h3>
-        <p>Tractament integral que combina pròtesis, implants i altres tècniques.</p>
-      </article>
+    <aside class="location__card">
+      <h3>Ens trobaràs a:</h3>
+      <p>
+        C. de Muntaner 555, Esc. A, Planta 3 - 2,<br>
+        Sarrià-Sant Gervasi, Barcelona.<br>
+        <a href="tel:+34614375792">+34 614 37 57 92</a><br><br>
+        De dilluns a divendres<br>
+        10:00 a 14:00 i 16:00 a 20:00
+      </p>
+      <a class="location__btn"
+         target="_blank"
+         href="https://www.google.com/maps/dir/?api=1&destination=41.4050801,2.1352314">
+        Com arribar-hi
+      </a>
+    </aside>
+  </div>
+</section>
 
-      <article class="tcard">
-        <img src="/assets/icons/endodoncia.svg" alt="" />
-        <h3>Endodòncia</h3>
-        <p>Salvem dents danyades o infectades, eliminant el dolor i evitant l’extracció.</p>
-      </article>
+<!-- ========== BLOC (INICI) ========== -->
+<section class="blog container" aria-labelledby="blog-title">
+  <h2 id="blog-title" class="section-title">Blog</h2>
 
-      <article class="tcard">
-        <img src="/assets/icons/odontopediatria.svg" alt="" />
-        <h3>Odontopediatria</h3>
-        <p>Tenim cura del somriure infantil amb prevenció, control d’hàbits i ortodòncia primerenca.</p>
-      </article>
-    </div>
-  </section>
+  <div class="blog__grid">
+    <!-- Post 1 -->
+    <article class="b-card">
+      <a class="b-card__media" href="/blog/ortodoncia-duele">
+        <img src="/assets/blog/blog-img1.png" alt="Equip odontològic atenent una pacient" loading="lazy">
+      </a>
+      <div class="b-card__body">
+        <h3 class="b-card__title">
+          <a href="/blog/ortodoncia-duele">
+            Fa mal l’ortodòncia? El que has de saber abans de començar el teu tractament
+          </a>
+        </h3>
+        <p class="b-card__excerpt">L’ortodòncia és un dels tractaments més comuns. T’expliquem què esperar…</p>
+        <a class="b-card__link" href="/blog/ortodoncia-duele">Llegir més</a>
+      </div>
+    </article>
 
-  <section id="cita" class="section container" style="padding-top:28px">
-    <div class="card">
-      <h2 style="margin-top:0">Sol·licitar cita</h2>
-      <p>Deixa’ns les teves dades i et trucarem per confirmar l’hora disponible.</p>
-      <a class="btn" href="mailto:cites@clinica.example?subject=Cita&body=Hola,%20voldria%20demanar%20cita.">Enviar per correu</a>
-    </div>
-  </section>
+    <!-- Post 2 -->
+    <article class="b-card">
+      <a class="b-card__media" href="/blog/sialorrea-hipersalivacion">
+        <img src="/assets/blog/blog-img2.png" alt="Demostració amb pròtesi dental i sonda" loading="lazy">
+      </a>
+      <div class="b-card__body">
+        <h3 class="b-card__title">
+          <a href="/blog/sialorrea-hipersalivacion">
+            Sialorrea o Hipersalivació: què és, símptomes i tractament
+          </a>
+        </h3>
+        <p class="b-card__excerpt">Sabem com de complicat pot ser l’excés de saliva. Repassem causes i opcions…</p>
+        <a class="b-card__link" href="/blog/sialorrea-hipersalivacion">Llegir més</a>
+      </div>
+    </article>
+
+    <!-- Post 3 -->
+    <article class="b-card">
+      <a class="b-card__media" href="/blog/invisalign-mantenimiento">
+        <img src="/assets/blog/blog-img3.png" alt="Pacient revisant el seu somriure amb un mirall" loading="lazy">
+      </a>
+      <div class="b-card__body">
+        <h3 class="b-card__title">
+          <a href="/blog/invisalign-mantenimiento">
+            Invisalign: neteja i manteniment dels alineadors
+          </a>
+        </h3>
+        <p class="b-card__excerpt">Per a un millor funcionament, t’expliquem com netejar i cuidar els teus alineadors…</p>
+        <a class="b-card__link" href="/blog/invisalign-mantenimiento">Llegir més</a>
+      </div>
+    </article>
+  </div>
+</section>
+<!-- ========== BLOC (FI) ========== -->
 
   <Footer locale="ca" />
 </BaseLayout>
