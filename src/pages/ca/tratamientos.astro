@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+/* URLs mirall: mateix slug en els 3 idiomes (tratamientos) */
+const alternates = { es: "/es/tratamientos", ca: "/ca/tratamientos", en: "/en/tratamientos" };
+---
+
+<BaseLayout
+  title="Tractaments | Clínica Dental Sueca"
+  description="Descobreix tots els nostres tractaments dentals a Barcelona."
+  locale="ca"
+  {alternates}
+>
+  <Header locale="ca" currentPath="/ca/tratamientos" {alternates} />
+
+  <!-- ========================= HERO TRACTAMENTS (CA) ========================= -->
+  <section class="tr-hero" aria-label="Secció de benvinguda a Tractaments">
+    <div class="tr-hero__bg"></div>
+    <div class="tr-hero__inner container">
+      <img class="tr-hero__mark" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="tr-hero__title">
+        El tractament que transformarà<br />
+        el teu somriure és aquí
+      </h1>
+    </div>
+  </section>
+
+  <!-- ========================= TRACTAMENTS - SIS TARGETES ========================= -->
+  <section class="tr-grid container">
+    <div class="tr-grid__cards">
+      <a class="tr-card" href="/ca/tratamientos/ortodoncia" aria-label="Veure tractaments d’Ortodòncia i alineadors">
+        <img src="/assets/ortodoncia.svg" alt="" />
+        <h3>Ortodòncia i alineadors</h3>
+        <p>Alineem el teu somriure amb tractaments moderns i discrets. Des de brackets estètics fins a ortodòncia invisible.</p>
+      </a>
+
+      <a class="tr-card" href="/ca/tratamientos/implants" aria-label="Veure tractaments d’Implants dentals">
+        <img src="/assets/implante.svg" alt="" />
+        <h3>Implants dentals</h3>
+        <p>Recupera la funcionalitat i l’estètica amb implants d’última generació. Resultats duradors i naturals.</p>
+      </a>
+
+      <a class="tr-card" href="/ca/tratamientos/estetica" aria-label="Veure tractaments d’Estètica dental">
+        <img src="/assets/estetica.svg" alt="" />
+        <h3>Estètica dental</h3>
+        <p>Carilles, emblanquiment i disseny de somriure per millorar l’harmonia i la lluminositat del teu rostre.</p>
+      </a>
+
+      <a class="tr-card" href="/ca/tratamientos/rehabilitacion" aria-label="Veure tractaments de Rehabilitació oral">
+        <img src="/assets/rehabilitacion.svg" alt="" />
+        <h3>Rehabilitació oral</h3>
+        <p>Tractament integral que combina pròtesis, implants i altres tècniques per retornar la funcionalitat.</p>
+      </a>
+
+      <a class="tr-card" href="/ca/tratamientos/endodoncia" aria-label="Veure tractaments d’Endodòncia">
+        <img src="/assets/endodoncia.svg" alt="" />
+        <h3>Endodòncia</h3>
+        <p>Salvem dents danyades o infectades, eliminant el dolor i evitant l’extracció.</p>
+      </a>
+
+      <a class="tr-card" href="/ca/tratamientos/odontopediatria" aria-label="Veure tractaments d’Odontopediatria">
+        <img src="/assets/odontopediatria.svg" alt="" />
+        <h3>Odontopediatria</h3>
+        <p>Tenem cura del somriure infantil amb prevenció, control d’hàbits i ortodòncia primerenca.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================= CTA (Consulta gratuïta) ========================= -->
+  <section class="tr-cta" aria-labelledby="tr-cta-title">
+    <div class="tr-cta__inner container">
+      <img class="tr-cta__mark" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h2 id="tr-cta-title" class="tr-cta__title">Primera consulta i diagnòstic gratuït</h2>
+      <a class="btn tr-cta__btn" href="/ca/contacte#agenda" aria-label="Agenda la teva cita">AGENDA LA TEVA CITA</a>
+    </div>
+  </section>
+
+  <!-- ========================= CASOS REALS (ABANS / DESPRÉS) ========================= -->
+  <section class="tr-ba container">
+    <h2 class="tr-ba__title">Casos reals d’Abans i Després</h2>
+    <div class="tr-ba__simple">
+      <figure>
+        <img src="/assets/casos/caso1-antes.png" alt="Abans" />
+      </figure>
+      <figure>
+        <img src="/assets/casos/caso1-despues.png" alt="Després" />
+      </figure>
+    </div>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>

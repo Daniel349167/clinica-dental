@@ -1,0 +1,172 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = { es: "/es/nosotros", ca: "/ca/nosotros", en: "/en/nosotros" }; 
+---
+
+<BaseLayout
+  title="Clínica Dental Sueca"
+  description="Coneix-nos: equip, valors i experiència."
+  locale="ca"
+  {alternates}
+>
+  <Header locale="ca" currentPath="/ca/nosotros" {alternates}/>
+
+  <!-- =========================
+       HERO - NOSALTRES (CA)
+       ========================= -->
+  <section class="nos-hero" aria-label="Secció de benvinguda">
+    <div class="nos-hero__inner container">
+      <img class="nos-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="nos-hero__title">Innovació i experiència</h1>
+      <span class="nos-hero__cta" aria-label="Anar a l’equip">BENVINGUTS</span>
+    </div>
+  </section>
+
+  <!-- =========================
+       INTRO (Text + Imatge)
+       ========================= -->
+  <section class="nos-intro" aria-labelledby="nos-intro-title">
+    <div class="nos-intro__grid container">
+      <div class="nos-intro__text">
+        <p class="nos-intro__lead">
+          A Dental Sueca entenem que un somriure va molt més enllà de l’estètica; reflecteix confiança, benestar i seguretat personal.
+          Per això, la nostra feina no es limita a tractar dents, sinó a cuidar cada persona que ens tria.
+        </p>
+
+        <h2 id="nos-intro-title" class="nos-intro__subtitle">La nostra filosofia</h2>
+        <p>
+          Creiem en una odontologia clara, honesta i propera. Expliquem cada tractament amb transparència,
+          escoltem les teves necessitats i t’acompanyem en tot moment. El nostre objectiu és que et sentis en un espai
+          on la calma i la confiança siguin tan importants com la qualitat dels resultats.
+        </p>
+
+        <h2 class="nos-intro__subtitle">Innovació i experiència</h2>
+        <p>
+          Combinen tecnologia d’avantguarda amb l’experiència contrastada dels nostres especialistes. Això ens permet
+          oferir tractaments moderns, eficaços i adaptats a cada pacient, amb un enfocament en la prevenció,
+          l’estètica i la funcionalitat a llarg termini.
+        </p>
+      </div>
+
+      <figure class="nos-intro__media">
+        <img src="/assets/nosotros/consulta.png" alt="Professional atenent una pacient a la consulta dental" class="nos-intro__img" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================
+       PROPÒSIT (banner centrat)
+       ========================= -->
+  <section class="nos-purpose" aria-labelledby="nos-purpose-title">
+    <div class="nos-purpose__inner container">
+      <img class="nos-purpose__icon" src="/assets/logo-mark.svg" alt="" aria-hidden="true" />
+      <h2 id="nos-purpose-title" class="nos-purpose__title">
+        El nostre propòsit és tenir cura del teu somriure<br />
+        com a part essencial del teu benestar
+      </h2>
+      <p class="nos-purpose__desc">
+        <span class="nos-purpose__line n1">
+          Volem que cada pacient visqui una odontologia clara, eficaç i sense
+        </span>
+        <span class="nos-purpose__line n2">
+           complicacions, on la innovació tecnològica i l’experiència dels nostres 
+        </span>
+        <span class="nos-purpose__line n3">
+          especialistes es converteixin en confiança, salut i estètica duradora.
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================
+       INSTAL·LACIONS (Galeria)
+       ========================= -->
+  <section class="nos-facilities" aria-labelledby="nos-facilities-title">
+    <div class="nos-facilities__head container">
+      <h2 id="nos-facilities-title" class="nos-facilities__title">Som a Sarrià-Sant Gervasi</h2>
+      <p class="nos-facilities__subtitle">Coneix les nostres instal·lacions</p>
+    </div>
+
+    <div class="nos-facilities__grid container">
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Sala amb finestra i logotip" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Rebedor amb paret blava i text" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Mostrador de recepció" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Sala amb finestra i logotip" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Rebedor amb paret blava i text" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Mostrador de recepció" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================
+       EQUIP (Especialistes)
+       ========================= -->
+  <section class="nos-team" aria-labelledby="nos-team-title">
+    <div class="nos-team__head container">
+      <h2 id="nos-team-title" class="nos-team__title">Els nostres especialistes</h2>
+    </div>
+
+    <div class="nos-team__grid container">
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor1.png" alt="Dr. Nom Cognom" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr./Dra. Nom Cognom</h3>
+        <p class="nos-team__role">Especialista en …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor2.png" alt="Dr. Nom Cognom" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Nom Cognom</h3>
+        <p class="nos-team__role">Especialista en …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor3.png" alt="Dr. Nom Cognom" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Nom Cognom</h3>
+        <p class="nos-team__role">Especialista en …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor4.png" alt="Dra. Nom Cognom" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dra. Nom Cognom</h3>
+        <p class="nos-team__role">Especialista en …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+    </div>
+
+    <div class="nos-team__cta">
+      <a href="/ca/contacte" class="btn nos-team__btn" aria-label="Reservar visita">AGENDA LA TEVA VISITA</a>
+    </div>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>

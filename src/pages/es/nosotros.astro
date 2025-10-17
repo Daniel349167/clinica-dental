@@ -3,93 +3,184 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
-const alternates = { es: "/es/nosotros", ca: "/ca/nosaltres", en: "/en/about" };
+const alternates = { es: "/es/nosotros", ca: "/ca/nosotros", en: "/en/nosotros" }; // ✅
 ---
 
 <BaseLayout
-  title="Nosotros | Clínica Dental"
+  title="Clínica Dental Sueca"
   description="Conócenos: equipo, valores y experiencia."
   locale="es"
   {alternates}
 >
-  <Header locale="es" currentPath="/es/nosotros" />
+  <Header locale="es" currentPath="/es/nosotros" {alternates} />
 
   <!-- =========================
        HERO - NOSOTROS (ES)
        Fondo imagen + icono + título + botón
        ========================= -->
-  <section class="hero-nosotros" style="--hero:url(/assets/hero-nosotros.jpg)" aria-label="Sección de bienvenida">
-    <div class="hero-nosotros__shade"></div>
-
-    <div class="hero-nosotros__inner container">
-      <img class="hero-nosotros__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
-      <h1 class="hero-nosotros__title">Innovación y experiencia</h1>
-      <a class="btn hero-nosotros__cta" href="#equipo" aria-label="Ir a equipo">BIENVENIDOS</a>
+  <section class="nos-hero" aria-label="Sección de bienvenida">
+    <div class="nos-hero__inner container">
+      <img class="nos-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="nos-hero__title">Innovación y experiencia</h1>
+      <span class="nos-hero__cta" aria-label="Ir a equipo">BIENVENIDOS</span>
     </div>
   </section>
 
-  <!-- Aquí podrás seguir con las siguientes secciones: Equipo, Valores, Historia, etc. -->
+  <!-- =========================
+       INTRO (Texto + Imagen)
+       ========================= -->
+  <section class="nos-intro" aria-labelledby="nos-intro-title">
+    <div class="nos-intro__grid container">
+      <div class="nos-intro__text">
+        <p class="nos-intro__lead">
+          En Dental Sueca entendemos que una sonrisa va mucho más allá de la estética; refleja confianza, bienestar y seguridad personal.
+          Por eso, nuestro trabajo no se limita a tratar dientes, sino a cuidar de cada persona que nos elige.
+        </p>
+
+        <h2 id="nos-intro-title" class="nos-intro__subtitle">Nuestra filosofía</h2>
+        <p>
+          Creemos en una odontología clara, honesta y cercana. Explicamos cada tratamiento con transparencia,
+          escuchamos tus necesidades y te acompañamos en todo momento. Nuestro objetivo es que te sientas en un
+          espacio donde la calma y la confianza sean tan importantes como la calidad de los resultados.
+        </p>
+
+        <h2 class="nos-intro__subtitle">Innovación y experiencia</h2>
+        <p>
+          Combinamos tecnología de vanguardia con la experiencia contrastada de nuestros especialistas. Esto nos
+          permite ofrecer tratamientos modernos, eficaces y adaptados a cada paciente, con un enfoque en la
+          prevención, la estética y la funcionalidad a largo plazo.
+        </p>
+      </div>
+
+      <figure class="nos-intro__media">
+        <!-- Cambia la ruta si tu imagen está en otra carpeta -->
+        <img src="/assets/nosotros/consulta.png" alt="Profesional atendiendo a paciente en consulta dental" class="nos-intro__img" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================
+       PROPÓSITO (banner centrado)
+       ========================= -->
+  <section class="nos-purpose" aria-labelledby="nos-purpose-title">
+    <div class="nos-purpose__inner container">
+      <img class="nos-purpose__icon" src="/assets/logo-mark.svg" alt="" aria-hidden="true" />
+      <h2 id="nos-purpose-title" class="nos-purpose__title">
+        Nuestro propósito es cuidar tu sonrisa<br />
+        como parte esencial de tu bienestar
+      </h2>
+      <p class="nos-purpose__desc">
+        <span class="nos-purpose__line n1">
+          Queremos que cada paciente viva una odontología clara, eficaz y sin 
+        </span>
+        <span class="nos-purpose__line n2">
+          complicaciones, donde la innovación tecnológica y la experiencia de nuestros 
+        </span>
+        <span class="nos-purpose__line n3">
+          especialistas se conviertan en confianza, salud y estética duradera.
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================
+       INSTALACIONES (Galería)
+       ========================= -->
+  <section class="nos-facilities" aria-labelledby="nos-facilities-title">
+    <div class="nos-facilities__head container">
+      <h2 id="nos-facilities-title" class="nos-facilities__title">Estamos en Sarrià-Sant Gervasi</h2>
+      <p class="nos-facilities__subtitle">Conoce nuestras instalaciones</p>
+    </div>
+
+    <div class="nos-facilities__grid container">
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Sala con ventana y logo" loading="lazy"
+             sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Hall con pared azul y texto" loading="lazy"
+             sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Recepción con mostrador" loading="lazy"
+             sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Sala con ventana y logo" loading="lazy"
+             sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Hall con pared azul y texto" loading="lazy"
+             sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Recepción con mostrador" loading="lazy"
+             sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================
+       EQUIPO (Nuestros especialistas)
+       ========================= -->
+  <section class="nos-team" aria-labelledby="nos-team-title">
+    <div class="nos-team__head container">
+      <h2 id="nos-team-title" class="nos-team__title">Nuestros especialistas</h2>
+    </div>
+
+    <div class="nos-team__grid container">
+      <!-- CARD 1 -->
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor1.png" alt="Dra. Nombre Apellido" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Nombre Apellido</h3>
+        <p class="nos-team__role">Especialista en …..</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor2.png" alt="Dr. Nombre Apellido" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Nombre Apellido</h3>
+        <p class="nos-team__role">Especialista en …..</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <!-- CARD 3 -->
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor3.png" alt="Dr. Nombre Apellido" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Nombre Apellido</h3>
+        <p class="nos-team__role">Especialista en …..</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <!-- CARD 4 -->
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor4.png" alt="Dra. Nombre Apellido" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Nombre Apellido</h3>
+        <p class="nos-team__role">Especialista en …..</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+    </div>
+
+    <div class="nos-team__cta">
+      <a href="/es/contacto" class="btn nos-team__btn" aria-label="Agendar visita">AGENDA TU VISITA</a>
+    </div>
+  </section>
 
   <Footer locale="es" />
 </BaseLayout>
 
-<style>
-/* ====== HERO NOSOTROS ====== */
-.hero-nosotros{
-  position: relative;
-  min-height: clamp(320px, 48vw, 520px);
-  display: grid;
-  align-items: center;
-  background: center/cover no-repeat var(--hero, url(/assets/hero-nosotros.jpg));
-  overflow: hidden;
-}
 
-/* Velo azul + oscurecido como en el index */
-.hero-nosotros__shade{
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.45) 100%),
-    linear-gradient(0deg, rgba(0,177,239,.28), rgba(0,177,239,.28));
-}
-
-.hero-nosotros__inner{
-  position: relative;
-  z-index: 1;
-  padding: clamp(28px, 5vw, 44px) 0;
-  text-align: center;
-  color: #fff;
-  display: grid;
-  gap: 18px;
-  justify-items: center;
-}
-
-/* Icono */
-.hero-nosotros__icon{
-  width: clamp(42px, 6vw, 72px);
-  height: auto;
-  filter: drop-shadow(0 2px 12px rgba(0,0,0,.25));
-}
-
-/* Título */
-.hero-nosotros__title{
-  margin: 0;
-  font-weight: 800;
-  letter-spacing: .2px;
-  font-size: clamp(28px, 4.8vw, 56px);
-  line-height: 1.1;
-  text-wrap: balance;
-}
-
-/* Botón */
-.hero-nosotros__cta{
-  margin-top: 6px;
-  background: var(--brand-500);
-  font-weight: 800;
-  padding: 14px 26px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #fff;
-}
-.hero-nosotros__cta:hover{ filter: brightness(.95); }
-</style>

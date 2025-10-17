@@ -1,0 +1,172 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = { es: "/es/nosotros", ca: "/ca/nosotros", en: "/en/nosotros" }; 
+---
+
+<BaseLayout
+  title="Dental Sueca Clinic"
+  description="Get to know us: team, values and experience."
+  locale="en"
+  {alternates}
+>
+  <Header locale="en" currentPath="/en/nosotros" {alternates} />
+
+  <!-- =========================
+       HERO - ABOUT (EN)
+       ========================= -->
+  <section class="nos-hero" aria-label="Welcome section">
+    <div class="nos-hero__inner container">
+      <img class="nos-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="nos-hero__title">Innovation & experience</h1>
+      <span class="nos-hero__cta" aria-label="Go to team">WELCOME</span>
+    </div>
+  </section>
+
+  <!-- =========================
+       INTRO (Text + Image)
+       ========================= -->
+  <section class="nos-intro" aria-labelledby="nos-intro-title">
+    <div class="nos-intro__grid container">
+      <div class="nos-intro__text">
+        <p class="nos-intro__lead">
+          At Dental Sueca we understand that a smile goes far beyond aesthetics; it reflects confidence, wellbeing and personal security.
+          That’s why our work is not limited to treating teeth, but caring for every person who chooses us.
+        </p>
+
+        <h2 id="nos-intro-title" class="nos-intro__subtitle">Our philosophy</h2>
+        <p>
+          We believe in dentistry that is clear, honest and close. We explain every treatment transparently,
+          listen to your needs and accompany you at all times. Our goal is for you to feel in a space
+          where calm and trust are as important as the quality of results.
+        </p>
+
+        <h2 class="nos-intro__subtitle">Innovation and experience</h2>
+        <p>
+          We combine cutting-edge technology with the proven experience of our specialists. This allows us
+          to offer modern, effective treatments tailored to each patient, with a focus on prevention,
+          aesthetics and long-term functionality.
+        </p>
+      </div>
+
+      <figure class="nos-intro__media">
+        <img src="/assets/nosotros/consulta.png" alt="Professional attending a patient in the dental office" class="nos-intro__img" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================
+       PURPOSE (centered banner)
+       ========================= -->
+  <section class="nos-purpose" aria-labelledby="nos-purpose-title">
+    <div class="nos-purpose__inner container">
+      <img class="nos-purpose__icon" src="/assets/logo-mark.svg" alt="" aria-hidden="true" />
+      <h2 id="nos-purpose-title" class="nos-purpose__title">
+        Our purpose is to take care of your smile<br />
+        as an essential part of your wellbeing
+      </h2>
+      <p class="nos-purpose__desc">
+        <span class="nos-purpose__line n1">
+          We want every patient to experience dentistry that is clear, effective and 
+        </span>
+        <span class="nos-purpose__line n2">
+          hassle-free, where technological innovation and the experience of our 
+        </span>
+        <span class="nos-purpose__line n3">
+          specialists become lasting confidence, health and aesthetics.
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================
+       FACILITIES (Gallery)
+       ========================= -->
+  <section class="nos-facilities" aria-labelledby="nos-facilities-title">
+    <div class="nos-facilities__head container">
+      <h2 id="nos-facilities-title" class="nos-facilities__title">We’re in Sarrià-Sant Gervasi</h2>
+      <p class="nos-facilities__subtitle">Discover our facilities</p>
+    </div>
+
+    <div class="nos-facilities__grid container">
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Room with window and logo" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Hall with blue wall and lettering" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Reception desk" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Room with window and logo" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Hall with blue wall and lettering" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+      <figure class="nos-facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Reception desk" loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================
+       TEAM (Our specialists)
+       ========================= -->
+  <section class="nos-team" aria-labelledby="nos-team-title">
+    <div class="nos-team__head container">
+      <h2 id="nos-team-title" class="nos-team__title">Our specialists</h2>
+    </div>
+
+    <div class="nos-team__grid container">
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor1.png" alt="Dr. Firstname Lastname" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Firstname Lastname</h3>
+        <p class="nos-team__role">Specialist in …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor2.png" alt="Dr. Firstname Lastname" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Firstname Lastname</h3>
+        <p class="nos-team__role">Specialist in …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor3.png" alt="Dr. Firstname Lastname" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Firstname Lastname</h3>
+        <p class="nos-team__role">Specialist in …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+
+      <article class="nos-team__card">
+        <figure class="nos-team__media">
+          <img src="/assets/especialistas/doctor4.png" alt="Dr. Firstname Lastname" loading="lazy" />
+        </figure>
+        <h3 class="nos-team__name">Dr. Firstname Lastname</h3>
+        <p class="nos-team__role">Specialist in …</p>
+        <div class="nos-team__dots" aria-hidden="true"></div>
+        <div class="nos-team__dots nos-team__dots--short" aria-hidden="true"></div>
+      </article>
+    </div>
+
+    <div class="nos-team__cta">
+      <a href="/en/contact" class="btn nos-team__btn" aria-label="Book a visit">BOOK YOUR VISIT</a>
+    </div>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+/* URLs espejo: mismo slug en los 3 idiomas (tratamientos) */
+const alternates = { es: "/es/tratamientos", ca: "/ca/tratamientos", en: "/en/tratamientos" };
+---
+
+<BaseLayout
+  title="Tratamientos | Clínica Dental Sueca"
+  description="Conoce todos nuestros tratamientos dentales en Barcelona."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/tratamientos" {alternates} />
+
+  <!-- =========================
+       HERO TRATAMIENTOS (ES)
+       ========================= -->
+  <section class="tr-hero" aria-label="Sección de bienvenida a Tratamientos">
+    <div class="tr-hero__bg"></div>
+
+    <div class="tr-hero__inner container">
+      <img class="tr-hero__mark" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="tr-hero__title">
+        El tratamiento que transformará<br />
+        tu sonrisa está aquí
+      </h1>
+    </div>
+  </section>
+
+    <!-- =========================
+       TRATAMIENTOS - SEIS TARJETAS
+       ========================= -->
+  <section class="tr-grid container">
+
+    <div class="tr-grid__cards">
+        <!-- 1. ORTODONCIA (ENLACE REAL) -->
+        <a class="tr-card" href="/es/tratamientos/ortodoncia" aria-label="Ver tratamientos de Ortodoncia y alineadores">
+            <img src="/assets/ortodoncia.svg" alt="" />
+            <h3>Ortodoncia y alineadores</h3>
+            <p>
+            Alineamos tu sonrisa con tratamientos modernos y discretos.
+            Desde brackets estéticos hasta ortodoncia invisible.
+            </p>
+        </a>
+
+        <!-- El resto pueden apuntar a su futura URL o temporalmente a '#' -->
+        <a class="tr-card" href="/es/tratamientos/implantes" aria-label="Ver tratamientos de Implantes dentales">
+            <img src="/assets/implante.svg" alt="" />
+            <h3>Implantes dentales</h3>
+            <p>
+            Recupera la funcionalidad y estética con implantes de última generación.
+            Resultados duraderos y naturales.
+            </p>
+        </a>
+
+        <a class="tr-card" href="/es/tratamientos/estetica" aria-label="Ver tratamientos de Estética dental">
+            <img src="/assets/estetica.svg" alt="" />
+            <h3>Estética dental</h3>
+            <p>
+            Carillas, blanqueamiento y diseño de sonrisa para mejorar la armonía y luminosidad de tu rostro.
+            </p>
+        </a>
+
+        <a class="tr-card" href="/es/tratamientos/rehabilitacion" aria-label="Ver tratamientos de Rehabilitación oral">
+            <img src="/assets/rehabilitacion.svg" alt="" />
+            <h3>Rehabilitación oral</h3>
+            <p>
+            Tratamiento integral que combina prótesis, implantes y otras técnicas para devolver la funcionalidad.
+            </p>
+        </a>
+
+        <a class="tr-card" href="/es/tratamientos/endodoncia" aria-label="Ver tratamientos de Endodoncia">
+            <img src="/assets/endodoncia.svg" alt="" />
+            <h3>Endodoncia</h3>
+            <p>
+            Salvamos dientes dañados o infectados, eliminando el dolor y evitando su extracción.
+            </p>
+        </a>
+
+        <a class="tr-card" href="/es/tratamientos/odontopediatria" aria-label="Ver tratamientos de Odontopediatría">
+            <img src="/assets/odontopediatria.svg" alt="" />
+            <h3>Odontopediatría</h3>
+            <p>
+            Cuidamos la sonrisa infantil con tratamientos de prevención, control de hábitos y ortodoncia temprana.
+            </p>
+        </a>
+        </div>
+
+  </section>
+
+  <!-- =========================
+     TR: CTA (Consulta gratuita)
+     ========================= -->
+<section class="tr-cta" aria-labelledby="tr-cta-title">
+  <div class="tr-cta__inner container">
+    <img class="tr-cta__mark" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+    <h2 id="tr-cta-title" class="tr-cta__title">
+      Primera consulta y diagnóstico gratuito
+    </h2>
+    <a class="btn tr-cta__btn" href="/es/contacto#agenda" aria-label="Agendar tu cita">
+      AGENDA TU CITA
+    </a>
+  </div>
+</section>
+
+<!-- =========================
+     TR: Casos reales (Antes / Después)
+     ========================= -->
+<section class="tr-ba container">
+  <h2 class="tr-ba__title">Casos reales de Antes y después</h2>
+  <div class="tr-ba__simple">
+    <figure>
+      <img src="/assets/casos/caso1-antes.png" alt="Antes" />
+    </figure>
+    <figure>
+      <img src="/assets/casos/caso1-despues.png" alt="Después" />
+    </figure>
+  </div>
+</section>
+
+
+  <Footer locale="es" />
+</BaseLayout>

@@ -414,7 +414,7 @@ margin-top: 70px;}
 }
 .section--about .ul{
   font-size:17px;
-  line-height:1.5;
+  line-height:1.6;
 }
 .section--about .ul li{ margin:8px 0; }
 
@@ -464,7 +464,8 @@ margin-top: 70px;}
 /* Grilla de tratamientos */
 .treatments__grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns: repeat(3, 0.3fr);
+  justify-content: center; 
   gap:26px;
   margin-top:10px;
 }
@@ -484,16 +485,17 @@ margin-top: 70px;}
   box-shadow:0 4px 12px rgba(28,75,142,0.1);
 }
 .tcard img{
-  width:88px; height:88px; object-fit:contain; margin:0 auto 10px;
+  width:70px; height:70px; object-fit:contain; margin:0 auto 10px;
 }
 .tcard h3{
-  font-size:24px; /* menos voluminoso */
+  font-size:21px; /* menos voluminoso */
   font-weight:600;
   margin:6px 0 6px;
 }
 .tcard p{
-  font-size:19px;
+  font-size:17px;
   color:var(--text-600);
+  line-height:1.6;
   margin:0;
 }
 
@@ -527,7 +529,7 @@ margin-top: 70px;}
 }
 
 .cta-strip__mark{
-  height:56px;                  /* tamaño del logo como en la referencia */
+  height:65px;                  /* tamaño del logo como en la referencia */
   width:auto;
   display:block;
   filter: drop-shadow(0 1px 3px rgba(0,0,0,.12));
@@ -872,3 +874,530 @@ margin-top: 70px;}
 }
 /* =================== BLOG (FIN) =================== */
 
+/* =============================================== NOSOTROS PAGE=============================================== */
+/* ====== HERO NOSOTROS (prefijo NOS) ====== */
+.nos-hero{
+  position: relative;
+  min-height: clamp(320px, 48vw, 320px);
+  display: grid;
+  align-items: center;
+  background: center/cover no-repeat var(--hero, url(/assets/nosotros/hero-nosotros.png));
+  overflow: hidden;
+}
+
+.nos-hero__inner{
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 5vw, 44px) 0;
+  text-align: center;
+  color: #fff;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+/* Icono */
+.nos-hero__icon{
+  width: clamp(42px, 6vw, 72px);
+  height: auto;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,.25));
+}
+
+/* Título */
+.nos-hero__title{
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: .2px;
+  font-size: clamp(28px, 4.8vw, 40px);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* Botón */
+.nos-hero__cta{
+  margin-top: 10px;
+  background: var(--brand-500);
+  font-weight: 600;
+  padding: 4px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 28px;
+  color: #fff;
+}
+
+/* ====== INTRO (Texto + Imagen - prefijo NOS) ====== */
+.nos-intro {
+  padding-top: 70px;
+}
+
+.nos-intro__grid {
+  display: grid;
+  gap: clamp(20px, 4vw, 40px);
+  align-items: start;
+}
+
+/* 2 columnas desde pantallas medianas */
+@media (min-width: 900px) {
+  .nos-intro__grid {
+    grid-template-columns: 1.1fr 0.9fr; /* texto un poco más ancho */
+    align-items: center;
+  }
+}
+.nos-intro__text{
+  padding-left: 90px;         
+  padding-right: 20px;
+}
+.nos-intro__text p {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+/* párrafo inicial un poco más grande */
+.nos-intro__lead {
+  font-size: clamp(1rem, 1.2vw + .8rem, 1.15rem);
+  margin-bottom: 1.25rem;
+}
+
+.nos-intro__subtitle {
+  margin: 1.25rem 0 .5rem 0;
+  font-weight: 700;
+  font-size: 21px;
+}
+
+/* Imagen con esquinas redondeadas */
+.nos-intro__media {
+  max-width: 360px;
+  margin: 0; 
+}
+.nos-intro__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  margin-bottom: 30px;
+  margin-left: 90px;
+}
+
+/* ====== PROPÓSITO (banner - prefijo NOS) ====== */
+.nos-purpose{
+  margin-top: 70px;
+  background: var(--brand-50);
+  padding: 40px 0;
+}
+.nos-purpose__inner{
+  text-align: center;
+  max-width: 1000px;      /* controla el ancho de las líneas */
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 32px);
+}
+.nos-purpose__icon{
+  height:66px;
+  width:auto;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.08));
+  margin-bottom:10px;
+}
+.nos-purpose__title{
+  margin: 0 0 10px;
+  color: var(--brand-900);
+  font-weight: 600;
+  line-height: 1.2;
+  font-size: 32px;
+  letter-spacing: .2px;
+  text-wrap: balance;
+}
+
+.nos-purpose__desc {
+  text-align: center;
+  color: var(--brand-500);
+  font-size: 21px;
+  line-height: 1.6;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.nos-purpose__line {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Control del ancho de cada línea */
+.nos-purpose__line.n1 {
+  max-width: 60ch;   /* más corta */
+}
+.nos-purpose__line.n2 {
+  max-width: 84ch;   /* más ancha (la del medio) */
+}
+.nos-purpose__line.n3 {
+  max-width: 72ch;   /* más corta otra vez */
+}
+
+/* Evita que se dividan las líneas */
+.nos-purpose__line.n1,
+.nos-purpose__line.n2,
+.nos-purpose__line.n3 {
+  white-space: normal;
+  word-break: normal;
+}
+
+/* En móviles, ajusta proporcionalmente */
+@media (max-width: 640px) {
+  .nos-purpose__line.n1 { max-width: 44ch; }
+  .nos-purpose__line.n2 { max-width: 52ch; }
+  .nos-purpose__line.n3 { max-width: 45ch; }
+}
+
+
+/* ====== INSTALACIONES (Galería - NOS) ====== */
+.nos-facilities {
+  margin-top: 70px;
+}
+.nos-facilities__head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.nos-facilities__title {
+  margin: 0 0 6px;
+  color: var(--brand-900);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.nos-facilities__subtitle {
+  margin: 0;
+  color: var(--text-600);
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+/* Grilla 3 columnas, juntas horizontal y separadas vertical */
+.nos-facilities__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 18px;
+  row-gap: 20px;
+  padding: 0 60px;
+}
+.nos-facility { margin: 0; }
+.nos-facility img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+/* Responsive */
+@media (max-width: 980px) {
+  .nos-facilities__grid { grid-template-columns: repeat(2, 1fr); }
+  .nos-facilities__title { font-size: 34px; }
+}
+@media (max-width: 600px) {
+  .nos-facilities__grid { grid-template-columns: 1fr; }
+  .nos-facilities__title { font-size: 28px; }
+  .nos-facilities { padding: 36px 0 44px; }
+}
+
+/* ====== EQUIPO (Nuestros especialistas - NOS) ====== */
+.nos-team { padding: 70px 0 20px; }
+.nos-team__head { text-align: center; margin-bottom: 10px; }
+.nos-team__title {
+  margin: 0;
+  color: var(--brand-900);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.2;
+}
+/* Grid 4 columnas en desktop */
+.nos-team__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 50px;
+}
+.nos-team__card { text-align: center; }
+.nos-team__media {
+  margin: 0 0 14px 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(16,24,40,.08);
+}
+.nos-team__media img {
+  display: block;
+  width: 100%;
+  height: 260px;          /* asegura misma altura visual */
+  object-fit: cover;
+}
+.nos-team__name {
+  margin: 6px 0 4px;
+  font-weight: 700;
+  font-size: 21px;
+  color: var(--text-900);
+}
+.nos-team__role {
+  margin: 0 0 10px;
+  color: var(--text-600);
+  font-size: 17px;
+}
+/* Líneas punteadas */
+.nos-team__dots {
+  height: 1px;
+  border-bottom: 2px dotted rgba(0,0,0,.35);
+  width: 70%;
+  margin: 8px auto 0;
+}
+.nos-team__dots--short { width: 46%; }
+/* CTA */
+.nos-team__cta { text-align: center; margin-top: 44px; }
+.nos-team__btn {
+  font-size: 24px;
+  padding: 4px 22px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+/* Responsive */
+@media (max-width: 1100px) {
+  .nos-team__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 820px) {
+  .nos-team__grid { grid-template-columns: repeat(2, 1fr); }
+  .nos-team__title { font-size: 34px; }
+}
+@media (max-width: 560px) {
+  .nos-team__grid { grid-template-columns: 1fr; }
+  .nos-team__title { font-size: 28px; }
+  .nos-team { padding: 36px 0 44px; }
+  .nos-team__media img { height: 240px; }
+}
+
+/* =============================================FIN NOSOTROS PAGE=============================================== */
+
+/* ============ TRATAMIENTOS PAGE(prefijo tr-) ============ */
+.tr-hero{
+  position: relative;
+  min-height: clamp(320px, 48vw, 320px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate; /* para que el overlay no afecte fuera */
+}
+
+/* Fondo*/
+.tr-hero__bg{
+  position: absolute; inset: 0;
+  background:center/cover no-repeat var(--tr-hero, url(/assets/tratamientos/hero-tratamientos.png));
+  z-index: -1;
+}
+
+/* Contenido centrado */
+.tr-hero__inner{
+  text-align: center;
+  color: #fff;
+  padding: clamp(28px, 5vw, 48px) 0;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+/* Isotipo arriba */
+.tr-hero__mark{
+  width: clamp(42px, 6vw, 72px);
+  height: auto;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,.3));
+}
+
+/* Título principal */
+.tr-hero__title{
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: .2px;
+  line-height: 1.15;
+  font-size: clamp(28px, 4.6vw, 40px);
+  text-wrap: balance;
+}
+
+/* ========================================================= */
+/* === TR: Sección de tratamientos (seis tarjetas) ========== */
+/* ========================================================= */
+.tr-grid {
+  padding-top: 70px;
+  text-align: center;
+}
+
+/* Grilla */
+.tr-grid__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 0.3fr);
+  justify-content: center;
+  gap: 26px;
+}
+
+/* Tarjetas */
+/* Las cards ahora son <a> */
+.tr-card{
+  display:block;                 /* que ocupe el bloque entero */
+  text-decoration:none;          /* sin subrayado */
+  color:inherit;                 /* hereda color del texto */
+  background:#fff;
+  border:1.5px solid #000; 
+  border-radius:18px;
+  padding:28px;
+  text-align:center;
+  box-shadow:0 1px 2px rgba(16,24,40,.03);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  outline: none;
+}
+.tr-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(28,75,142,0.1);
+  border-color: var(--brand-900);
+}
+.tr-card:focus-visible{
+  box-shadow:0 0 0 3px rgba(0,177,239,.35);
+  border-color: var(--brand-500);
+}
+
+.tr-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+}
+.tr-card h3 {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 6px 0 6px;
+}
+.tr-card p {
+  font-size: 17px;
+  color: var(--text-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .tr-grid__cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .tr-grid__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   TR: CTA (banner)
+   ========================= */
+.tr-cta{
+  background: linear-gradient(90deg, #1c4b8e 0%, #00b1ef 100%);
+  color:#fff;
+  padding: 48px 0;              /* alto de la franja */
+  margin-top:70px;
+  position: relative;
+  overflow: hidden;
+}
+.tr-cta__inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;                     /* separación entre marca, título y botón */
+  text-align:center;
+}
+.tr-cta__mark{
+  height:65px;                  /* tamaño del logo como en la referencia */
+  width:auto;
+  display:block;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.12));
+}
+.tr-cta__title{
+  margin:0;
+  font-weight:600;
+  letter-spacing:.2px;
+  font-size: clamp(22px, 3.4vw, 36px); /* grande en desktop, legible en móvil */
+  line-height:1.2;
+  color:#fff;   
+}
+.tr-cta__btn{
+  background:var(--brand-500);           
+  border-radius:10px;
+  padding:5px 28px;
+  font-weight:600;
+  font-size:22px;
+  margin-top: 15px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.15);
+}
+.tr-cta__btn:hover{ 
+  filter:none;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.18); 
+}
+
+@media (max-width:560px){
+  .tr-cta2{ padding: 40px 0; }
+  .tr-cta2__mark{ height:48px; }
+  .tr-cta2__btn{ font-size:16px; padding:11px 20px; }
+}
+
+/* =========================
+   TR-BA: Antes / Después
+   ========================= */
+/* ======= TR-BA (antes/después simple) ======= */
+.tr-ba{
+  padding: 70px 0 0px;
+}
+
+/* Título centrado + azul claro */
+.tr-ba__title{
+  margin: 0 0 18px;
+  text-align: center;
+  color: var(--brand-500);              /* ← azul claro de tu paleta */
+  font-weight: 600;
+  font-size: 36px;
+  letter-spacing: .2px;
+  margin-bottom: 30px;
+}
+
+/* Dos columnas y “empuje” hacia adentro */
+.tr-ba__simple{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;                            /* ← controla qué tan juntas están */
+}
+
+/* Quita márgenes por defecto del <figure> */
+.tr-ba__simple figure{ margin: 0; }
+
+/* Truco clave: que se “miren” hacia adentro */
+.tr-ba__simple figure:first-child{ justify-self: end; }   /* izq → derecha */
+.tr-ba__simple figure:last-child{  justify-self: start; } /* der → izquierda */
+
+/* Estilo de las imágenes */
+.tr-ba__simple img{
+  display: block;
+  width: 380px;              /* tamaño fluido similar a la ref */
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(16,24,40,.12);
+}
+
+/* Responsive: apílalas en móvil */
+@media (max-width: 860px){
+  .tr-ba__simple{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .tr-ba__simple figure:first-child,
+  .tr-ba__simple figure:last-child{
+    justify-self: center;
+  }
+  .tr-ba__simple img{
+    width: min(640px, 94vw);
+  }
+}
+/* ============ FIN TRATAMIENTOS PAGE(prefijo tr-) ============ */
