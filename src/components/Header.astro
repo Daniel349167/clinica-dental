@@ -93,6 +93,7 @@ const texts = {
         </svg>
       </button>
 
+      <!-- CTA (oculto en móvil vía CSS) -->
       <a class="cta" href={`${nav[0][0]}/cita`}>{texts.bookCta}</a>
     </div>
   </div>
@@ -133,6 +134,7 @@ const texts = {
 
 <!-- Estilos globales -->
 <style is:global>
+  /* ====== Salvaguardas generales ====== */
   html.no-scroll-x, html.no-scroll-x body { overflow-x: hidden; }
 
   .hamburger{
@@ -153,16 +155,36 @@ const texts = {
   }
   .site-header.is-open .nav-overlay{ display: block; }
 
+  /* ====== Móvil ≤640px ====== */
   @media (max-width: 640px){
+    /* 🔒 Bloqueo de desplazamiento horizontal y gestos laterales */
+    html, body {
+      overflow-x: hidden;       /* no hay scroll horizontal */
+      width: 100%;
+      overscroll-behavior-x: none; /* sin “rebote” lateral */
+      touch-action: pan-y;      /* solo desplazar vertical (bloquea pan-x) */
+    }
+
+    /* Elementos que suelen causar overflow: que no puedan exceder el viewport */
+    img, svg, video, iframe {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Hamburguesa visible */
     .hamburger{ display:inline-flex; align-items:center; justify-content:center; }
 
     .mainbar__inner{
       height:64px;
       gap:10px;
+      overflow: hidden; /* red de seguridad ante 1-2px “fugitivos” */
+      justify-content: space-between;
     }
+
     .logo{ margin-right:0; flex:0 0 auto; }
     .logo img{ height:32px; }
 
+    /* NAV como panel lateral */
     #site-nav{
       position:fixed;
       top:0; right:0;
@@ -189,6 +211,7 @@ const texts = {
     #site-nav > a:last-child{ border-bottom:0; }
     .site-header.is-open #site-nav{ transform:translateX(0%); }
 
+    /* Topbar flexible */
     .topbar__inner{
       height:auto; flex-wrap:wrap; gap:6px; padding:6px 0;
     }
@@ -197,34 +220,22 @@ const texts = {
       line-height:1.25; font-size:13px;
     }
     .contact .sep{ display:none; }
+
+    /* La nav horizontal no debe empujar */
     .nav{ margin-left:0; margin-right:0; gap:0; }
 
-    /* === Ajustes del CTA para eliminar desbordes === */
-    .mainbar .container {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-    .mainbar__inner{
-      overflow: hidden;
-      justify-content: space-between;
-    }
-    .cta{
-      flex: 0 1 auto;
-      max-width: 46vw;
-      font-size: clamp(12.5px, 3.6vw, 14px);
-      padding: 7px 12px;
-      letter-spacing: .2px;
-      line-height: 1.1;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-    .hamburger{ flex:0 0 auto; }
-    .logo{ flex:0 0 auto; }
+    /* 💡 Espacio lateral mínimo en la mainbar para evitar “pixel fantasma” */
+    .mainbar .container { padding-left: 12px; padding-right: 12px; }
+
+    /* 🚫 CTA oculto en móvil (como pediste) */
+    .cta{ display: none !important; }
   }
 
+  /* Ajuste extra para móviles muy angostos (≤360 px) — opcional
+     Mantiene la protección anti-overflow si por alguna razón se forzara el CTA. */
   @media (max-width: 360px){
     .cta{
+      display: none !important;
       max-width: 42vw;
       font-size: 12.5px;
       padding: 6px 10px;
