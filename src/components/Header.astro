@@ -1,4 +1,5 @@
 ---
+// src/components/Header.astro
 import LangSwitcher from "./LangSwitcher.astro";
 
 const { locale, currentPath } = Astro.props;
@@ -74,11 +75,158 @@ const texts = {
         <img src="/assets/logo.svg" alt="Dental Sueca" />
       </a>
 
-      <nav class="nav" aria-label="Principal">
+      <!-- ⚠️ ÚNICO CAMBIO en el NAV: agregar id="site-nav" -->
+      <nav id="site-nav" class="nav" aria-label="Principal">
         {nav.map(([href, label]) => <a href={href}>{label}</a>)}
       </nav>
+
+      <!-- Botón hamburguesa (solo móvil) -->
+      <button
+        class="hamburger"
+        aria-label="Abrir menú"
+        aria-controls="site-nav"
+        aria-expanded="false"
+      >
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
 
       <a class="cta" href={`${nav[0][0]}/cita`}>{texts.bookCta}</a>
     </div>
   </div>
+
+  <!-- Overlay para cerrar tocando fuera -->
+  <div class="nav-overlay" hidden></div>
 </header>
+
+<!-- Script mínimo para abrir/cerrar -->
+<script is:inline>
+  (function () {
+    const header = document.querySelector('.site-header');
+    const btn = header?.querySelector('.hamburger');
+    const nav = header?.querySelector('#site-nav');
+    const overlay = header?.querySelector('.nav-overlay');
+
+    if (!btn || !nav || !overlay) return;
+
+    function open() {
+      header.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      overlay.hidden = false;
+      document.documentElement.classList.add('no-scroll-x');
+    }
+    function close() {
+      header.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      overlay.hidden = true;
+      document.documentElement.classList.remove('no-scroll-x');
+    }
+
+    btn.addEventListener('click', () => {
+      header.classList.contains('is-open') ? close() : open();
+    });
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+</script>
+
+<!-- Estilos globales SOLO para móvil y sin tocar desktop -->
+<style is:global>
+  /* ====== base: ocultar overflow-x solo cuando el menú está abierto ====== */
+  html.no-scroll-x, html.no-scroll-x body { overflow-x: hidden; }
+
+  /* ====== elementos nuevos ====== */
+  .hamburger{
+    display: none;            /* solo se muestra en móvil */
+    background: transparent;
+    border: 0;
+    padding: 8px;
+    line-height: 0;
+    cursor: pointer;
+    color: #1b2a3a;
+  }
+  .nav-overlay{
+    display: none;            /* controlado por atributo [hidden] y clase .is-open */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.28);
+    z-index: 998;
+  }
+  .site-header.is-open .nav-overlay{ display: block; }
+
+  /* ====== solo móvil ====== */
+  @media (max-width: 640px){
+    /* botón hamburguesa visible */
+    .hamburger{ display: inline-flex; align-items: center; justify-content: center; }
+
+    /* compactar mainbar sin afectar desktop */
+    .mainbar__inner{
+      height: 64px;
+      gap: 10px;
+    }
+    .logo{ margin-right: 0; }
+    .logo img{ height: 32px; }
+
+    /* CTA compacta para no empujar */
+    .cta{
+      padding: 8px 12px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* convertir NAV a panel lateral deslizante */
+    #site-nav{
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100dvh;
+      width: min(78vw, 360px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 80px 20px 20px;
+      background: #fff;
+      border-left: 1px solid #eef3f8;
+      box-shadow: -12px 0 30px rgba(0,0,0,.12);
+      transform: translateX(100%);
+      transition: transform .24s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+    /* enlaces del panel como lista vertical */
+    #site-nav > a{
+      font-size: 18px;
+      padding: 10px 2px;
+      text-decoration: none;
+      color: #1f2f46;
+      border-bottom: 1px solid #f1f4f8;
+    }
+    #site-nav > a:last-child{ border-bottom: 0; }
+
+    /* al abrir: mostrar panel */
+    .site-header.is-open #site-nav{ transform: translateX(0%); }
+
+    /* topbar flexible y sin overflow */
+    .topbar__inner{
+      height: auto;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px 0;
+    }
+    .contact{
+      white-space: normal;       /* permite saltos de línea (evita overflow) */
+      overflow-wrap: anywhere;   /* partir cadenas largas si hace falta */
+      line-height: 1.25;
+      font-size: 13px;
+    }
+    .contact .sep{ display: none; }
+
+    /* la nav original deja de ocupar ancho horizontal */
+    .nav{
+      margin-left: 0;
+      margin-right: 0;
+      gap: 0;
+    }
+  }
+</style>
