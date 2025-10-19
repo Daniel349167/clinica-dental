@@ -1,0 +1,282 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/blog",
+  ca: "/ca/blog",
+  en: "/en/blog",
+};
+---
+
+<BaseLayout
+  description="Consejos, novedades y artículos sobre salud bucodental, estética dental, ortodoncia e implantes en Barcelona."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/blog" {alternates} />
+
+  <!-- ========================= HERO BLOG ========================= -->
+  <section class="blog-hero" aria-label="Sección de bienvenida al Blog">
+    <div class="blog-hero__inner container">
+      <img class="blog-hero__logo" src="/assets/mark-hero.svg" alt="Logo Dental Sueca" />
+      <h1 class="blog-hero__title">
+        Blog de Clínica<br />
+        Dental Sueca
+      </h1>
+    </div>
+  </section>
+
+  <!-- ========================= LISTADO BLOG ========================= -->
+  <section class="blog-list container" aria-labelledby="blog-list-title">
+    <header class="blog-list__head">
+      <h2 id="blog-list-title" class="blog-list__title">
+        Conoce lo esencial de la salud y estética dental,
+        <span class="sub">junto a descubrimientos que te encantarán</span>
+      </h2>
+    </header>
+
+    <div class="blog-grid">
+      <!-- Card 1 -->
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/ortodoncia-duele" aria-label="¿Duele la ortodoncia? Lo que debes saber antes de empezar tu tratamiento">
+          <img src="/assets/blog/blog-img1.png" alt="Equipo odontológico atendiendo a una paciente" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/ortodoncia-duele">¿Duele la ortodoncia? Lo que debes saber antes de empezar tu tratamiento</a>
+          </h3>
+          <p class="bcard__excerpt">La ortodoncia es uno de …</p>
+          <a class="bcard__link" href="/blog/ortodoncia-duele">Leer más</a>
+        </div>
+      </article>
+
+      <!-- Card 2 (sin aviso global) -->
+      <article class="bcard" id="blog-card-2">
+        <a class="bcard__media" href="/blog/sialorrea-hipersalivacion" aria-label="Sialorrea o Hipersalivación: qué es, síntomas y tratamiento">
+          <img src="/assets/blog/blog-img2.png" alt="Demostración con prótesis dental y sonda" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/sialorrea-hipersalivacion">Sialorrea o Hipersalivación: qué es, síntomas y tratamiento</a>
+          </h3>
+          <p class="bcard__excerpt">Sabemos lo complicado que…</p>
+          <a class="bcard__link" href="/blog/sialorrea-hipersalivacion">Leer más</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/invisalign-mantenimiento" aria-label="Invisalign: limpieza y mantenimiento de los alineadores">
+          <img src="/assets/blog/blog-img3.png" alt="Paciente revisando su sonrisa con espejo" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/invisalign-mantenimiento">Invisalign: limpieza y mantenimiento de los alineadores</a>
+          </h3>
+          <p class="bcard__excerpt">Para un mejor funcionamiento…</p>
+          <a class="bcard__link" href="/blog/invisalign-mantenimiento">Leer más</a>
+        </div>
+      </article>
+
+      <!-- Repite 3 más (mismo orden que tu captura) -->
+      <article class="bcard espacio">
+        <a class="bcard__media" href="/blog/ortodoncia-duele">
+          <img src="/assets/blog/blog-img1.png" alt="Equipo odontológico atendiendo a una paciente" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/ortodoncia-duele">¿Duele la ortodoncia? Lo que debes saber antes de empezar tu tratamiento</a>
+          </h3>
+          <p class="bcard__excerpt">La ortodoncia es uno de …</p>
+          <a class="bcard__link" href="/blog/ortodoncia-duele">Leer más</a>
+        </div>
+      </article>
+
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/sialorrea-hipersalivacion">
+          <img src="/assets/blog/blog-img2.png" alt="Demostración con prótesis dental y sonda" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/sialorrea-hipersalivacion">Sialorrea o Hipersalivación: qué es, síntomas y tratamiento</a>
+          </h3>
+          <p class="bcard__excerpt">Sabemos lo complicado que…</p>
+          <a class="bcard__link" href="/blog/sialorrea-hipersalivacion">Leer más</a>
+        </div>
+      </article>
+
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/invisalign-mantenimiento">
+          <img src="/assets/blog/blog-img3.png" alt="Paciente revisando su sonrisa con espejo" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/invisalign-mantenimiento">Invisalign: limpieza y mantenimiento de los alineadores</a>
+          </h3>
+          <p class="bcard__excerpt">Para un mejor funcionamiento…</p>
+          <a class="bcard__link" href="/blog/invisalign-mantenimiento">Leer más</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================= NEWSLETTER ========================= -->
+  <section class="newsletter">
+    <div class="newsletter__inner container">
+      <img class="newsletter__logo" src="/assets/logo-mark.svg" alt="Dental Sueca" />
+
+      <h2 class="newsletter__title">
+        ¿Te interesan las últimas noticias dentales?
+      </h2>
+
+      <form
+        class="newsletter__form"
+        id="newsletter"
+        action="#"
+        method="post"
+        novalidate
+        data-sending="Enviando…"
+        data-ok="¡Listo! Te hemos suscrito. Pronto recibirás noticias dentales recientes."
+        data-fail="No pudimos suscribirte. Inténtalo de nuevo."
+      >
+        <input type="hidden" id="nl_locale" value="es" />
+
+        <label class="sr-only" for="nl_name">Nombre y apellido</label>
+        <input
+          id="nl_name"
+          name="name"
+          type="text"
+          class="nl__input"
+          placeholder="Nombre y apellido"
+          autocomplete="name"
+          required
+        />
+
+        <label class="sr-only" for="nl_email">Correo electrónico</label>
+        <input
+          id="nl_email"
+          name="email"
+          type="email"
+          class="nl__input"
+          placeholder="Correo electrónico"
+          autocomplete="email"
+          required
+        />
+
+        <button type="submit" class="nl__btn">Suscribirme</button>
+
+        <!-- Aviso del formulario: se mostrará debajo del botón -->
+        <div class="nl__notice" id="nl_notice" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <Footer locale="es" />
+</BaseLayout>
+
+
+<!-- ============ SCRIPT: ENVÍO (usa proxy /api/newsletter) ============ -->
+<script is:inline>
+  (function(){
+    const form = document.getElementById('newsletter');
+    if (!form) return;
+
+    // Ahora pegamos a nuestro propio backend (mismo dominio) => sin CORS
+    const ENDPOINT = '/api/newsletter';
+
+    const btn = form.querySelector('.nl__btn');
+    const btnDefault = btn?.textContent || 'Suscribirme';
+    const notice = document.getElementById('nl_notice');
+
+    const UX_SENDING = form.dataset.sending || 'Enviando…';
+    const UX_OK = form.dataset.ok || '¡Suscripción exitosa!';
+    const UX_FAIL = form.dataset.fail || 'No pudimos suscribirte. Inténtalo de nuevo.';
+
+    function clearNotice(el){
+      if(!el) return;
+      el.className = 'nl__notice';
+      el.textContent = '';
+    }
+    function showNotice(el, type, msg){
+      if(!el) return;
+      el.className = 'nl__notice ' + (type === 'ok' ? 'nl__notice--ok' : 'nl__notice--err');
+      el.textContent = msg;
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    let sending = false;
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      if (!form.reportValidity() || sending) return;
+
+      const payload = {
+        type: 'newsletter',
+        locale: document.getElementById('nl_locale')?.value || 'es',
+        name: document.getElementById('nl_name')?.value?.trim() || '',
+        email: document.getElementById('nl_email')?.value?.trim() || '',
+        page: location.pathname,
+        userAgent: navigator.userAgent
+      };
+
+      const body = new URLSearchParams(payload);
+      clearNotice(notice);
+
+      // Estado UI
+      const prevMinW = btn ? btn.style.minWidth : '';
+      const prevPL = btn ? btn.style.paddingLeft : '';
+      const prevPR = btn ? btn.style.paddingRight : '';
+      if (btn) {
+        sending = true;
+        btn.disabled = true;
+        btn.textContent = UX_SENDING;
+        btn.classList.add('nl__btn--loading');
+      }
+
+      try {
+        const res = await fetch(ENDPOINT, { method:'POST', body });
+
+        // --- NUEVO: no asumimos que siempre llega JSON ---
+        let json = null;
+        let text = '';
+        const ct = res.headers.get('content-type') || '';
+
+        try {
+          if (ct.includes('application/json')) {
+            json = await res.json();
+          } else {
+            text = await res.text();
+          }
+        } catch (_) {
+          try { text = await res.text(); } catch(__) {}
+        }
+
+        // Éxito si HTTP 2xx o si json.ok === true
+        const ok = (res.ok === true) || (json && json.ok === true);
+
+        if (ok) {
+          form.reset();
+          showNotice(notice, 'ok', UX_OK);
+        } else {
+          showNotice(notice, 'err', UX_FAIL);
+          console.warn('Newsletter upstream response:', { status: res.status, ct, json, text });
+        }
+      } catch (e) {
+        showNotice(notice, 'err', UX_FAIL);
+        console.error('Newsletter error:', e);
+      } finally {
+        if (btn) {
+          sending = false;
+          btn.disabled = false;
+          btn.textContent = btnDefault;
+          btn.classList.remove('nl__btn--loading');
+          btn.style.minWidth = prevMinW;
+          btn.style.paddingLeft = prevPL;
+          btn.style.paddingRight = prevPR;
+        }
+      }
+    });
+  })();
+</script>

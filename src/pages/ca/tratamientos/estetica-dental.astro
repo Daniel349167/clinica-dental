@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = { es:"/es/tratamientos/estetica-dental", ca:"/ca/tratamientos/estetica-dental", en:"/en/tratamientos/estetica-dental" };
+---
+
+<BaseLayout
+  description="Tractaments d’estètica dental personalitzats: emblanquiment professional, facetes de compòsit o porcellana i correcció de forma, color i posició."
+  locale="ca" {alternates}
+>
+  <Header locale="ca" currentPath="/ca/tratamientos/estetica-dental" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Estètica dental</h1>
+
+      <p>Transformem el teu somriure perquè reflecteixi la teva millor versió, amb tractaments adaptats als teus objectius i faccions.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/estetica-dental.png" alt="Selecció de tons per a facetes o emblanquiment" loading="lazy" />
+
+      <p>Des d’emblanquiments professionals fins a facetes de compòsit o porcellana, corregim imperfeccions de forma, color i posició per a un resultat natural i harmoniós.</p>
+
+      <p>Gaudeix d’un somriure alineat i lluminós des del primer dia.</p>
+    </div>
+
+    <aside class="treatment-detail__form">
+      <CitaForm locale="ca"/>
+    </aside>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>

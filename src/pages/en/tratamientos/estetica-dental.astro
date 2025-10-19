@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = { es:"/es/tratamientos/estetica-dental", ca:"/ca/tratamientos/estetica-dental", en:"/en/tratamientos/estetica-dental" };
+---
+
+<BaseLayout
+  description="Personalized cosmetic treatments: professional whitening, composite or porcelain veneers, and correction of shape, color and position."
+  locale="en" {alternates}
+>
+  <Header locale="en" currentPath="/en/tratamientos/estetica-dental" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Cosmetic dentistry</h1>
+
+      <p>We transform your smile to reflect your best self with personalized cosmetic treatments tailored to your goals and facial features.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/estetica-dental.png" alt="Shade selection for veneers or whitening" loading="lazy" />
+
+      <p>From professional whitening to composite or porcelain veneers, we correct shape, color and position to achieve a natural, harmonious result.</p>
+
+      <p>Enjoy a bright, well-aligned smile from day one.</p>
+    </div>
+
+       <aside class="treatment-detail__form">
+      <CitaForm locale="en" />
+    </aside>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>

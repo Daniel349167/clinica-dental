@@ -9,313 +9,453 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 <BaseLayout title="Clínica Dental Sueca" description="Odontologia integral: estètica, ortodòncia i implants a Barcelona." locale="ca" {alternates}>
   <Header locale="ca" currentPath="/ca/" />
 
-<!-- HERO amb imatge de fons -->
-<section class="hero-landing" style="--hero:url(/assets/hero.png)">
-  <div class="hero__inner container">
-    <div class="hero__copy">
-      <h1 class="hero__title">
-        <img class="hero__mark" src="/assets/mark-hero.svg" alt="" />
-        <span>
-          El teu millor somriure<br/>
-          comença aquí
-        </span>
-      </h1>
-      <!-- Botó alineat sota la segona línia del títol -->
-      <a class="btn btn-hero" href="#cita">DEMANA LA TEVA CITA</a>
+  <!-- ========================= HERO amb imatge de fons ========================= -->
+  <section class="hero-landing">
+    {/* Prefetch amb prioritat per al hero (PNG actual). Quan generis AVIF/WebP, pots actualitzar src/srcset si vols. */}
+    <img
+      src="/assets/hero.png"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+      decoding="async"
+      style="position:absolute;width:0;height:0;opacity:0"
+    />
+    <div class="hero__inner container">
+      <div class="hero__copy">
+        <h1 class="hero__title">
+          <img class="hero__mark" src="/assets/mark-hero.svg" alt="" />
+          <span>
+            El teu millor somriure<br/>
+            comença aquí
+          </span>
+        </h1>
+        <a class="btn btn-hero" href="#cita">DEMANA HORA</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Bloc: Clínica Dental Sueca -->
-<section class="section section--about container">
-  <div class="about about--compact">
-    <div class="about__text">
-      <h2 class="about__title">Clínica Dental Sueca</h2>
-      <p class="lead">El teu somriure, la teva millor carta de presentació.</p>
+  <!-- ========================= Bloc: Clínica Dental Sueca ========================= -->
+  <section class="section section--about container">
+    <div class="about about--compact">
+      <div class="about__text">
+        <h2 class="about__title">Clínica Dental Sueca</h2>
+        <p class="lead">El teu somriure, la teva millor carta de presentació.</p>
 
-      <p>A la nostra clínica dental treballem perquè cada pacient gaudeixi d’un somriure sa, estètic i natural. Sabem que no és només una qüestió de dents, sinó de confiança, benestar i seguretat personal.</p>
+        <p>A la nostra clínica treballem perquè cada pacient gaudeixi d’un somriure sa, estètic i natural. Sabem que no és només una qüestió de dents, sinó de confiança, benestar i seguretat personal.</p>
 
-      <p>Unim innovació tecnològica amb l’experiència dels nostres especialistes per oferir-te tractaments moderns, eficaços i adaptats a tu. El nostre espai està dissenyat per transmetre’t calma i confiança, amb un objectiu clar: cuidar de la teva salut i realçar la teva millor versió.</p>
+        <p>Unim la innovació tecnològica amb l’experiència dels nostres especialistes per oferir tractaments moderns, eficaços i adaptats a tu. L’espai està pensat per transmetre calma i confiança, amb un objectiu clar: cuidar la teva salut i realçar la teva millor versió.</p>
 
-      <div class="subtitle">Per què confiar en nosaltres?</div>
-      <ul class="ul">
-        <li>Experiència sòlida d’un equip especialitzat en totes les àrees de l’odontologia.</li>
-        <li>Tecnologia avançada per a resultats predictibles i d’alta qualitat.</li>
-        <li>Atenció propera i personalitzada des del primer dia.</li>
-      </ul>
+        <div class="subtitle">Per què confiar en nosaltres?</div>
+        <ul class="ul">
+          <li>Experiència sòlida d’un equip especialitzat en totes les àrees d’odontologia.</li>
+          <li>Tecnologia avançada per a resultats predictibles i d’alta qualitat.</li>
+          <li>Atenció propera i personalitzada des del primer dia.</li>
+        </ul>
+      </div>
+
+      <div class="about__img about__img--sm">
+        <img src="/assets/about.png" alt="Pacient feliç a la clínica dental" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= Tractaments ========================= -->
+  <section class="treatments container">
+    <div class="treatments__mark">
+      <img src="/assets/logo-mark.svg" alt="DentLogo" />
     </div>
 
-    <div class="about__img about__img--sm">
-      <img src="/assets/about.png" alt="Pacient feliç a la clínica dental" loading="lazy" />
+    <h2 class="treatments__title">Tractaments dentals</h2>
+
+    <div class="treatments__grid">
+      <a href="/es/tratamientos/ortodoncia" class="tr-card">
+        <img src="/assets/ortodoncia.svg" alt="Ortodòncia i alineadors" />
+        <h3>Ortodòncia i alineadors</h3>
+        <p>Alineem el teu somriure amb tractaments moderns i discrets…</p>
+      </a>
+
+      <a href="/es/tratamientos/implantes" class="tr-card">
+        <img src="/assets/implante.svg" alt="" />
+        <h3>Implants dentals</h3>
+        <p>Recupera la funcionalitat i l’estètica amb implants d’última generació. Resultats duradors i naturals.</p>
+      </a>
+
+      <a href="/es/tratamientos/estetica-dental" class="tr-card">
+        <img src="/assets/estetica.svg" alt="" />
+        <h3>Estètica dental</h3>
+        <p>Carilles, emblanquiment i disseny de somriure per millorar l’harmonia i la lluminositat del rostre.</p>
+      </a>
+
+      <a href="/es/tratamientos/rehabilitacion-oral" class="tr-card">
+        <img src="/assets/rehabilitacion.svg" alt="" />
+        <h3>Rehabilitació oral</h3>
+        <p>Tractament integral que combina pròtesi, implants i tècniques per tornar la funcionalitat.</p>
+      </a>
+
+      <a href="/es/tratamientos/endodoncia" class="tr-card">
+        <img src="/assets/endodoncia.svg" alt="" />
+        <h3>Endodòncia</h3>
+        <p>Salvem dents danyades o infectades, eliminant el dolor i evitant l’extracció.</p>
+      </a>
+
+      <a href="/es/tratamientos/odontopediatria" class="tr-card">
+        <img src="/assets/odontopediatria.svg" alt="" />
+        <h3>Odontopediatria</h3>
+        <p>Cuidem el somriure infantil amb prevenció, control d’hàbits i ortodòncia precoç.</p>
+      </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Tractaments -->
-<section class="treatments container">
-  <!-- Nou: logo-mark a dalt i centrat -->
-  <div class="treatments__mark">
-    <img src="/assets/logo-mark.svg" alt="DentLogo" />
-  </div>
+  <!-- ========================= CTA consulta gratuïta ========================= -->
+  <section class="cta-strip">
+    <div class="cta-strip__inner container">
+      <img class="cta-strip__mark" src="/assets/mark-hero.svg" alt="DentLogo" />
+      <h2 class="cta-strip__title">Primera consulta i diagnòstic gratuïts</h2>
+      <a class="btn btn-cta" href="#agenda" aria-label="Demanar hora">
+        DEMANA HORA
+      </a>
+    </div>
+  </section>
 
-  <h2 class="treatments__title">Tractaments dentals</h2>
+  <!-- ================== Instal·lacions ================== -->
+  <section class="facilities container">
+    <h2 class="section-title">Instal·lacions</h2>
 
-  <div class="treatments__grid">
-    <article class="tcard">
-      <img src="/assets/ortodoncia.svg" alt="" />
-      <h3>Ortodòncia i alineadors</h3>
-      <p>Alineem el teu somriure amb tractaments moderns i discrets. Des de brackets estètics fins a ortodòncia invisible.</p>
-    </article>
+    <div class="facilities__grid">
+      <figure class="facility">
+        <img src="/assets/instalaciones/inst1.png" alt="instal·lació 1" />
+      </figure>
+      <figure class="facility">
+        <img src="/assets/instalaciones/inst2.png" alt="instal·lació 2" />
+      </figure>
+      <figure class="facility">
+        <img src="/assets/instalaciones/inst3.png" alt="instal·lació 3" />
+      </figure>
+    </div>
+  </section>
 
-    <article class="tcard">
-      <img src="/assets/implante.svg" alt="" />
-      <h3>Implants dentals</h3>
-      <p>Recupera la funcionalitat i l’estètica amb implants d’última generació. Resultats duradors i naturals.</p>
-    </article>
+  <!-- ========== Ressenyes ========== -->
+  <section class="reviews container">
+    <h2 class="section-title">Què opinen els nostres pacients?</h2>
 
-    <article class="tcard">
-      <img src="/assets/estetica.svg" alt="" />
-      <h3>Estètica dental</h3>
-      <p>Carilles, blanquejament i disseny de somriure per millorar l’harmonia i la lluminositat del teu rostre.</p>
-    </article>
-
-    <article class="tcard">
-      <img src="/assets/rehabilitacion.svg" alt="" />
-      <h3>Rehabilitació oral</h3>
-      <p>Tractament integral que combina pròtesis, implants i tècniques per retornar la funcionalitat.</p>
-    </article>
-
-    <article class="tcard">
-      <img src="/assets/endodoncia.svg" alt="" />
-      <h3>Endodòncia</h3>
-      <p>Salvem dents danyats o infectats, eliminant el dolor i evitant l’extracció.</p>
-    </article>
-
-    <article class="tcard">
-      <img src="/assets/odontopediatria.svg" alt="" />
-      <h3>Odontopediatria</h3>
-      <p>Tenim cura del somriure infantil amb prevenció, control d’hàbits i ortodòncia primerenca.</p>
-    </article>
-  </div>
-</section>
-
-<!-- CTA consulta gratis -->
-<section class="cta-strip">
-  <div class="cta-strip__inner container">
-    <img class="cta-strip__mark" src="/assets/mark-hero.svg" alt="DentLogo" />
-    <h2 class="cta-strip__title">Primera consulta i diagnòstic gratuïts</h2>
-    <a class="btn btn-cta" href="#agenda" aria-label="Reserva la teva cita">
-      RESERVA LA TEVA CITA
-    </a>
-  </div>
-</section>
-
-<!-- ================== INSTAL·LACIONS ================== -->
-<section class="facilities container">
-  <h2 class="section-title">Instal·lacions</h2>
-
-  <div class="facilities__grid">
-    <figure class="facility">
-      <img src="/assets/instalaciones/inst1.png" alt="instal·lació 1" />
-    </figure>
-    <figure class="facility">
-      <img src="/assets/instalaciones/inst2.png" alt="instal·lació 2" />
-    </figure>
-    <figure class="facility">
-      <img src="/assets/instalaciones/inst3.png" alt="instal·lació 3" />
-    </figure>
-  </div>
-</section>
-
-<!-- ========== RESENYES: Què opinen els nostres pacients? ========== -->
-<section class="reviews container">
-  <h2 class="section-title">Què opinen els nostres pacients?</h2>
-
-  <div class="reviews__grid">
-    <!-- Card 1 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <img class="r-avatar" src="/assets/persona1.png" alt="Norma Miryam" />
-          <div>
-            <h3 class="r-name">Norma Miryam Felic...</h3>
-            <div class="r-date">03/06/2025</div>
+    <div class="reviews__grid">
+      <!-- Card 1 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <img class="r-avatar" src="/assets/persona1.png" alt="Norma Miryam" />
+            <div>
+              <h3 class="r-name">Norma Miryam Felic...</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
           </div>
-        </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
 
-      <div class="r-stars" aria-label="5 de 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <!-- verificat -->
-        <span class="r-verified" title="Opinió verificada" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg>
+        <div class="r-stars" aria-label="5 de 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <span class="r-verified" title="Ressenya verificada" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg>
+            <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
+          </span>
+        </div>
+
+        <p class="r-text">Tracte i professionals immillorables!</p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <img class="r-avatar" src="/assets/persona2.png" alt="Maria Molle" />
+            <div>
+              <h3 class="r-name">Maria Molle</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
+          </div>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
+        <div class="r-stars" aria-label="5 de 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
           <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
-        </span>
-      </div>
-
-      <p class="r-text">Tracte i professionals immillorables!</p>
-    </article>
-
-    <!-- Card 2 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <img class="r-avatar" src="/assets/persona2.png" alt="Maria Molle" />
-          <div>
-            <h3 class="r-name">Maria Molle</h3>
-            <div class="r-date">03/06/2025</div>
-          </div>
         </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
-      <div class="r-stars" aria-label="5 de 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
-      </div>
-      <p class="r-text">La meva clínica de confiança, no la canvio per cap altra!!!</p>
-    </article>
+        <p class="r-text">La meva clínica de confiança, no la canvio per cap altra!!!</p>
+      </article>
 
-    <!-- Card 3 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <div class="r-avatar r-avatar--initial">A</div>
-          <div>
-            <h3 class="r-name">Aleix Masip</h3>
-            <div class="r-date">03/06/2025</div>
+      <!-- Card 3 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <div class="r-avatar r-avatar--initial">A</div>
+            <div>
+              <h3 class="r-name">Aleix Masip</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
           </div>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
+        <div class="r-stars" aria-label="5 de 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
         </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
-      <div class="r-stars" aria-label="5 de 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
-      </div>
-      <p class="r-text">Molt amables!</p>
-    </article>
+        <p class="r-text">Molt amables!</p>
+      </article>
 
-    <!-- Card 4 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <img class="r-avatar" src="/assets/persona3.png" alt="Judit Garcia" />
-          <div>
-            <h3 class="r-name">Judit Garcia Santa...</h3>
-            <div class="r-date">03/06/2025</div>
+      <!-- Card 4 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <img class="r-avatar" src="/assets/persona3.png" alt="Judit Garcia" />
+            <div>
+              <h3 class="r-name">Judit Garcia Santa...</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
           </div>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
+        <div class="r-stars" aria-label="5 de 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
         </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
-      <div class="r-stars" aria-label="5 de 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <img src="/assets/icons/check-azul.png" alt="verificat" width="18" height="18">
-      </div>
-      <p class="r-text">Molt contenta amb el tracte rebut, molt amables i molt professionals!!!</p>
-    </article>
-  </div>
+        <p class="r-text">Molt contenta amb el tracte, molt amables i professionals!!!</p>
+      </article>
+    </div>
 
-  <!-- Distintiu Trustindex -->
-  <div class="reviews__badge">
-    <span>Verificat per: Trustindex
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
-        <circle cx="128" cy="128" r="100" stroke="currentColor" stroke-width="22" fill="none"/>
-        <rect x="120" y="112" width="16" height="72" rx="4" fill="currentColor"/>
-        <circle cx="128" cy="88" r="10" fill="currentColor"/>
-      </svg>
-    </span>
-  </div>
+    <div class="reviews__badge">
+      <span>Verificat per: Trustindex
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
+          <circle cx="128" cy="128" r="100" stroke="currentColor" stroke-width="22" fill="none"/>
+          <rect x="120" y="112" width="16" height="72" rx="4" fill="currentColor"/>
+          <circle cx="128" cy="88" r="10" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+  </section>
 
-</section>
+  <!-- ========== UBICACIÓ / MAPA (FULL-BLEED) ========== -->
+  <section class="location location--fullbleed">
+    <div class="location__stage">
+      <!-- Placeholder lleuger -->
+      <button class="location__placeholder" id="mapLoader" type="button" aria-label="Carregar mapa interactiu">
+        <img
+          src="/assets/mapa-placeholder.jpg"
+          alt="Mapa de la zona de la clínica (prem per carregar el mapa)"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="location__pill">Carrega el mapa</span>
+      </button>
 
-<!-- ========== UBICACIÓ / MAPA ========== -->
-<section class="location">
-  <div class="location__wrap">
-    <iframe
-      class="location__map"
-      loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q=41.4050801,2.1352314&z=15&output=embed">
-    </iframe>
+      <div id="mapMount" class="location__mount" hidden></div>
 
-    <aside class="location__card">
-      <h3>Ens trobaràs a:</h3>
-      <p>
-        C. de Muntaner 555, Esc. A, Planta 3 - 2,<br>
-        Sarrià-Sant Gervasi, Barcelona.<br>
-        <a href="tel:+34614375792">+34 614 37 57 92</a><br><br>
-        De dilluns a divendres<br>
-        10:00 a 14:00 i 16:00 a 20:00
-      </p>
-      <a class="location__btn"
-         target="_blank"
-         href="https://www.google.com/maps/dir/?api=1&destination=41.4050801,2.1352314">
-        Com arribar-hi
-      </a>
-    </aside>
-  </div>
-</section>
+      <aside class="location__card">
+        <h3>Ens trobaràs a:</h3>
+        <p>
+          C. de Muntaner 555, Esc. A, Planta 3 - 2,<br>
+          Sarrià-Sant Gervasi, Barcelona.<br>
+          <a href="tel:+34614375792">+34 614 37 57 92</a><br><br>
+          Dilluns a divendres<br>
+          10:00–14:00 i 16:00–20:00
+        </p>
+        <a class="location__btn"
+          target="_blank"
+          href="https://www.google.com/maps/dir/?api=1&destination=41.4050801,2.1352314">
+          Com arribar-hi
+        </a>
+      </aside>
+    </div>
+  </section>
 
-<!-- ========== BLOC (INICI) ========== -->
-<section class="blog container" aria-labelledby="blog-title">
-  <h2 id="blog-title" class="section-title">Blog</h2>
+  <!-- ========== BLOG (INICI) ========== -->
+  <section class="blog container" aria-labelledby="blog-title">
+    <h2 id="blog-title" class="section-title">Blog</h2>
 
-  <div class="blog__grid">
-    <!-- Post 1 -->
-    <article class="b-card">
-      <a class="b-card__media" href="/blog/ortodoncia-duele">
-        <img src="/assets/blog/blog-img1.png" alt="Equip odontològic atenent una pacient" loading="lazy">
-      </a>
-      <div class="b-card__body">
-        <h3 class="b-card__title">
-          <a href="/blog/ortodoncia-duele">
-            Fa mal l’ortodòncia? El que has de saber abans de començar el teu tractament
-          </a>
-        </h3>
-        <p class="b-card__excerpt">L’ortodòncia és un dels tractaments més comuns. T’expliquem què esperar…</p>
-        <a class="b-card__link" href="/blog/ortodoncia-duele">Llegir més</a>
-      </div>
-    </article>
+    <div class="blog__grid">
+      <!-- Post 1 -->
+      <article class="b-card">
+        <a class="b-card__media" href="/blog/ortodoncia-duele">
+          <img src="/assets/blog/blog-img1.png" alt="Equip odontològic atenent una pacient" loading="lazy">
+        </a>
+        <div class="b-card__body">
+          <h3 class="b-card__title">
+            <a href="/blog/ortodoncia-duele">
+              Fa mal l’ortodòncia? El que has de saber abans de començar el tractament
+            </a>
+          </h3>
+          <p class="b-card__excerpt">L’ortodòncia és un dels tractaments més comuns. T’expliquem què esperar…</p>
+          <a class="b-card__link" href="/blog/ortodoncia-duele">Llegir més</a>
+        </div>
+      </article>
 
-    <!-- Post 2 -->
-    <article class="b-card">
-      <a class="b-card__media" href="/blog/sialorrea-hipersalivacion">
-        <img src="/assets/blog/blog-img2.png" alt="Demostració amb pròtesi dental i sonda" loading="lazy">
-      </a>
-      <div class="b-card__body">
-        <h3 class="b-card__title">
-          <a href="/blog/sialorrea-hipersalivacion">
-            Sialorrea o Hipersalivació: què és, símptomes i tractament
-          </a>
-        </h3>
-        <p class="b-card__excerpt">Sabem com de complicat pot ser l’excés de saliva. Repassem causes i opcions…</p>
-        <a class="b-card__link" href="/blog/sialorrea-hipersalivacion">Llegir més</a>
-      </div>
-    </article>
+      <!-- Post 2 -->
+      <article class="b-card">
+        <a class="b-card__media" href="/blog/sialorrea-hipersalivacion">
+          <img src="/assets/blog/blog-img2.png" alt="Demostració amb pròtesi dental i sonda" loading="lazy">
+        </a>
+        <div class="b-card__body">
+          <h3 class="b-card__title">
+            <a href="/blog/sialorrea-hipersalivacion">
+              Sialorrea o hipersalivació: què és, símptomes i tractament
+            </a>
+          </h3>
+          <p class="b-card__excerpt">Sabem que l’excés de saliva pot ser complicat. Repassem causes i opcions…</p>
+          <a class="b-card__link" href="/blog/sialorrea-hipersalivacion">Llegir més</a>
+        </div>
+      </article>
 
-    <!-- Post 3 -->
-    <article class="b-card">
-      <a class="b-card__media" href="/blog/invisalign-mantenimiento">
-        <img src="/assets/blog/blog-img3.png" alt="Pacient revisant el seu somriure amb un mirall" loading="lazy">
-      </a>
-      <div class="b-card__body">
-        <h3 class="b-card__title">
-          <a href="/blog/invisalign-mantenimiento">
-            Invisalign: neteja i manteniment dels alineadors
-          </a>
-        </h3>
-        <p class="b-card__excerpt">Per a un millor funcionament, t’expliquem com netejar i cuidar els teus alineadors…</p>
-        <a class="b-card__link" href="/blog/invisalign-mantenimiento">Llegir més</a>
-      </div>
-    </article>
-  </div>
-</section>
-<!-- ========== BLOC (FI) ========== -->
+      <!-- Post 3 -->
+      <article class="b-card">
+        <a class="b-card__media" href="/blog/invisalign-mantenimiento">
+          <img src="/assets/blog/blog-img3.png" alt="Pacient revisant el seu somriure amb un mirall" loading="lazy">
+        </a>
+        <div class="b-card__body">
+          <h3 class="b-card__title">
+            <a href="/blog/invisalign-mantenimiento">
+              Invisalign: neteja i manteniment dels alineadors
+            </a>
+          </h3>
+          <p class="b-card__excerpt">Per a un millor funcionament, t’expliquem com netejar i cuidar els alineadors…</p>
+          <a class="b-card__link" href="/blog/invisalign-mantenimiento">Llegir més</a>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <Footer locale="ca" />
 </BaseLayout>
+
+<!-- ========================= ESTILS LOCALS (HERO + MAPA) ========================= -->
+<style>
+  /* HERO */
+  .hero-landing {
+    min-height: clamp(420px, 60vh, 760px);
+    display: grid;
+    place-items: center;
+    position: relative;
+    background-image: image-set(
+      url("/assets/hero.avif") type("image/avif")
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    contain: paint;
+  }
+
+  /* MAPA - FULL BLEED */
+  .location--fullbleed{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .location__stage{ position: relative; }
+  .location__placeholder,
+  .location__mount,
+  .location__map{
+    width: 100%;
+    height: clamp(360px, 55vh, 560px);
+  }
+  .location__placeholder{
+    position: relative;
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    line-height: 0;
+    display: block;
+    overflow: hidden;
+  }
+  .location__placeholder img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+  .location__pill{
+    position:absolute;
+    bottom:12px; right:12px;
+    padding:.5rem .75rem;
+    border-radius:999px;
+    background:rgba(0,0,0,.6);
+    color:#fff;
+    font-size:.9rem;
+    backdrop-filter:saturate(140%) blur(6px);
+  }
+  .location__map{
+    border:0;
+    display:block;
+  }
+  .location__card{
+    position: absolute;
+    right: clamp(12px, 4vw, 40px);
+    bottom: clamp(12px, 4vw, 40px);
+    width: 300px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+  .location__card h3{ margin: 0 0 .5rem; }
+  .location__card p{ margin: 0 0 .75rem; }
+  .location__btn{
+    display: block;
+    padding: .6rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #0b57d0;
+    color: #fff;
+    font-weight: 600;
+    width: fit-content;
+    margin: .75rem auto 0;
+  }
+  @media (max-width: 768px){
+    .location__card{
+      position: static;
+      width: auto;
+      margin: 12px auto 0;
+      background: #fff;
+      box-shadow: none;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Mapa: injecció diferida (clic o al fer-se visible)
+  const btn = document.getElementById('mapLoader');
+  const mount = document.getElementById('mapMount');
+  const SRC = "https://www.google.com/maps?q=41.4050801,2.1352314&z=15&output=embed";
+
+  function loadMap(){
+    if (!mount || mount.dataset.loaded) return;
+    mount.dataset.loaded = "1";
+    const iframe = document.createElement('iframe');
+    iframe.className = "location__map";
+    iframe.loading = "lazy";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.src = SRC;
+    mount.appendChild(iframe);
+    mount.hidden = false;
+    btn?.remove();
+  }
+
+  btn?.addEventListener('click', loadMap);
+
+  const section = document.querySelector('.location');
+  if (section) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          loadMap();
+          io.disconnect();
+        }
+      });
+    }, { rootMargin: "200px" });
+    io.observe(section);
+  }
+</script>

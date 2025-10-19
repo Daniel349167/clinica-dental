@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = {
+  es: "/es/tratamientos/ortodoncia",
+  ca: "/ca/tratamientos/ortodoncia",
+  en: "/en/tratamientos/ortodoncia",
+};
+---
+
+<BaseLayout
+  description="Tractaments d’ortodòncia personalitzats: des de brackets tradicionals fins a alineadors transparents d’última generació. Millora el somriure, la mossegada i la salut bucodental."
+  locale="ca"
+  {alternates}
+>
+  <Header locale="ca" currentPath="/ca/tratamientos/ortodoncia" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Ortodòncia i alineadors</h1>
+
+      <p>Oferim tractaments d’ortodòncia adaptats a cada necessitat: des de brackets clàssics fins a alineadors gairebé invisibles.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/ortodoncia.png" alt="Col·locació d’un alineador transparent" loading="lazy" />
+
+      <p>L’ortodòncia no només millora l’estètica del somriure, també corregeix la mossegada, millora la funció i afavoreix la salut bucal a llarg termini.</p>
+
+      <p>Gaudeix d’una opció còmoda, discreta i removible que s’adapta al teu estil de vida perquè puguis somriure amb confiança des del primer dia.</p>
+    </div>
+
+    <aside class="treatment-detail__form">
+      <CitaForm locale="ca"/>
+    </aside>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>

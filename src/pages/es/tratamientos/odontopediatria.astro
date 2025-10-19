@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = {
+  es: "/es/tratamientos/odontopediatria",
+  ca: "/ca/tratamientos/odontopediatria",
+  en: "/en/tratamientos/odontopediatria",
+};
+---
+
+<BaseLayout
+  description="Atención dental especializada para niños, desde bebés hasta adolescentes. Tratamientos preventivos, ambiente de confianza y enfoque en el bienestar infantil."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/tratamientos/odontopediatria" {alternates} />
+
+  <!-- ==================== SECCIÓN PRINCIPAL ==================== -->
+  <section class="treatment-detail container">
+    <!-- Columna izquierda: contenido -->
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Odontopediatría</h1>
+
+      <p>
+        Ofrecemos una atención dental especializada para los más pequeños, desde bebés hasta adolescentes.
+        Creamos un ambiente de confianza y diversión para que la visita al dentista sea una experiencia positiva y sin miedos.
+      </p>
+
+      <img
+        class="treatment-detail__img"
+        src="/assets/tratamientos/odontopediatria.png"
+        alt="Dentista y niña en consulta odontopediátrica sonrientes"
+        loading="lazy"
+      />
+
+      <p>
+        Tenemos tratamientos preventivos como selladores y fluorizaciones, y las técnicas más delicadas para el manejo de caries y traumatismos.
+        Nos enfocamos en guiar un correcto desarrollo de la boca de tu hijo.
+      </p>
+
+      <p>
+        Contribuye al bienestar de tu hijo con una sonrisa fuerte y feliz desde el primer día.
+      </p>
+    </div>
+
+    <!-- Columna derecha: formulario -->
+     <aside class="treatment-detail__form">
+    <CitaForm locale="es" />
+  </aside>
+  </section>
+
+  <Footer locale="es" />
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro"; // ✅ formulario reutilizable
+
+const alternates = { es:'/es/tratamientos/ortodoncia', ca:'/ca/tratamientos/ortodoncia', en:'/en/tratamientos/ortodoncia' };
+---
+
+<BaseLayout 
+  description="Tratamientos de ortodoncia adaptados a cada necesidad: brackets estéticos e invisibles. Mejora tu sonrisa con confianza."
+  locale="es" {alternates}>
+
+  <Header locale="es" currentPath="/es/tratamientos/ortodoncia" />
+
+  <!-- ==================== SECCIÓN PRINCIPAL ==================== -->
+<section class="treatment-detail container">
+  <div class="treatment-detail__content">
+    <h1 class="treatment-detail__title">Ortodoncia y alineadores</h1>
+
+    <p>En nuestra clínica te ofrecemos tratamientos de ortodoncia adaptados a cada necesidad; desde brackets tradicionales hasta la última tecnología en alineadores invisibles.</p>
+
+    <img class="treatment-detail__img"
+         src="/assets/tratamientos/ortodoncia.png"
+         alt="Paciente colocando alineador invisible"
+         loading="lazy" />
+
+    <p>La ortodoncia no solo mejora la estética de tu sonrisa, también corrige la mordida, mejora la función dental y contribuye a tu salud bucal a largo plazo.</p>
+
+    <p>De esta manera disfrutarás de un tratamiento cómodo, discreto y removible, que se adapta a tu estilo de vida y te permite sonreír con confianza desde el primer día.</p>
+  </div>
+
+  <aside class="treatment-detail__form">
+    <CitaForm locale="es" />
+  </aside>
+</section>
+
+
+  <Footer locale="es" />
+</BaseLayout>
+

@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = { es:"/es/tratamientos/implantes", ca:"/ca/tratamientos/implantes", en:"/en/tratamientos/implantes" };
+---
+
+<BaseLayout
+  description="Regain chewing function and a natural look with fixed, long-lasting dental implants."
+  locale="en" {alternates}
+>
+  <Header locale="en" currentPath="/en/tratamientos/implantes" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Dental implants</h1>
+
+      <p>We restore the function and aesthetics of your smile with advanced implantology. We replace missing teeth with fixed, durable solutions that look completely natural.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/implantes.png" alt="Dental implant between teeth" loading="lazy" />
+
+      <p>With implants you’ll recover firm chewing and confidence when speaking and smiling.</p>
+      <p>Implants integrate perfectly into your mouth, help prevent bone loss and improve your long-term quality of life.</p>
+    </div>
+
+       <aside class="treatment-detail__form">
+      <CitaForm locale="en" />
+    </aside>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>

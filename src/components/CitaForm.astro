@@ -1,0 +1,284 @@
+---
+const { locale = 'es' } = Astro.props;
+
+const i18n = {
+  es: {
+    title: 'Solicita aquí tu cita',
+    subtitle: 'Recuerda que tu primera cita valoración es gratuita.',
+    name: 'Nombre / Apellido',
+    phone: 'Número de teléfono',
+    email: 'Correo electrónico',
+    treatment: 'Tratamiento (seleccionar)',
+    selectPlaceholder: 'Seleccione un tratamiento',
+    comments: 'Comentarios (opcional)',
+    addCalendar: 'Agregar recordatorio Google Calendar',
+    privacyPrefix: 'He leído y acepto la',
+    privacyLink: 'política de privacidad',
+    submit: 'Enviar',
+    requiredSymbol: '*',
+    treatments: [
+      'Ortodoncia y alineadores',
+      'Implantes dentales',
+      'Estética dental',
+      'Rehabilitación oral',
+      'Endodoncia',
+      'Odontopediatría',
+    ],
+  },
+  ca: {
+    title: 'Sol·licita aquí la teva cita',
+    subtitle: 'Recorda que la teva primera visita de valoració és gratuïta.',
+    name: 'Nom / Cognoms',
+    phone: 'Número de telèfon',
+    email: 'Correu electrònic',
+    treatment: 'Tractament (selecciona)',
+    selectPlaceholder: 'Selecciona un tractament',
+    comments: 'Comentaris (opcional)',
+    addCalendar: 'Afegir recordatori Google Calendar',
+    privacyPrefix: 'He llegit i accepto la',
+    privacyLink: 'política de privacitat',
+    submit: 'Enviar',
+    requiredSymbol: '*',
+    treatments: [
+      'Ortodòncia i alineadors',
+      'Implants dentals',
+      'Estètica dental',
+      'Rehabilitació oral',
+      'Endodòncia',
+      'Odontopediatria',
+    ],
+  },
+  en: {
+    title: 'Book your appointment',
+    subtitle: 'Remember: your first assessment visit is free.',
+    name: 'First / Last name',
+    phone: 'Phone number',
+    email: 'Email address',
+    treatment: 'Treatment (select)',
+    selectPlaceholder: 'Select a treatment',
+    comments: 'Comments (optional)',
+    addCalendar: 'Add Google Calendar reminder',
+    privacyPrefix: 'I have read and accept the',
+    privacyLink: 'privacy policy',
+    submit: 'Send',
+    requiredSymbol: '*',
+    treatments: [
+      'Orthodontics & aligners',
+      'Dental implants',
+      'Cosmetic dentistry',
+      'Oral rehabilitation',
+      'Endodontics',
+      'Pediatric dentistry',
+    ],
+  },
+}[locale];
+
+// Textos UX por idioma (los enviaremos como data-attributes)
+const ux = {
+  es: { sending: 'Enviando…', ok: '¡Listo! Hemos recibido tu solicitud. Te contactaremos en breve.', fail: 'Hubo un problema al enviar. Inténtalo de nuevo.' },
+  ca: { sending: 'Enviant…', ok: 'Fet! Hem rebut la teva sol·licitud. Et contactarem aviat.', fail: 'Hi ha hagut un problema en enviar. Torna-ho a intentar.' },
+  en: { sending: 'Sending…', ok: 'Done! We received your request. We will contact you shortly.', fail: 'We could not send it. Please try again.' },
+}[locale];
+
+const privacyHref = `/${locale}/politica-de-privacidad`;
+---
+
+<form
+  class="form-cita"
+  id="cita"
+  novalidate
+  data-sending={ux.sending}
+  data-ok={ux.ok}
+  data-fail={ux.fail}
+>
+  <!-- locale correcto -->
+  <input type="hidden" id="cita_locale" value={locale} />
+
+  <h2 class="formc__title">{i18n.title}</h2>
+  <p class="formc__subtitle">{i18n.subtitle}</p>
+
+  <div class="formc__group">
+    <label class="formc__label" for="cita_nombre">
+      <span class="req">{i18n.requiredSymbol}</span> {i18n.name}
+    </label>
+    <input class="formc__input" id="cita_nombre" type="text" required />
+  </div>
+
+  <div class="formc__group">
+    <label class="formc__label" for="cita_tel">
+      <span class="req">{i18n.requiredSymbol}</span> {i18n.phone}
+    </label>
+    <input class="formc__input" id="cita_tel" type="tel" required />
+  </div>
+
+  <div class="formc__group">
+    <label class="formc__label" for="cita_email">
+      <span class="req">{i18n.requiredSymbol}</span> {i18n.email}
+    </label>
+    <input class="formc__input" id="cita_email" type="email" required />
+  </div>
+
+  <div class="formc__group">
+    <label class="formc__label" for="cita_trat">
+      <span class="req">{i18n.requiredSymbol}</span> {i18n.treatment}
+    </label>
+    <select class="formc__select" id="cita_trat" required>
+      <option value="">{i18n.selectPlaceholder}</option>
+      {i18n.treatments.map((t) => (
+        <option>{t}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="formc__group">
+    <label class="formc__label" for="cita_msg">{i18n.comments}</label>
+    <textarea class="formc__input formc__textarea" id="cita_msg" rows="3"></textarea>
+  </div>
+
+  <div class="formc__checks">
+    <label class="formc__check">
+      <input type="checkbox" />
+      <span>{i18n.addCalendar}</span>
+    </label>
+
+    <label class="formc__check">
+      <input type="checkbox" required />
+      <span>
+        {i18n.privacyPrefix} <a href={privacyHref}>{i18n.privacyLink}</a>
+      </span>
+    </label>
+  </div>
+
+  <!-- Aviso elegante -->
+  <div class="formc__notice" id="cita_notice" role="status" aria-live="polite"></div>
+
+  <button type="submit" class="formc__btn">{i18n.submit}</button>
+</form>
+
+<style>
+  /* Avisos */
+  .formc__notice{
+    margin-top: 12px;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    border-radius: 10px;
+    display: none;
+  }
+  .formc__notice--ok{
+    display: block;
+    background: #e8f7ef;
+    color: #155e34;
+    border: 1px solid #b1e3c8;
+  }
+  .formc__notice--err{
+    display: block;
+    background: #fde8e8;
+    color: #7a1c1c;
+    border: 1px solid #f5b5b5;
+  }
+
+  /* Botón con ensanchado al enviar */
+  .formc__btn{
+    min-width: 130px;           /* ancho base para 'Enviar' */
+    white-space: nowrap;
+    transition: padding .15s ease, min-width .15s ease, transform .05s ease;
+  }
+  .formc__btn--loading{
+    min-width: 180px;           /* más ancho para 'Enviando…' */
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('cita');
+    if (!form) return;
+
+    // 🔗 Tu URL /exec
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbw_AUyKEJibWakx2lXmDnNv9waXqP9B1XHDfXHuBPwEYmNITILoKBPsFbwKEtBVF2czzg/exec';
+
+    const btn = form.querySelector('.formc__btn');
+    const btnDefaultText = btn?.textContent || 'Enviar';
+    const notice = document.getElementById('cita_notice');
+
+    // Textos UX desde data-attributes (por idioma)
+    const UX_SENDING = form.dataset.sending || 'Enviando…';
+    const UX_OK      = form.dataset.ok || '¡Enviado!';
+    const UX_FAIL    = form.dataset.fail || 'Error al enviar.';
+
+    function clearNotice() {
+      if (!notice) return;
+      notice.className = 'formc__notice'; // vuelve al estado base (display: none)
+      notice.textContent = '';
+    }
+    function showNotice(type, msg){
+      if(!notice) return;
+      notice.className = 'formc__notice ' + (type === 'ok' ? 'formc__notice--ok' : 'formc__notice--err');
+      notice.textContent = msg; // ahora SÍ se muestra solo con el texto final
+    }
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const payload = {
+        locale: document.getElementById('cita_locale')?.value || 'es',
+        name: document.getElementById('cita_nombre')?.value?.trim() || '',
+        phone: document.getElementById('cita_tel')?.value?.trim() || '',
+        email: document.getElementById('cita_email')?.value?.trim() || '',
+        treatment: document.getElementById('cita_trat')?.value || '',
+        comments: document.getElementById('cita_msg')?.value?.trim() || '',
+        addCalendar: (form.querySelector('.formc__checks input[type="checkbox"]')?.checked ? '1' : ''),
+        page: location.pathname,
+        userAgent: navigator.userAgent
+      };
+
+      // Evita preflight / CORS
+      const body = new URLSearchParams(payload);
+
+      // ====== UI estado "enviando" ======
+      // Limpiar aviso (oculto, sin mostrar nada todavía)
+      clearNotice();
+
+      // Guardar medidas actuales para restaurar
+      const originalMinWidth = btn ? btn.style.minWidth : '';
+      const originalPaddingLeft = btn ? btn.style.paddingLeft : '';
+      const originalPaddingRight = btn ? btn.style.paddingRight : '';
+
+      // Calcular un ancho cómodo para "Enviando…"
+      if (btn) {
+        const currentWidth = btn.offsetWidth;             // ancho visible actual
+        const targetMin = Math.max(currentWidth, 180);    // mínimo 180px
+        btn.style.minWidth = targetMin + 'px';
+        btn.style.paddingLeft = '22px';
+        btn.style.paddingRight = '22px';
+        btn.disabled = true;
+        btn.textContent = UX_SENDING;
+      }
+
+      try {
+        const res = await fetch(ENDPOINT, { method: 'POST', body });
+        const json = await res.json().catch(() => ({}));
+
+        if (json.ok) {
+          form.reset();
+          showNotice('ok', UX_OK);
+        } else {
+          showNotice('err', UX_FAIL);
+        }
+      } catch (e) {
+        showNotice('err', UX_FAIL);
+      } finally {
+        // Restaurar botón
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = btnDefaultText;
+          btn.style.minWidth = originalMinWidth;
+          btn.style.paddingLeft = originalPaddingLeft;
+          btn.style.paddingRight = originalPaddingRight;
+        }
+      }
+    });
+  })();
+</script>

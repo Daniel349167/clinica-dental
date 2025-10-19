@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = { es:"/es/tratamientos/rehabilitacion-oral", ca:"/ca/tratamientos/rehabilitacion-oral", en:"/en/tratamientos/rehabilitacion-oral" };
+---
+
+<BaseLayout
+  description="Comprehensive solutions for complex cases: prosthetics, implants and periodontal therapy to recover structure, bite and overall aesthetics."
+  locale="en" {alternates}
+>
+  <Header locale="en" currentPath="/en/tratamientos/rehabilitacion-oral" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Oral rehabilitation</h1>
+
+      <p>We manage the most complex cases to fully restore your mouth’s health and function with comprehensive treatments adapted to severe situations.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/rehabilitacion-oral.png" alt="Clinical exam for rehabilitation" loading="lazy" />
+
+      <p>By combining prosthetics, implants and periodontal treatments, we recover lost dental structures, correct the bite and improve overall aesthetics—so you can chew comfortably and pain-free.</p>
+
+      <p>This not only restores function, it can also benefit joint health and digestion.</p>
+    </div>
+
+       <aside class="treatment-detail__form">
+      <CitaForm locale="en" />
+    </aside>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>

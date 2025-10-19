@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CitaForm from "../../components/CitaForm.astro";
+
+const alternates = {
+  es: "/es/cita",
+  ca: "/ca/cita",
+  en: "/en/cita",
+};
+---
+
+<BaseLayout
+  description="Solicita tu cita en Clínica Dental Sueca. Primera valoración gratuita."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/cita" {alternates} />
+
+  <!-- ========================= HERO FORMULARIO ========================= -->
+  <section
+    class="cita-hero"
+    style="--bg:url('/assets/pedir-hero.png')" 
+    aria-label="Formulario de cita"
+  >
+    <div class="cita-hero__overlay"></div>
+
+    <div class="cita-hero__inner container">
+      <div class="cita-hero__card">
+        <CitaForm locale="es" />
+      </div>
+    </div>
+  </section>
+
+  <Footer locale="es" />
+</BaseLayout>
+
+<style is:global>
+  .cita-hero .formc__title{ text-align:center; }
+   /* Oculta el subtítulo original */
+  .cita-hero .formc__subtitle {
+    visibility: hidden !important; /* oculta texto original pero conserva el espacio */
+    position: relative;            /* permite posicionar el ::after dentro */
+    height: 3.0em;                 /* mantiene altura visible para no colapsar */
+  }
+
+  /* Reemplaza el texto con uno nuevo */
+  .cita-hero .formc__subtitle::after {
+    content: "Aquí inicia tu camino hacia una sonrisa saludable y radiante.";
+    position: absolute;
+    top: 0;
+    left: 50%;                     /* centrado horizontal */
+    transform: translateX(-50%);   /* corrección exacta al centro */
+    visibility: visible;
+    line-height: 1.3;
+    text-align: center;
+    width: 90%;
+    color: inherit;                /* mismo color que el original */
+  }
+</style>

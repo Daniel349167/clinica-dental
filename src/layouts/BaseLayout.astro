@@ -11,6 +11,22 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    {/*
+      PRELOAD del héroe: por ahora solo PNG (tú aún no tienes AVIF/WebP).
+      Cuando generes hero.avif/hero.webp, puedes añadir un segundo preload si quieres.
+    */}
+    <link rel="preload" as="image" href="/assets/hero.png" />
+
+    {/*
+      Acelera el handshake de Google Maps (iframe) para que cuando se inyecte
+      cargue más rápido.
+    */}
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://maps.gstatic.com">
+    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
 
     {alternates && (
       <>
@@ -29,7 +45,6 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
          BOTÓN PERSONALIZADO CRISP
          ======================= -->
     <button id="chat-fab" class="chat-fab" aria-label="Abrir chat">
-      <!-- Reemplaza por tu imagen -->
       <img src="/assets/icons/chat.svg" alt="Chat" />
     </button>
 
@@ -40,9 +55,7 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
       // Cola Crisp
       window.$crisp = window.$crisp || [];
 
-      // 1) OCULTAR LAUNCHER NATIVO (vía API oficial)
-      // Si tu cuenta Crisp soporta esta config, el launcher nativo no se mostrará.
-      // (Dejamos además un fallback abajo por si tu plan/no-flag no la respeta)
+      // 1) Ocultar launcher nativo (si tu plan lo soporta)
       window.$crisp.push(["config", "hide:launcher", true]);
 
       // ID de tu web en Crisp
@@ -62,16 +75,14 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
          INTEGRACIÓN DEL BOTÓN + FALLBACKS
          ======================= -->
     <script is:inline>
-      // 2) TOGGLE: abrir/cerrar chat con el mismo botón
+      // 2) Toggle abrir/cerrar chat con el mismo botón
       document.addEventListener("DOMContentLoaded", function () {
         const btn = document.getElementById("chat-fab");
         if (btn) {
           btn.addEventListener("click", function () {
-            // Si el método toggle no estuviera disponible en tu build, forzamos open/close detectando estado
             try {
               window.$crisp?.push(["do", "chat:toggle"]);
             } catch (e) {
-              // fallback muy simple: si está abierto, cierra; si no, abre
               const opened = document.documentElement.classList.contains("crisp-client");
               window.$crisp?.push(["do", opened ? "chat:close" : "chat:open"]);
             }
@@ -85,12 +96,10 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
           const root = document.querySelector(".crisp-client, #crisp-chatbox");
           if (!root) return;
 
-          // Probables nodos del launcher nativo:
           const candidates = root.querySelectorAll(
             '.crisp-button, [data-testid="chat-widget-button"], a[href*="crisp.chat"], [class*="launcher"], [class*="button"]'
           );
           candidates.forEach((el) => {
-            // Evita tocar la ventana del chat; sólo el botón flotante
             const isButtonLike =
               (el.tagName === "A" || el.tagName === "BUTTON" || el.getAttribute("role") === "button");
             if (isButtonLike || /button|launcher/i.test(el.className)) {
@@ -104,7 +113,6 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
       }
 
       window.addEventListener("crisp:ready", function () {
-        // CSS extra por si el API no oculta el launcher en tu plan
         const style = document.createElement("style");
         style.textContent = `
           .crisp-client .crisp-button,
@@ -118,11 +126,8 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
           }
         `;
         document.head.appendChild(style);
-
-        // Intento inmediato de ocultar cualquier nodo que haya quedado
         hideCrispLauncherAggressively();
 
-        // Observa mutaciones para ocultar re-inserciones del botón nativo
         const obs = new MutationObserver(() => hideCrispLauncherAggressively());
         obs.observe(document.body, { childList: true, subtree: true });
       });

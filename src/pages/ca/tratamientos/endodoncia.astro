@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = { es:"/es/tratamientos/endodoncia", ca:"/ca/tratamientos/endodoncia", en:"/en/tratamientos/endodoncia" };
+---
+
+<BaseLayout
+  description="Tractaments de conductes per eliminar el dolor i la infecció conservant la peça dental. Segellat precís i recuperació funcional."
+  locale="ca" {alternates}
+>
+  <Header locale="ca" currentPath="/ca/tratamientos/endodoncia" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Endodòncia</h1>
+
+      <p>Tenim cura de la salut interna de les dents amb tecnologia d’última generació. El tractament de conductes elimina el dolor i la infecció i permet conservar la peça afectada.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/endodoncia.png" alt="Tractament de conductes amb instrumentació rotatòria" loading="lazy" />
+
+      <p>Fem servir tècniques i materials de precisió per garantir un segellat perfecte.</p>
+
+      <p>A més d’alleujar les molèsties, l’endodòncia manté l’estructura i l’alineació de la boca, evitant la necessitat d’implants o pròtesis.</p>
+    </div>
+
+    <aside class="treatment-detail__form">
+      <CitaForm locale="ca"/>
+    </aside>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>

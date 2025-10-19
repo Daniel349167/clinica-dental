@@ -83,6 +83,7 @@ body{
 
 
 /* ============ HERO (si lo usas) ============ */
+
 .hero{
   display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:center;
   padding:38px 0;
@@ -1401,3 +1402,471 @@ margin-top: 70px;}
   }
 }
 /* ============ FIN TRATAMIENTOS PAGE(prefijo tr-) ============ */
+
+/* ============ SERVICIOS PAGE ============ */
+
+    /* ====== Diseño 2 columnas para páginas de tratamiento individual ====== */
+.treatment-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 630px;
+  gap: 32px;
+  align-items: start;
+  margin-block: 24px 48px;
+}
+
+/* Contenido principal (izquierda) */
+.treatment-detail__content {
+  max-width: 500px;
+  margin-left: 100px;
+}
+.treatment-detail__content p{
+  max-width: 470px;
+  font-size: 21px;
+}
+
+.treatment-detail__title {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--brand-900);
+}
+
+.treatment-detail__img {
+  width: 75%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  margin: 16px 0 16px;
+}
+
+/* Responsivo (móviles y tabletas) */
+@media (max-width: 992px) {
+  .treatment-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+}
+
+/* ========================================== FORMULARIO DE CITA ================================================ */
+.form-cita{
+  background: #F3F4F6;          /* gris muy claro como la tarjeta de la imagen */
+  border-radius: 18px;
+  padding: 40px;
+  padding-top: 30px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.formc__title{
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--brand-900);               /* tono azulado del título */
+}
+
+.formc__subtitle{
+  margin: 0 0 16px;
+  color: #4b5563;
+  line-height: 1.45;
+  font-size: 20px;
+}
+
+.formc__group{ margin-bottom: 14px; }
+.formc__label{
+  display:block;
+  font-weight: 700;
+  color:#1f2f46;
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.req{ color:#e11d48; margin-right: 4px; } /* asterisco rojo */
+
+/* Inputs */
+.formc__input,
+.formc__select{
+  width: 100%;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 14px;
+  line-height: 1.3;
+  font-size: 0.98rem;
+  background: #fff;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.formc__textarea{ resize: vertical; }
+
+/* Focus con color marca */
+.formc__input:focus,
+.formc__select:focus{
+  border-color: #08a8e1; /* turquesa del botón */
+  box-shadow: 0 0 0 3px rgba(8,168,225,.18);
+}
+
+/* Select con flecha */
+.formc__select{
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill='%236b7280' d='M5.5 7.5l4.5 4.5 4.5-4.5H5.5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+/* Checkboxes */
+.formc__checks{ margin: 8px 0 14px; display: grid; gap: 10px; }
+.formc__check{
+  display:flex; align-items:center; gap:10px;
+  color:#1f2f46;
+}
+.formc__check input{ width:18px; height:18px; }
+
+/* ====== Enlace dentro del formulario ====== */
+.formc__check a {
+  text-decoration: none;          /* quita el subrayado */
+  color: var(--brand-500);                 /* turquesa corporativo */
+  font-weight: 600;               /* un poco más visible */
+  transition: color 0.2s ease;
+}
+
+.formc__check a:hover {
+  color: #007ca9;                 /* tono más oscuro al pasar el mouse */   
+}
+
+/* Botón */
+.formc__btn{
+  display:block;
+  width: 130px;       
+  margin: 0px auto;
+  margin-top: 30px;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 20px;
+  color:#fff;
+  background:#08a8e1;          /* turquesa */
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.15);
+  cursor:pointer;
+}
+.formc__btn:hover{ filter: brightness(1.05); }
+.formc__btn:active{ transform: translateY(1px); }
+
+/* Espaciado y responsivo de la tarjeta para que respire */
+@media (max-width: 992px){
+  .form-cita{ padding: 20px; border-radius: 16px; }
+}
+/* ============ FIN SERVICIOS PAGE ============ */
+
+
+/* ================================ BLOG PAGE ================================ */
+
+.blog-hero {
+  position: relative;
+  background: url("/assets/blog/blog.png") center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  padding: 50px 0;
+  padding-bottom: 90px;
+}
+
+
+/* Contenedor interno */
+.blog-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo del hero */
+.blog-hero__logo {
+  width: 80px;
+  height: auto;
+}
+
+/* Título principal en dos líneas */
+.blog-hero__title {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-weight: 600;
+  line-height: .7;
+  color: #fff;
+  text-align: center;
+  white-space: pre-line; /* respeta los saltos <br> */
+  margin: 0;
+}
+
+
+
+
+/*****************************************  SECCION2 **************************************/
+.blog-list {
+  margin: 0px auto 64px;
+  margin-top: 45px;
+}
+
+.blog-list__head {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.blog-list__title {
+  font-weight: 700;
+  color: var(--text-900, #102a43);
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 0;
+}
+.blog-list__title .sub {
+  display: block;
+  font-weight: 400;
+  color: var(--text-600, #3f4d5a);
+  margin-top: 6px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+
+/* Tarjeta */
+.bcard {
+  border-radius: 14px; 
+  justify-items: center;
+}
+
+.bcard__media img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.bcard__body {
+  text-align: center;
+  padding: 12px 0 8px;
+  width: 90%;
+}
+
+.bcard__title {
+  font-size: 21px;
+  line-height: 1.25;
+  margin: 0px 0 8px;
+  font-weight: 700;    
+  color: var(--text-900, #102a43);
+}
+.bcard__title a {
+  color: inherit;
+  text-decoration: none;
+}
+.bcard__title a:hover { text-decoration: none; }
+
+.bcard__excerpt {
+  margin: 0 0 0px;
+  color: var(--text-600, #546a7b);
+  font-size: 17px;
+}
+
+/* Enlace "Leer más" */
+.bcard__link {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--brand-900);
+}
+.bcard__link:hover { text-decoration: none; }
+
+/* ===== Newsletter ===== */
+.newsletter {
+  padding: 25px 0 20px;
+  text-align: center;
+}
+
+.newsletter__logo {
+  width: 65px;
+  height: auto;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.newsletter__title {
+  margin: 0 0 20px;
+  font-weight: 600;
+  color: var(--brand-900, #1f3f75);
+  font-size: 36px; 
+  line-height: 1.15;                 /* compacto */
+}
+
+/* Formulario */
+.newsletter__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto; /* nombre | email | botón */
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.nl__input {
+  border: 1.5px solid #cfd6dd;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.nl__input:focus {
+  border-color: var(--brand-500, #08a8e1);
+  box-shadow: 0 0 0 3px rgba(8,168,225,.18);
+}
+
+.nl__btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  background: var(--brand-500, #08a8e1);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.15);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nl__btn:hover { filter: brightness(1.05); }
+.nl__btn:active { transform: translateY(1px); }
+
+/* Accesibilidad: esconder label visual pero no para lectores */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* Responsivo */
+@media (max-width: 720px) {
+  .newsletter__form {
+    grid-template-columns: 1fr;
+  }
+  .nl__btn { width: 100%; }
+}
+
+ /* Avisos */
+ .nl__notice{
+  display: none;             /* oculto por defecto */
+  margin-top: 12px;
+  font-size: 0.95rem;
+  padding: 10px 18px;
+  border-radius: 12px;
+  white-space: nowrap;       /* todo en una sola línea */
+  width: max-content;        /* 🔹 caja se ajusta al ancho del texto */
+  max-width: none;           /* 🔹 sin límite, evita que el fondo se quede corto */
+  box-sizing: border-box;
+  /* Si el contenedor fuera más estrecho que el texto,
+     permitir scroll horizontal en la propia caja: */
+  overflow-x: auto;          /* opcional: quítalo si no quieres scroll */
+}
+
+.nl__notice--ok{
+  display: inline-block;     /* 🔹 necesario para que width:max-content funcione */
+  background: #e8f7ef;
+  color: #155e34;
+  border: 1px solid #b1e3c8;
+}
+
+.nl__notice--err{
+  display: inline-block;
+  background: #fde8e8;
+  color: #7a1c1c;
+  border: 1px solid #f5b5b5;
+}
+
+/* Si el formulario está en grid, el aviso ocupa toda la fila */
+#newsletter .nl__notice{
+  grid-column: 1 / -1;       /* 🔹 abarcar todas las columnas del grid (si aplica) */
+}
+
+/* Si el formulario está en flex, evita que se comprima */
+#newsletter .nl__notice{
+  flex: 0 0 auto;            /* 🔹 no encoger en contenedores flex */
+}
+
+  /* Botón loading */
+  .nl__btn{
+    min-width: 140px;
+    transition: min-width .15s ease, padding .15s ease;
+    white-space: nowrap;
+  }
+  .nl__btn--loading{
+    min-width: 200px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+/* ================================ FIN BLOG PAGE ================================ */
+
+
+
+/* ================================ CITA PAGE ================================ */
+.cita-hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg, none) center/cover no-repeat;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin-bottom: -70px;
+}
+
+/* Capa azul translúcida */
+.cita-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 76, 120, 0.38);
+}
+
+/* Contenedor interno centrado */
+.cita-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 34px 16px;
+}
+
+/* Tarjeta del formulario */
+.cita-hero__card {
+  width: 100%;
+  max-width: 620px;
+}
+
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .cita-hero {
+    min-height: calc(100vh - 60px);
+  }
+  .cita-hero__card {
+    max-width: 560px;
+  }
+}
+
+
+/* ================================ FIN CITA PAGE ================================ */

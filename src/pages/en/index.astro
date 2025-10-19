@@ -4,319 +4,460 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
 const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
-
 ---
 
-<BaseLayout title="Swedish Dental Clinic" description="Comprehensive dentistry: aesthetics, orthodontics and implants in Barcelona." locale="en" {alternates}>
+<BaseLayout title="Sueca Dental Clinic" description="Comprehensive dentistry: aesthetics, orthodontics & implants in Barcelona." locale="en" {alternates}>
   <Header locale="en" currentPath="/en/" />
 
-<!-- HERO with background image -->
-<section class="hero-landing" style="--hero:url(/assets/hero.png)">
-  <div class="hero__inner container">
-    <div class="hero__copy">
-      <h1 class="hero__title">
-        <img class="hero__mark" src="/assets/mark-hero.svg" alt="" />
-        <span>
-          Your best smile<br/>
-          starts here
-        </span>
-      </h1>
-      <!-- Button aligned under the second line of the title -->
-      <a class="btn btn-hero" href="#cita">BOOK YOUR APPOINTMENT</a>
+  <!-- ========================= HERO with background image ========================= -->
+  <section class="hero-landing">
+    {/* High-priority prefetch for hero (current PNG). When you generate AVIF/WebP, update src/srcset if you want. */}
+    <img
+      src="/assets/hero.png"
+      alt=""
+      aria-hidden="true"
+      fetchpriority="high"
+      decoding="async"
+      style="position:absolute;width:0;height:0;opacity:0"
+    />
+    <div class="hero__inner container">
+      <div class="hero__copy">
+        <h1 class="hero__title">
+          <img class="hero__mark" src="/assets/mark-hero.svg" alt="" />
+          <span>
+            Your best smile<br/>
+            starts here
+          </span>
+        </h1>
+        <a class="btn btn-hero" href="#cita">BOOK YOUR APPOINTMENT</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Block: Clínica Dental Sueca -->
-<section class="section section--about container">
-  <div class="about about--compact">
-    <div class="about__text">
-      <h2 class="about__title">Clínica Dental Sueca</h2>
-      <p class="lead">Your smile, your best calling card.</p>
+  <!-- ========================= About block ========================= -->
+  <section class="section section--about container">
+    <div class="about about--compact">
+      <div class="about__text">
+        <h2 class="about__title">Sueca Dental Clinic</h2>
+        <p class="lead">Your smile, your best introduction.</p>
 
-      <p>In our dental clinic we work so that every patient enjoys a healthy, aesthetic and natural smile. We know it’s not only about teeth, but also about confidence, wellbeing and personal security.</p>
+        <p>At our dental clinic we work so every patient enjoys a healthy, aesthetic and natural smile. We know it’s not just about teeth, but about confidence, wellbeing and personal security.</p>
 
-      <p>We combine technological innovation with the experience of our specialists to offer you modern, effective treatments tailored to you. Our space is designed to convey calm and confidence, with a clear focus: caring for your health and enhancing your best version.</p>
+        <p>We combine technological innovation with the experience of our specialists to offer modern, effective treatments tailored to you. Our space is designed to convey calm and trust, with a clear focus: taking care of your health and enhancing your best version.</p>
 
-      <div class="subtitle">Why trust us?</div>
-      <ul class="ul">
-        <li>Solid experience from a team specialized in all areas of dentistry.</li>
-        <li>Advanced technology for predictable, high-quality results.</li>
-        <li>Close and personalized care from day one.</li>
-      </ul>
+        <div class="subtitle">Why trust us?</div>
+        <ul class="ul">
+          <li>Solid experience from a team specialized in all areas of dentistry.</li>
+          <li>Advanced technology for predictable, high-quality results.</li>
+          <li>Close, personalized care from day one.</li>
+        </ul>
+      </div>
+
+      <div class="about__img about__img--sm">
+        <img src="/assets/about.png" alt="Happy patient at the dental clinic" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= Treatments ========================= -->
+  <section class="treatments container">
+    <div class="treatments__mark">
+      <img src="/assets/logo-mark.svg" alt="DentLogo" />
     </div>
 
-    <div class="about__img about__img--sm">
-      <img src="/assets/about.png" alt="Happy patient at the dental clinic" loading="lazy" />
+    <h2 class="treatments__title">Dental treatments</h2>
+
+    <div class="treatments__grid">
+      <a href="/es/tratamientos/ortodoncia" class="tr-card">
+        <img src="/assets/ortodoncia.svg" alt="Orthodontics and aligners" />
+        <h3>Orthodontics & aligners</h3>
+        <p>We align your smile with modern, discreet treatments…</p>
+      </a>
+
+      <a href="/es/tratamientos/implantes" class="tr-card">
+        <img src="/assets/implante.svg" alt="" />
+        <h3>Dental implants</h3>
+        <p>Restore function and aesthetics with state-of-the-art implants. Long-lasting, natural results.</p>
+      </a>
+
+      <a href="/es/tratamientos/estetica-dental" class="tr-card">
+        <img src="/assets/estetica.svg" alt="" />
+        <h3>Cosmetic dentistry</h3>
+        <p>Veneers, whitening and smile design to enhance facial harmony and brightness.</p>
+      </a>
+
+      <a href="/es/tratamientos/rehabilitacion-oral" class="tr-card">
+        <img src="/assets/rehabilitacion.svg" alt="" />
+        <h3>Oral rehabilitation</h3>
+        <p>Comprehensive treatment combining prosthetics, implants and techniques to recover function.</p>
+      </a>
+
+      <a href="/es/tratamientos/endodoncia" class="tr-card">
+        <img src="/assets/endodoncia.svg" alt="" />
+        <h3>Endodontics</h3>
+        <p>We save damaged or infected teeth, eliminating pain and avoiding extraction.</p>
+      </a>
+
+      <a href="/es/tratamientos/odontopediatria" class="tr-card">
+        <img src="/assets/odontopediatria.svg" alt="" />
+        <h3>Pediatric dentistry</h3>
+        <p>We care for children’s smiles with prevention, habit control and early orthodontics.</p>
+      </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Treatments -->
-<section class="treatments container">
-  <!-- NEW: logo-mark on top and centered -->
-  <div class="treatments__mark">
-    <img src="/assets/logo-mark.svg" alt="DentLogo" />
-  </div>
+  <!-- ========================= Free consultation CTA ========================= -->
+  <section class="cta-strip">
+    <div class="cta-strip__inner container">
+      <img class="cta-strip__mark" src="/assets/mark-hero.svg" alt="DentLogo" />
+      <h2 class="cta-strip__title">First consultation & diagnosis free</h2>
+      <a class="btn btn-cta" href="#agenda" aria-label="Book your appointment">
+        BOOK YOUR APPOINTMENT
+      </a>
+    </div>
+  </section>
 
-  <h2 class="treatments__title">Dental treatments</h2>
+  <!-- ================== Facilities ================== -->
+  <section class="facilities container">
+    <h2 class="section-title">Facilities</h2>
 
-  <div class="treatments__grid">
-    <article class="tcard">
-      <img src="/assets/ortodoncia.svg" alt="" />
-      <h3>Orthodontics & aligners</h3>
-      <p>We align your smile with modern, discreet treatments — from aesthetic brackets to invisible orthodontics.</p>
-    </article>
+    <div class="facilities__grid">
+      <figure class="facility">
+        <img src="/assets/instalaciones/inst1.png" alt="Facility 1" />
+      </figure>
+      <figure class="facility">
+        <img src="/assets/instalaciones/inst2.png" alt="Facility 2" />
+      </figure>
+      <figure class="facility">
+        <img src="/assets/instalaciones/inst3.png" alt="Facility 3" />
+      </figure>
+    </div>
+  </section>
 
-    <article class="tcard">
-      <img src="/assets/implante.svg" alt="" />
-      <h3>Dental implants</h3>
-      <p>Regain function and aesthetics with next-generation implants. Long-lasting, natural results.</p>
-    </article>
+  <!-- ========== Reviews ========== -->
+  <section class="reviews container">
+    <h2 class="section-title">What do our patients say?</h2>
 
-    <article class="tcard">
-      <img src="/assets/estetica.svg" alt="" />
-      <h3>Cosmetic dentistry</h3>
-      <p>Veneers, whitening and smile design to enhance facial harmony and brightness.</p>
-    </article>
-
-    <article class="tcard">
-      <img src="/assets/rehabilitacion.svg" alt="" />
-      <h3>Oral rehabilitation</h3>
-      <p>Comprehensive treatment combining prosthetics, implants and techniques to restore function.</p>
-    </article>
-
-    <article class="tcard">
-      <img src="/assets/endodoncia.svg" alt="" />
-      <h3>Endodontics</h3>
-      <p>We save damaged or infected teeth, eliminating pain and avoiding extraction.</p>
-    </article>
-
-    <article class="tcard">
-      <img src="/assets/odontopediatria.svg" alt="" />
-      <h3>Pediatric dentistry</h3>
-      <p>We care for children’s smiles with prevention, habit control and early orthodontics.</p>
-    </article>
-  </div>
-</section>
-
-<!-- Free consultation CTA -->
-<section class="cta-strip">
-  <div class="cta-strip__inner container">
-    <img class="cta-strip__mark" src="/assets/mark-hero.svg" alt="DentLogo" />
-    <h2 class="cta-strip__title">First consultation and diagnosis free</h2>
-    <a class="btn btn-cta" href="#agenda" aria-label="Book your appointment">
-      BOOK YOUR APPOINTMENT
-    </a>
-  </div>
-</section>
-
-<!-- ================== FACILITIES ================== -->
-<section class="facilities container">
-  <h2 class="section-title">Facilities</h2>
-
-  <div class="facilities__grid">
-    <figure class="facility">
-      <img src="/assets/instalaciones/inst1.png" alt="facility 1" />
-    </figure>
-    <figure class="facility">
-      <img src="/assets/instalaciones/inst2.png" alt="facility 2" />
-    </figure>
-    <figure class="facility">
-      <img src="/assets/instalaciones/inst3.png" alt="facility 3" />
-    </figure>
-  </div>
-</section>
-
-<!-- ========== REVIEWS: What do our patients say? ========== -->
-<section class="reviews container">
-  <h2 class="section-title">What do our patients say?</h2>
-
-  <div class="reviews__grid">
-    <!-- Card 1 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <img class="r-avatar" src="/assets/persona1.png" alt="Norma Miryam" />
-          <div>
-            <h3 class="r-name">Norma Miryam Felic...</h3>
-            <div class="r-date">03/06/2025</div>
+    <div class="reviews__grid">
+      <!-- Card 1 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <img class="r-avatar" src="/assets/persona1.png" alt="Norma Miryam" />
+            <div>
+              <h3 class="r-name">Norma Miryam Felic...</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
           </div>
-        </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
 
-      <div class="r-stars" aria-label="5 out of 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <!-- verified -->
-        <span class="r-verified" title="Verified review" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg>
+        <div class="r-stars" aria-label="5 out of 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <span class="r-verified" title="Verified review" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.4 2.4 3.4-.7-.7 3.4L20 9.6l-2.9.6-.6 2.9-2.9.6-.6 2.9L9.6 20l.6-2.9-2.9-.6-.6-2.9L4 9.6l2.9-.6.6-2.9L12 2z"/></svg>
+            <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
+          </span>
+        </div>
+
+        <p class="r-text">Unbeatable care and professionals!</p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <img class="r-avatar" src="/assets/persona2.png" alt="Maria Molle" />
+            <div>
+              <h3 class="r-name">Maria Molle</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
+          </div>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
+        <div class="r-stars" aria-label="5 out of 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
           <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
-        </span>
-      </div>
-
-      <p class="r-text">Excellent care and professionals!</p>
-    </article>
-
-    <!-- Card 2 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <img class="r-avatar" src="/assets/persona2.png" alt="Maria Molle" />
-          <div>
-            <h3 class="r-name">Maria Molle</h3>
-            <div class="r-date">03/06/2025</div>
-          </div>
         </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
-      <div class="r-stars" aria-label="5 out of 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
-      </div>
-      <p class="r-text">My trusted clinic — I wouldn’t change it for any other!!!</p>
-    </article>
+        <p class="r-text">My trusted clinic, I wouldn’t change it for any other!!!</p>
+      </article>
 
-    <!-- Card 3 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <div class="r-avatar r-avatar--initial">A</div>
-          <div>
-            <h3 class="r-name">Aleix Masip</h3>
-            <div class="r-date">03/06/2025</div>
+      <!-- Card 3 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <div class="r-avatar r-avatar--initial">A</div>
+            <div>
+              <h3 class="r-name">Aleix Masip</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
           </div>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
+        <div class="r-stars" aria-label="5 out of 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
         </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
-      <div class="r-stars" aria-label="5 out of 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
-      </div>
-      <p class="r-text">Very kind!</p>
-    </article>
+        <p class="r-text">Very kind!</p>
+      </article>
 
-    <!-- Card 4 -->
-    <article class="r-card">
-      <header class="r-card__head">
-        <div class="r-author">
-          <img class="r-avatar" src="/assets/persona3.png" alt="Judit Garcia" />
-          <div>
-            <h3 class="r-name">Judit Garcia Santa...</h3>
-            <div class="r-date">03/06/2025</div>
+      <!-- Card 4 -->
+      <article class="r-card">
+        <header class="r-card__head">
+          <div class="r-author">
+            <img class="r-avatar" src="/assets/persona3.png" alt="Judit Garcia" />
+            <div>
+              <h3 class="r-name">Judit Garcia Santa...</h3>
+              <div class="r-date">03/06/2025</div>
+            </div>
           </div>
+          <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
+        </header>
+        <div class="r-stars" aria-label="5 out of 5">
+          <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
+          <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
         </div>
-        <img class="r-g" src="/assets/icons/logo-google.svg" alt="Google" />
-      </header>
-      <div class="r-stars" aria-label="5 out of 5">
-        <svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 17.3l-6.12 3.22 1.17-6.83-4.95-4.82 6.84-.99L12 .8l3.06 6.18 6.84.99-4.95 4.82 1.17 6.83z"/></svg>
-        <img src="/assets/icons/check-azul.png" alt="verified" width="18" height="18">
-      </div>
-      <p class="r-text">Super happy with the care received — very friendly and very professional!!!</p>
-    </article>
-  </div>
+        <p class="r-text">Super happy with the care, very friendly and professional!!!</p>
+      </article>
+    </div>
 
-  <!-- Trustindex badge -->
-  <div class="reviews__badge">
-    <span>Verified by: Trustindex
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
-        <circle cx="128" cy="128" r="100" stroke="currentColor" stroke-width="22" fill="none"/>
-        <rect x="120" y="112" width="16" height="72" rx="4" fill="currentColor"/>
-        <circle cx="128" cy="88" r="10" fill="currentColor"/>
-      </svg>
-    </span>
-  </div>
+    <div class="reviews__badge">
+      <span>Verified by: Trustindex
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
+          <circle cx="128" cy="128" r="100" stroke="currentColor" stroke-width="22" fill="none"/>
+          <rect x="120" y="112" width="16" height="72" rx="4" fill="currentColor"/>
+          <circle cx="128" cy="88" r="10" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+  </section>
 
-</section>
+  <!-- ========== LOCATION / MAP (FULL-BLEED) ========== -->
+  <section class="location location--fullbleed">
+    <div class="location__stage">
+      <!-- Lightweight placeholder (static map image) -->
+      <button class="location__placeholder" id="mapLoader" type="button" aria-label="Load interactive map">
+        <img
+          src="/assets/mapa-placeholder.jpg"
+          alt="Clinic area map (tap to load the interactive map)"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="location__pill">Load map</span>
+      </button>
 
-<!-- ========== LOCATION / MAP ========== -->
-<section class="location">
-  <div class="location__wrap">
-    <iframe
-      class="location__map"
-      loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q=41.4050801,2.1352314&z=15&output=embed">
-    </iframe>
+      <!-- Iframe mounts here on click/in-viewport -->
+      <div id="mapMount" class="location__mount" hidden></div>
 
-    <aside class="location__card">
-      <h3>Find us at:</h3>
-      <p>
-        C. de Muntaner 555, Esc. A, Planta 3 - 2,<br>
-        Sarrià-Sant Gervasi, Barcelona.<br>
-        <a href="tel:+34614375792">+34 614 37 57 92</a><br><br>
-        Monday to Friday<br>
-        10:00–14:00 and 16:00–20:00
-      </p>
-      <a class="location__btn"
-         target="_blank"
-         href="https://www.google.com/maps/dir/?api=1&destination=41.4050801,2.1352314">
-        Get directions
-      </a>
-    </aside>
-  </div>
-</section>
+      <!-- Info card -->
+      <aside class="location__card">
+        <h3>Find us at:</h3>
+        <p>
+          C. de Muntaner 555, Esc. A, Planta 3 - 2,<br>
+          Sarrià-Sant Gervasi, Barcelona.<br>
+          <a href="tel:+34614375792">+34 614 37 57 92</a><br><br>
+          Monday to Friday<br>
+          10:00–14:00 and 16:00–20:00
+        </p>
+        <a class="location__btn"
+          target="_blank"
+          href="https://www.google.com/maps/dir/?api=1&destination=41.4050801,2.1352314">
+          Get directions
+        </a>
+      </aside>
+    </div>
+  </section>
 
-<!-- ========== BLOG (HOME) ========== -->
-<section class="blog container" aria-labelledby="blog-title">
-  <h2 id="blog-title" class="section-title">Blog</h2>
+  <!-- ========== BLOG (HOME) ========== -->
+  <section class="blog container" aria-labelledby="blog-title">
+    <h2 id="blog-title" class="section-title">Blog</h2>
 
-  <div class="blog__grid">
-    <!-- Post 1 -->
-    <article class="b-card">
-      <a class="b-card__media" href="/blog/ortodoncia-duele">
-        <img src="/assets/blog/blog-img1.png" alt="Dental team attending a patient" loading="lazy">
-      </a>
-      <div class="b-card__body">
-        <h3 class="b-card__title">
-          <a href="/blog/ortodoncia-duele">
-            Does orthodontics hurt? What you need to know before starting your treatment
-          </a>
-        </h3>
-        <p class="b-card__excerpt">Orthodontics is one of the most common treatments. We explain what to expect…</p>
-        <a class="b-card__link" href="/blog/ortodoncia-duele">Read more</a>
-      </div>
-    </article>
+    <div class="blog__grid">
+      <!-- Post 1 -->
+      <article class="b-card">
+        <a class="b-card__media" href="/blog/ortodoncia-duele">
+          <img src="/assets/blog/blog-img1.png" alt="Dental team attending a patient" loading="lazy">
+        </a>
+        <div class="b-card__body">
+          <h3 class="b-card__title">
+            <a href="/blog/ortodoncia-duele">
+              Does orthodontics hurt? What to know before you start treatment
+            </a>
+          </h3>
+          <p class="b-card__excerpt">Orthodontics is one of the most common treatments. Here’s what to expect…</p>
+          <a class="b-card__link" href="/blog/ortodoncia-duele">Read more</a>
+        </div>
+      </article>
 
-    <!-- Post 2 -->
-    <article class="b-card">
-      <a class="b-card__media" href="/blog/sialorrea-hipersalivacion">
-        <img src="/assets/blog/blog-img2.png" alt="Demonstration with dental prosthesis and probe" loading="lazy">
-      </a>
-      <div class="b-card__body">
-        <h3 class="b-card__title">
-          <a href="/blog/sialorrea-hipersalivacion">
-            Sialorrhea or Hypersalivation: what it is, symptoms and treatment
-          </a>
-        </h3>
-        <p class="b-card__excerpt">We know how challenging excess saliva can be. We review causes and options…</p>
-        <a class="b-card__link" href="/blog/sialorrea-hipersalivacion">Read more</a>
-      </div>
-    </article>
+      <!-- Post 2 -->
+      <article class="b-card">
+        <a class="b-card__media" href="/blog/sialorrea-hipersalivacion">
+          <img src="/assets/blog/blog-img2.png" alt="Demonstration with dental prosthesis and probe" loading="lazy">
+        </a>
+        <div class="b-card__body">
+          <h3 class="b-card__title">
+            <a href="/blog/sialorrea-hipersalivacion">
+              Sialorrhea (hypersalivation): what it is, symptoms and treatment
+            </a>
+          </h3>
+          <p class="b-card__excerpt">We know excess saliva can be challenging. We review causes and options…</p>
+          <a class="b-card__link" href="/blog/sialorrea-hipersalivacion">Read more</a>
+        </div>
+      </article>
 
-    <!-- Post 3 -->
-    <article class="b-card">
-      <a class="b-card__media" href="/blog/invisalign-mantenimiento">
-        <img src="/assets/blog/blog-img3.png" alt="Patient checking their smile with a mirror" loading="lazy">
-      </a>
-      <div class="b-card__body">
-        <h3 class="b-card__title">
-          <a href="/blog/invisalign-mantenimiento">
-            Invisalign: cleaning and maintenance of aligners
-          </a>
-        </h3>
-        <p class="b-card__excerpt">For better performance, we explain how to clean and care for your aligners…</p>
-        <a class="b-card__link" href="/blog/invisalign-mantenimiento">Read more</a>
-      </div>
-    </article>
-  </div>
-</section>
-<!-- ========== BLOG (END) ========== -->
+      <!-- Post 3 -->
+      <article class="b-card">
+        <a class="b-card__media" href="/blog/invisalign-mantenimiento">
+          <img src="/assets/blog/blog-img3.png" alt="Patient checking their smile with a mirror" loading="lazy">
+        </a>
+        <div class="b-card__body">
+          <h3 class="b-card__title">
+            <a href="/blog/invisalign-mantenimiento">
+              Invisalign: cleaning and maintenance of your aligners
+            </a>
+          </h3>
+          <p class="b-card__excerpt">For best performance, here’s how to clean and care for your aligners…</p>
+          <a class="b-card__link" href="/blog/invisalign-mantenimiento">Read more</a>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <Footer locale="en" />
 </BaseLayout>
+
+<!-- ========================= LOCAL STYLES (HERO + MAP) ========================= -->
+<style>
+  /* HERO */
+  .hero-landing {
+    min-height: clamp(420px, 60vh, 760px);
+    display: grid;
+    place-items: center;
+    position: relative;
+    background-image: image-set(
+      url("/assets/hero.avif") type("image/avif")
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    contain: paint;
+  }
+
+  /* MAP - FULL BLEED */
+  .location--fullbleed{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .location__stage{ position: relative; }
+  .location__placeholder,
+  .location__mount,
+  .location__map{
+    width: 100%;
+    height: clamp(360px, 55vh, 560px);
+  }
+  .location__placeholder{
+    position: relative;
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    line-height: 0;
+    display: block;
+    overflow: hidden;
+  }
+  .location__placeholder img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+  .location__pill{
+    position:absolute;
+    bottom:12px; right:12px;
+    padding:.5rem .75rem;
+    border-radius:999px;
+    background:rgba(0,0,0,.6);
+    color:#fff;
+    font-size:.9rem;
+    backdrop-filter:saturate(140%) blur(6px);
+  }
+  .location__map{
+    border:0;
+    display:block;
+  }
+  .location__card{
+    position: absolute;
+    right: clamp(12px, 4vw, 40px);
+    bottom: clamp(12px, 4vw, 40px);
+    width: 300px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+  .location__card h3{ margin: 0 0 .5rem; }
+  .location__card p{ margin: 0 0 .75rem; }
+  .location__btn{
+    display: block;
+    padding: .6rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #0b57d0;
+    color: #fff;
+    font-weight: 600;
+    width: fit-content;
+    margin: .75rem auto 0;
+  }
+  @media (max-width: 768px){
+    .location__card{
+      position: static;
+      width: auto;
+      margin: 12px auto 0;
+      background: #fff;
+      box-shadow: none;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Map: deferred injection (click or in-viewport)
+  const btn = document.getElementById('mapLoader');
+  const mount = document.getElementById('mapMount');
+  const SRC = "https://www.google.com/maps?q=41.4050801,2.1352314&z=15&output=embed";
+
+  function loadMap(){
+    if (!mount || mount.dataset.loaded) return;
+    mount.dataset.loaded = "1";
+    const iframe = document.createElement('iframe');
+    iframe.className = "location__map";
+    iframe.loading = "lazy";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.src = SRC;
+    mount.appendChild(iframe);
+    mount.hidden = false;
+    btn?.remove();
+  }
+
+  btn?.addEventListener('click', loadMap);
+
+  const section = document.querySelector('.location');
+  if (section) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          loadMap();
+          io.disconnect();
+        }
+      });
+    }, { rootMargin: "200px" });
+    io.observe(section);
+  }
+</script>

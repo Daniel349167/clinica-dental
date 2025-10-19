@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = { es:"/es/tratamientos/odontopediatria", ca:"/ca/tratamientos/odontopediatria", en:"/en/tratamientos/odontopediatria" };
+---
+
+<BaseLayout
+  description="Specialized dental care for children—from babies to teens. Preventive treatments and a friendly environment for a positive experience."
+  locale="en" {alternates}
+>
+  <Header locale="en" currentPath="/en/tratamientos/odontopediatria" {alternates} />
+
+  <section class="treatment-detail container">
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Pediatric dentistry</h1>
+
+      <p>We provide specialized dental care for little ones, from babies to adolescents, creating a trusting, fun environment so every visit is positive and fear-free.</p>
+
+      <img class="treatment-detail__img" src="/assets/tratamientos/odontopediatria.png" alt="Dentist and child in pediatric visit" loading="lazy" />
+
+      <p>We offer preventive treatments such as sealants and fluoride, along with gentle techniques to manage cavities and trauma. We guide proper oral development.</p>
+
+      <p>Support your child’s wellbeing with a strong, happy smile from the very first day.</p>
+    </div>
+
+       <aside class="treatment-detail__form">
+      <CitaForm locale="en" />
+    </aside>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>

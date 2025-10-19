@@ -1,0 +1,229 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/blog",
+  ca: "/ca/blog",
+  en: "/en/blog",
+};
+---
+
+<BaseLayout
+  description="Tips, news, and articles about oral health, cosmetic dentistry, orthodontics, and implants in Barcelona."
+  locale="en"
+  {alternates}
+>
+  <Header locale="en" currentPath="/en/blog" {alternates} />
+
+  <!-- ========================= BLOG HERO ========================= -->
+  <section class="blog-hero" aria-label="Welcome section of the Blog">
+    <div class="blog-hero__inner container">
+      <img class="blog-hero__logo" src="/assets/mark-hero.svg" alt="Dental Sueca logo" />
+      <h1 class="blog-hero__title">
+        Dental Sueca<br />
+        Blog
+      </h1>
+    </div>
+  </section>
+
+  <!-- ========================= BLOG LIST ========================= -->
+  <section class="blog-list container" aria-labelledby="blog-list-title">
+    <header class="blog-list__head">
+      <h2 id="blog-list-title" class="blog-list__title">
+        Discover the essentials of dental health and aesthetics,
+        <span class="sub">plus insights you’ll love</span>
+      </h2>
+    </header>
+
+    <div class="blog-grid">
+      <!-- Card 1 -->
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/ortodoncia-duele" aria-label="Does orthodontics hurt? What to know before starting your treatment">
+          <img src="/assets/blog/blog-img1.png" alt="Dental team attending a patient" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/ortodoncia-duele">Does orthodontics hurt? What to know before you start</a>
+          </h3>
+          <p class="bcard__excerpt">Orthodontics is one of the…</p>
+          <a class="bcard__link" href="/blog/ortodoncia-duele">Read more</a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="bcard" id="blog-card-2">
+        <a class="bcard__media" href="/blog/sialorrea-hipersalivacion" aria-label="Sialorrhea / Hypersalivation: what it is, symptoms, and treatment">
+          <img src="/assets/blog/blog-img2.png" alt="Dental prosthesis demonstration" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/sialorrea-hipersalivacion">Sialorrhea / Hypersalivation: what it is, symptoms, and treatment</a>
+          </h3>
+          <p class="bcard__excerpt">We know how challenging it…</p>
+          <a class="bcard__link" href="/blog/sialorrea-hipersalivacion">Read more</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/invisalign-mantenimiento" aria-label="Invisalign: cleaning and maintenance of the aligners">
+          <img src="/assets/blog/blog-img3.png" alt="Patient checking their smile with a mirror" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title">
+            <a href="/blog/invisalign-mantenimiento">Invisalign: cleaning and maintenance of aligners</a>
+          </h3>
+          <p class="bcard__excerpt">For the best performance…</p>
+          <a class="bcard__link" href="/blog/invisalign-mantenimiento">Read more</a>
+        </div>
+      </article>
+
+      <!-- Repetitions (example) -->
+      <article class="bcard espacio">
+        <a class="bcard__media" href="/blog/ortodoncia-duele">
+          <img src="/assets/blog/blog-img1.png" alt="Dental team attending a patient" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title"><a href="/blog/ortodoncia-duele">Does orthodontics hurt?</a></h3>
+          <p class="bcard__excerpt">Orthodontics is one of the…</p>
+          <a class="bcard__link" href="/blog/ortodoncia-duele">Read more</a>
+        </div>
+      </article>
+
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/sialorrea-hipersalivacion">
+          <img src="/assets/blog/blog-img2.png" alt="Dental prosthesis demonstration" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title"><a href="/blog/sialorrea-hipersalivacion">Sialorrhea / Hypersalivation</a></h3>
+          <p class="bcard__excerpt">We know how challenging it…</p>
+          <a class="bcard__link" href="/blog/sialorrea-hipersalivacion">Read more</a>
+        </div>
+      </article>
+
+      <article class="bcard">
+        <a class="bcard__media" href="/blog/invisalign-mantenimiento">
+          <img src="/assets/blog/blog-img3.png" alt="Patient checking their smile with a mirror" loading="lazy" />
+        </a>
+        <div class="bcard__body">
+          <h3 class="bcard__title"><a href="/blog/invisalign-mantenimiento">Invisalign: maintenance</a></h3>
+          <p class="bcard__excerpt">For the best performance…</p>
+          <a class="bcard__link" href="/blog/invisalign-mantenimiento">Read more</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================= NEWSLETTER ========================= -->
+  <section class="newsletter">
+    <div class="newsletter__inner container">
+      <img class="newsletter__logo" src="/assets/logo-mark.svg" alt="Dental Sueca" />
+
+      <h2 class="newsletter__title">
+        Interested in the latest dental news?
+      </h2>
+
+      <form
+        class="newsletter__form"
+        id="newsletter"
+        action="#"
+        method="post"
+        novalidate
+        data-sending="Sending…"
+        data-ok="All set! You’ve been subscribed. You’ll receive the latest dental news soon."
+        data-fail="We couldn’t subscribe you. Please try again."
+      >
+        <input type="hidden" id="nl_locale" value="en" />
+
+        <label class="sr-only" for="nl_name">Full name</label>
+        <input
+          id="nl_name"
+          name="name"
+          type="text"
+          class="nl__input"
+          placeholder="Full name"
+          autocomplete="name"
+          required
+        />
+
+        <label class="sr-only" for="nl_email">Email</label>
+        <input
+          id="nl_email"
+          name="email"
+          type="email"
+          class="nl__input"
+          placeholder="Email"
+          autocomplete="email"
+          required
+        />
+
+        <button type="submit" class="nl__btn">Subscribe</button>
+
+        <div class="nl__notice" id="nl_notice" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<!-- ============ SCRIPT: SUBMIT (proxy /api/newsletter) ============ -->
+<script is:inline>
+  (function(){
+    const form = document.getElementById('newsletter');
+    if (!form) return;
+
+    const ENDPOINT = '/api/newsletter';
+
+    const btn = form.querySelector('.nl__btn');
+    const btnDefault = btn?.textContent || 'Subscribe';
+    const notice = document.getElementById('nl_notice');
+
+    const UX_SENDING = form.dataset.sending || 'Sending…';
+    const UX_OK = form.dataset.ok || 'All set! You’ve been subscribed. You’ll receive the latest dental news soon.';
+    const UX_FAIL = form.dataset.fail || 'We couldn’t subscribe you. Please try again.';
+
+    function clearNotice(el){ if(!el) return; el.className='nl__notice'; el.textContent=''; }
+    function showNotice(el,type,msg){
+      if(!el) return;
+      el.className='nl__notice ' + (type==='ok'?'nl__notice--ok':'nl__notice--err');
+      el.textContent=msg;
+      el.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+
+    let sending=false;
+
+    form.addEventListener('submit', async (ev)=>{
+      ev.preventDefault();
+      if(!form.reportValidity()||sending) return;
+
+      const payload = {
+        type:'newsletter',
+        locale: document.getElementById('nl_locale')?.value || 'en',
+        name: document.getElementById('nl_name')?.value?.trim() || '',
+        email: document.getElementById('nl_email')?.value?.trim() || '',
+        page: location.pathname,
+        userAgent: navigator.userAgent
+      };
+
+      const body = new URLSearchParams(payload);
+      clearNotice(notice);
+
+      const prevMinW = btn?.style.minWidth || '', prevPL = btn?.style.paddingLeft || '', prevPR = btn?.style.paddingRight || '';
+      if (btn){ sending=true; btn.disabled=true; btn.textContent=UX_SENDING; btn.classList.add('nl__btn--loading'); }
+
+      try{
+        const res = await fetch(ENDPOINT,{method:'POST', body});
+        let json=null, text='', ct=res.headers.get('content-type')||'';
+        try{ if(ct.includes('application/json')) json=await res.json(); else text=await res.text(); }catch(_){ try{ text=await res.text(); }catch(__){} }
+        const ok = (res.ok===true) || (json && json.ok===true);
+        if(ok){ form.reset(); showNotice(notice,'ok',UX_OK); } else { showNotice(notice,'err',UX_FAIL); console.warn('Newsletter upstream:',{status:res.status, ct, json, text}); }
+      }catch(e){ showNotice(notice,'err',UX_FAIL); console.error('Newsletter error:', e); }
+      finally{
+        if(btn){ sending=false; btn.disabled=false; btn.textContent=btnDefault; btn.classList.remove('nl__btn--loading'); btn.style.minWidth=prevMinW; btn.style.paddingLeft=prevPL; btn.style.paddingRight=prevPR; }
+      }
+    });
+  })();
+</script>

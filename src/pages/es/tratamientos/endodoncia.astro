@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CitaForm from "../../../components/CitaForm.astro";
+
+const alternates = {
+  es: "/es/tratamientos/endodoncia",
+  ca: "/ca/tractaments/endodoncia",
+  en: "/en/treatments/endodontics",
+};
+---
+
+<BaseLayout
+  description="Tratamientos de endodoncia (conductos) para eliminar dolor e infección y conservar el diente. Tecnología avanzada, sellado preciso y recuperación funcional."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/tratamientos/endodoncia" {alternates} />
+
+  <!-- ==================== SECCIÓN PRINCIPAL ==================== -->
+  <section class="treatment-detail container">
+    <!-- Columna izquierda: contenido -->
+    <div class="treatment-detail__content">
+      <h1 class="treatment-detail__title">Endodoncia</h1>
+
+      <p>
+        Cuidamos la salud interna de tus dientes, ofreciéndote tratamientos con la tecnología más avanzada.
+        Con la endodoncia (tratamiento de conductos), eliminamos el dolor y la infección, permitiéndote conservar el diente afectado en lugar de extraerlo.
+      </p>
+
+      <img
+        class="treatment-detail__img"
+        src="/assets/tratamientos/endodoncia.png"
+        alt="Tratamiento de conductos con instrumental rotatorio"
+        loading="lazy"
+      />
+
+      <p>
+        Utilizamos técnicas y materiales de precisión para asegurar un sellado perfecto.
+      </p>
+
+      <p>
+        La endodoncia no solo alivia las molestias de manera inmediata, sino que también mantiene la estructura y el alineamiento de tu boca, evitando la necesidad de implantes o prótesis.
+      </p>
+    </div>
+
+    <!-- Columna derecha: formulario -->
+     <aside class="treatment-detail__form">
+    <CitaForm locale="es" />
+  </aside>
+  </section>
+
+  <Footer locale="es" />
+</BaseLayout>
