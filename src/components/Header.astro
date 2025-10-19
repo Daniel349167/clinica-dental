@@ -14,16 +14,16 @@ const nav = {
   ],
   ca: [
     ["/ca", "Inici"],
-    ["/ca/nosotros", "Nosaltres"],      // ✅ mismo slug
+    ["/ca/nosotros", "Nosaltres"],
     ["/ca/tractaments", "Tractaments"],
     ["/ca/blog", "Blog"],
   ],
   en: [
     ["/en", "Home"],
-    ["/en/nosotros", "About"],          // ✅ mismo slug
+    ["/en/nosotros", "About"],
     ["/en/treatments", "Treatments"],
     ["/en/blog", "Blog"],
-  ]
+  ],
 }[locale];
 
 // Textos dinámicos
@@ -75,7 +75,7 @@ const texts = {
         <img src="/assets/logo.svg" alt="Dental Sueca" />
       </a>
 
-      <!-- ⚠️ ÚNICO CAMBIO en el NAV: agregar id="site-nav" -->
+      <!-- Menú principal -->
       <nav id="site-nav" class="nav" aria-label="Principal">
         {nav.map(([href, label]) => <a href={href}>{label}</a>)}
       </nav>
@@ -88,7 +88,8 @@ const texts = {
         aria-expanded="false"
       >
         <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
 
@@ -96,18 +97,17 @@ const texts = {
     </div>
   </div>
 
-  <!-- Overlay para cerrar tocando fuera -->
+  <!-- Overlay -->
   <div class="nav-overlay" hidden></div>
 </header>
 
-<!-- Script mínimo para abrir/cerrar -->
+<!-- Script de interacción -->
 <script is:inline>
   (function () {
     const header = document.querySelector('.site-header');
     const btn = header?.querySelector('.hamburger');
     const nav = header?.querySelector('#site-nav');
     const overlay = header?.querySelector('.nav-overlay');
-
     if (!btn || !nav || !overlay) return;
 
     function open() {
@@ -131,14 +131,12 @@ const texts = {
   })();
 </script>
 
-<!-- Estilos globales SOLO para móvil y sin tocar desktop -->
+<!-- Estilos globales -->
 <style is:global>
-  /* ====== base: ocultar overflow-x solo cuando el menú está abierto ====== */
   html.no-scroll-x, html.no-scroll-x body { overflow-x: hidden; }
 
-  /* ====== elementos nuevos ====== */
   .hamburger{
-    display: none;            /* solo se muestra en móvil */
+    display: none;
     background: transparent;
     border: 0;
     padding: 8px;
@@ -147,7 +145,7 @@ const texts = {
     color: #1b2a3a;
   }
   .nav-overlay{
-    display: none;            /* controlado por atributo [hidden] y clase .is-open */
+    display: none;
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,.28);
@@ -155,78 +153,82 @@ const texts = {
   }
   .site-header.is-open .nav-overlay{ display: block; }
 
-  /* ====== solo móvil ====== */
   @media (max-width: 640px){
-    /* botón hamburguesa visible */
-    .hamburger{ display: inline-flex; align-items: center; justify-content: center; }
+    .hamburger{ display:inline-flex; align-items:center; justify-content:center; }
 
-    /* compactar mainbar sin afectar desktop */
     .mainbar__inner{
-      height: 64px;
-      gap: 10px;
+      height:64px;
+      gap:10px;
     }
-    .logo{ margin-right: 0; }
-    .logo img{ height: 32px; }
+    .logo{ margin-right:0; flex:0 0 auto; }
+    .logo img{ height:32px; }
 
-    /* CTA compacta para no empujar */
-    .cta{
-      padding: 8px 12px;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    /* convertir NAV a panel lateral deslizante */
     #site-nav{
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100dvh;
-      width: min(78vw, 360px);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 80px 20px 20px;
-      background: #fff;
-      border-left: 1px solid #eef3f8;
-      box-shadow: -12px 0 30px rgba(0,0,0,.12);
-      transform: translateX(100%);
-      transition: transform .24s ease;
-      z-index: 999;
-      overflow-y: auto;
+      position:fixed;
+      top:0; right:0;
+      height:100dvh;
+      width:min(78vw,360px);
+      display:flex; flex-direction:column;
+      gap:12px;
+      padding:80px 20px 20px;
+      background:#fff;
+      border-left:1px solid #eef3f8;
+      box-shadow:-12px 0 30px rgba(0,0,0,.12);
+      transform:translateX(100%);
+      transition:transform .24s ease;
+      z-index:999;
+      overflow-y:auto;
     }
-    /* enlaces del panel como lista vertical */
     #site-nav > a{
-      font-size: 18px;
-      padding: 10px 2px;
-      text-decoration: none;
-      color: #1f2f46;
-      border-bottom: 1px solid #f1f4f8;
+      font-size:18px;
+      padding:10px 2px;
+      text-decoration:none;
+      color:#1f2f46;
+      border-bottom:1px solid #f1f4f8;
     }
-    #site-nav > a:last-child{ border-bottom: 0; }
+    #site-nav > a:last-child{ border-bottom:0; }
+    .site-header.is-open #site-nav{ transform:translateX(0%); }
 
-    /* al abrir: mostrar panel */
-    .site-header.is-open #site-nav{ transform: translateX(0%); }
-
-    /* topbar flexible y sin overflow */
     .topbar__inner{
-      height: auto;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 6px 0;
+      height:auto; flex-wrap:wrap; gap:6px; padding:6px 0;
     }
     .contact{
-      white-space: normal;       /* permite saltos de línea (evita overflow) */
-      overflow-wrap: anywhere;   /* partir cadenas largas si hace falta */
-      line-height: 1.25;
-      font-size: 13px;
+      white-space:normal; overflow-wrap:anywhere;
+      line-height:1.25; font-size:13px;
     }
-    .contact .sep{ display: none; }
+    .contact .sep{ display:none; }
+    .nav{ margin-left:0; margin-right:0; gap:0; }
 
-    /* la nav original deja de ocupar ancho horizontal */
-    .nav{
-      margin-left: 0;
-      margin-right: 0;
-      gap: 0;
+    /* === Ajustes del CTA para eliminar desbordes === */
+    .mainbar .container {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    .mainbar__inner{
+      overflow: hidden;
+      justify-content: space-between;
+    }
+    .cta{
+      flex: 0 1 auto;
+      max-width: 46vw;
+      font-size: clamp(12.5px, 3.6vw, 14px);
+      padding: 7px 12px;
+      letter-spacing: .2px;
+      line-height: 1.1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .hamburger{ flex:0 0 auto; }
+    .logo{ flex:0 0 auto; }
+  }
+
+  @media (max-width: 360px){
+    .cta{
+      max-width: 42vw;
+      font-size: 12.5px;
+      padding: 6px 10px;
+      letter-spacing: .1px;
     }
   }
 </style>
