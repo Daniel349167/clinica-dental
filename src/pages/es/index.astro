@@ -305,7 +305,7 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
         <div class="b-card__body">
           <h3 class="b-card__title">
             <a href="/blog/sialorrea-hipersalivacion">
-              Sialorrea o Hipersalivación: qué es, síntomas y tratamiento
+              Sialorrea o Hipersalivación: qué es, causas, síntomas y tratamiento
             </a>
           </h3>
           <p class="b-card__excerpt">Sabemos lo complicado que puede ser el exceso de saliva. Repasamos causas y opciones…</p>
@@ -354,98 +354,6 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
     contain: paint;
   }
 
-
-  /* MAPA */
-   /* ================= FULL-BLEED UTILITY ================= */
-  .location--fullbleed{
-    /* “rompe” el container para ocupar 100vw */
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  }
-
-  /* Escenario del mapa: posicionamiento para la tarjeta flotante */
-  .location__stage{
-    position: relative;
-  }
-
-  /* Altura responsive para el mapa (placeholder/iframe) */
-  .location__placeholder,
-  .location__mount,
-  .location__map{
-    width: 100%;
-    height: clamp(360px, 55vh, 560px);
-  }
-
-  .location__placeholder{
-    position: relative;
-    border: 0;
-    padding: 0;
-    background: none;
-    cursor: pointer;
-    line-height: 0;
-    display: block;
-    overflow: hidden;
-  }
-  .location__placeholder img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit: cover;
-  }
-
-  .location__pill{
-    position:absolute;
-    bottom:12px; right:12px;
-    padding:.5rem .75rem;
-    border-radius:999px;
-    background:rgba(0,0,0,.6);
-    color:#fff;
-    font-size:.9rem;
-    backdrop-filter:saturate(140%) blur(6px);
-  }
-
-  .location__map{
-    border:0;
-    display:block;
-  }
-
-  /* Tarjeta superpuesta en desktop */
-  .location__card{
-    position: absolute;
-    right: clamp(12px, 4vw, 40px);
-    bottom: clamp(12px, 4vw, 40px);
-    width: 300px;
-    padding: 16px 18px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.92);
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
-    backdrop-filter: blur(6px) saturate(120%);
-  }
-  .location__card h3{ margin: 0 0 .5rem; }
-  .location__card p{ margin: 0 0 .75rem; }
-  .location__btn{
-    display: block;            /* antes: inline-block */
-    padding: .6rem 1rem;
-    border-radius: 10px;
-    text-decoration: none;
-    background: #0b57d0; /* ajusta a tu brand */
-    color: #fff;
-    font-weight: 600;
-    width: fit-content;        /* evita que se estire a todo el ancho */
-  }
-
-  /* En móviles, la tarjeta baja debajo del mapa (no superpuesta) */
-  @media (max-width: 768px){
-    .location__card{
-      position: static;
-      width: auto;
-      margin: 12px auto 0;
-      background: #fff;
-      box-shadow: none;
-      border: 1px solid rgba(0,0,0,.08);
-    }
-  }
 </style>
 
 <script is:inline>

@@ -43,6 +43,7 @@ const alternates = {
     visibility: hidden !important; /* oculta texto original pero conserva el espacio */
     position: relative;            /* permite posicionar el ::after dentro */
     height: 3.0em;                 /* mantiene altura visible para no colapsar */
+    margin-bottom: 10px;
   }
 
   /* Reemplaza el texto con uno nuevo */
@@ -53,7 +54,6 @@ const alternates = {
     left: 50%;                     /* centrado horizontal */
     transform: translateX(-50%);   /* corrección exacta al centro */
     visibility: visible;
-    line-height: 1.3;
     text-align: center;
     width: 90%;
     color: inherit;                /* mismo color que el original */
