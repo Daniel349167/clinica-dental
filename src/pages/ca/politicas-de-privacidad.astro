@@ -1,0 +1,166 @@
+---
+// src/pages/ca/politicas-de-privacidad.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/politicas-de-privacidad",
+  ca: "/ca/politicas-de-privacidad",
+  en: "/en/politicas-de-privacidad",
+};
+---
+
+<BaseLayout
+  description="Coneix com recollim, utilitzem i protegim les teves dades personals, d’acord amb el RGPD i la normativa espanyola."
+  locale="ca"
+  {alternates}
+>
+  <Header locale="ca" currentPath="/ca/politicas-de-privacidad" {alternates} />
+
+  <!-- HERO -->
+  <section class="pol-hero" aria-label="Capçalera Política de Privacitat">
+    <div class="pol-hero__inner container">
+      <img class="pol-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="pol-hero__title">Política de Privacitat</h1>
+      <span class="pol-hero__meta">Darrera actualització: 21 d’octubre de 2025</span>
+    </div>
+  </section>
+
+  <!-- CONTINGUT -->
+  <section class="pol-section container" aria-labelledby="pol-title">
+    <article class="pol-content">
+      <!-- Lead: ample complet -->
+      <p class="pol-lead">
+        A Centro Dental Sueco S.L. (“Clínica Dental Sueca”, “nosaltres” o “nostre”), respectem la teva privacitat
+        i protegim les teves dades personals. Aquesta política explica com recollim, utilitzem i protegim
+        la informació personal que ens proporciones a través del nostre lloc web <strong>www.dentalsueca.es</strong>.
+      </p>
+
+      <!-- Blocs en ordre i sencers -->
+      <div class="pol-block">
+        <h2 id="pol-title">1. Identitat del responsable del tractament</h2>
+        <p>
+          <strong>Responsable:</strong> Centro Dental Sueco S.L.<br />
+          <strong>CIF:</strong> B19974339<br />
+          <strong>Adreça:</strong> Carrer de Muntaner 555, Esc A, 3-2, 08022, Barcelona, Espanya<br />
+          <strong>Correu electrònic de contacte:</strong> hola@dentalsueca.es
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>2. Finalitat del tractament de dades</h2>
+        <ul>
+          <li>Gestionar les sol·licituds de cita prèvia o informació enviades mitjançant els formularis del web.</li>
+          <li>Enviar recordatoris o confirmacions de cites (per correu electrònic o telèfon).</li>
+          <li>Gestionar les relacions comercials i administratives derivades dels serveis odontològics.</li>
+          <li>Enviar informació sobre els nostres serveis, promocions o novetats amb el teu consentiment.</li>
+        </ul>
+      </div>
+
+      <div class="pol-block">
+        <h2>3. Base jurídica del tractament</h2>
+        <ul>
+          <li>El consentiment que ens atorgues en completar formularis de contacte o de cita.</li>
+          <li>L’execució d’un contracte o la prestació d’un servei dental.</li>
+          <li>El compliment d’obligacions legals (fiscals, sanitàries o de seguretat dels pacients).</li>
+        </ul>
+      </div>
+
+      <div class="pol-block">
+        <h2>4. Conservació de les dades</h2>
+        <p>
+          Les dades personals es conserven el temps necessari per complir la finalitat per a la qual van ser recollides
+          i mentre existeixi una relació contractual o un consentiment vigent. Posteriorment, es mantenen bloquejades
+          durant els terminis legals exigits.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>5. Comunicació de dades a tercers</h2>
+        <p>Les teves dades no es cediran a tercers, excepte per obligació legal o quan sigui necessari per a la prestació d’un servei sanitari, per exemple:</p>
+        <ul>
+          <li>Laboratoris dentals externs.</li>
+          <li>Companyies asseguradores o mutualitats (quan el pacient hi tingui contractat el servei).</li>
+          <li>Professionals sanitaris col·laboradors sota contracte de confidencialitat.</li>
+        </ul>
+        <p>En tots els casos, garantim que aquests tercers compleixen el RGPD i la LOPDGDD.</p>
+      </div>
+
+      <div class="pol-block">
+        <h2>6. Drets de la persona interessada</h2>
+        <p>Tens dret a accedir, rectificar, suprimir, limitar o oposar-te al tractament, sol·licitar la portabilitat i retirar el consentiment.</p>
+        <p>
+          Per exercir aquests drets, escriu-nos a <strong>hola@dentalsueca.es</strong> amb l’assumpte “Protecció de Dades”
+          i adjunta una còpia del teu DNI o document acreditatiu. Si consideres que els teus drets no han estat atesos correctament,
+          pots presentar una reclamació davant l’<strong>Agència Espanyola de Protecció de Dades (AEPD)</strong>: <strong>www.aepd.es</strong>.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>7. Seguretat de la informació</h2>
+        <p>
+          Adoptem mesures tècniques i organitzatives adequades per garantir la confidencialitat, integritat i disponibilitat
+          de les dades personals, evitant-ne la pèrdua, l’ús indegut, l’alteració o l’accés no autoritzat.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>8. Enllaços a llocs de tercers</h2>
+        <p>
+          El nostre lloc web pot contenir enllaços a altres pàgines. No som responsables del contingut ni de les polítiques de privacitat d’aquests llocs externs.
+          Et recomanem revisar-ne les polítiques abans de facilitar-hi informació personal.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>9. Modificacions d’aquesta política</h2>
+        <p>
+          Centro Dental Sueco S.L. es reserva el dret de modificar aquesta Política de Privacitat per adaptar-la a canvis legislatius
+          o a millores del lloc web. Qualsevol modificació es publicarà en aquesta mateixa pàgina.
+        </p>
+
+        <p class="pol-sign">
+          <strong>Centro Dental Sueco S.L.</strong><br />
+          Carrer de Muntaner 555, Esc A, 3-2<br />
+          08022 Barcelona, Espanya<br />
+          <strong>hola@dentalsueca.es</strong>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const root = document.querySelector('.pol-article');
+    const colsHost = document.getElementById('polColumns');
+    if (!root || !colsHost) return;
+    const left = document.createElement('div'); left.className = 'pol-col pol-col--left';
+    const right = document.createElement('div'); right.className = 'pol-col pol-col--right';
+    colsHost.append(left, right);
+    const blocks = Array.from(root.querySelectorAll('.pol-block'));
+    const mq = window.matchMedia('(min-width: 800px)');
+    const isDesktop = () => mq.matches;
+    const colHeight = (el) => el.offsetHeight || 0;
+    let toggle = 0;
+    function pickColumn() {
+      const hL = colHeight(left), hR = colHeight(right);
+      if (hL === hR) return (toggle++ % 2 === 0) ? left : right;
+      return hL < hR ? left : right;
+    }
+    function distribute() {
+      [left, right].forEach(c => { while (c.firstChild) c.removeChild(c.firstChild); });
+      if (!isDesktop()) { blocks.forEach(b => left.appendChild(b)); return; }
+      toggle = 0; blocks.forEach(b => { pickColumn().appendChild(b); });
+    }
+    const go = () => requestAnimationFrame(distribute);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') go();
+    else document.addEventListener('DOMContentLoaded', go, { once: true });
+    window.addEventListener('load', go, { once: true });
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(distribute, 150); });
+    mq.addEventListener?.('change', distribute);
+  })();
+</script>

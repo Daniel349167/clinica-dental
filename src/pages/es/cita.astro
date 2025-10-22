@@ -35,27 +35,3 @@ const alternates = {
 
   <Footer locale="es" />
 </BaseLayout>
-
-<style is:global>
-  .cita-hero .formc__title{ text-align:center; }
-   /* Oculta el subtítulo original */
-  .cita-hero .formc__subtitle {
-    visibility: hidden !important; /* oculta texto original pero conserva el espacio */
-    position: relative;            /* permite posicionar el ::after dentro */
-    height: 3.0em;                 /* mantiene altura visible para no colapsar */
-    margin-bottom: 10px;
-  }
-
-  /* Reemplaza el texto con uno nuevo */
-  .cita-hero .formc__subtitle::after {
-    content: "Aquí inicia tu camino hacia una sonrisa saludable y radiante.";
-    position: absolute;
-    top: 0;
-    left: 50%;                     /* centrado horizontal */
-    transform: translateX(-50%);   /* corrección exacta al centro */
-    visibility: visible;
-    text-align: center;
-    width: 90%;
-    color: inherit;                /* mismo color que el original */
-  }
-</style>

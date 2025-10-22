@@ -1,0 +1,222 @@
+---
+// src/pages/es/politicas-de-privacidad.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/politicas-de-privacidad",
+  ca: "/ca/politicas-de-privacidad",
+  en: "/en/politicas-de-privacidad",
+};
+---
+
+<BaseLayout
+  description="Conoce cómo recogemos, usamos y protegemos tus datos personales conforme al RGPD y la LOPDGDD."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/politicas-de-privacidad" {alternates} />
+
+  <!-- =========================
+       HERO POLÍTICA
+       ========================= -->
+  <section class="pol-hero" aria-label="Cabecera Política de Privacidad">
+    <div class="pol-hero__inner container">
+      <img class="pol-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="pol-hero__title">Política de Privacidad</h1>
+      <span class="pol-hero__meta">Última actualización: 21 de octubre de 2025</span>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTENIDO (lead 1 columna; luego 2 columnas consecutivas)
+       ========================= -->
+  <section class="pol-section container" aria-labelledby="pol-title">
+    <article class="pol-content">
+      <!-- Lead: siempre a ancho completo -->
+      <p class="pol-lead">
+        En Centro Dental Sueco S.L. (“Clínica Dental Sueca”, “nosotros” o “nuestro”),
+        respetamos tu privacidad y protegemos tus datos personales. Esta política explica cómo
+        recopilamos, utilizamos y protegemos la información personal que nos proporcionas a través de
+        nuestro sitio web <strong>www.dentalsueca.es</strong>.
+      </p>
+
+      <!-- Bloques que deben mantenerse enteros y en orden -->
+      <div class="pol-block">
+        <h2 id="pol-title">1. Identidad del responsable del tratamiento</h2>
+        <p>
+          <strong>Responsable:</strong> Centro Dental Sueco S.L.<br />
+          <strong>CIF:</strong> B19974339<br />
+          <strong>Dirección:</strong> Carrer de Muntaner 555, Esc A, 3-2, 08022, Barcelona, España<br />
+          <strong>Correo electrónico de contacto:</strong> hola@dentalsueca.es
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>2. Finalidad del tratamiento de datos</h2>
+        <ul>
+          <li>Gestionar solicitudes de cita o información enviadas por los formularios de la web.</li>
+          <li>Enviar recordatorios o confirmaciones de citas (correo o teléfono).</li>
+          <li>Gestionar relaciones comerciales y administrativas derivadas de los servicios odontológicos.</li>
+          <li>Enviar información de servicios, promociones o novedades con tu consentimiento.</li>
+        </ul>
+      </div>
+
+      <div class="pol-block">
+        <h2>3. Base legal del tratamiento</h2>
+        <ul>
+          <li>Consentimiento otorgado al completar formularios.</li>
+          <li>Ejecución de contrato o prestación de servicio dental.</li>
+          <li>Cumplimiento de obligaciones legales (fiscal, sanitaria o seguridad de pacientes).</li>
+        </ul>
+      </div>
+
+      <div class="pol-block">
+        <h2>4. Conservación de los datos</h2>
+        <p>
+          Conservamos los datos el tiempo necesario para la finalidad y mientras exista relación contractual
+          o consentimiento vigente. Después, permanecen bloqueados durante los plazos legales exigidos.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>5. Comunicación de datos a terceros</h2>
+        <p>Solo cedemos datos por obligación legal o para prestar el servicio sanitario, por ejemplo:</p>
+        <ul>
+          <li>Laboratorios dentales externos.</li>
+          <li>Compañías aseguradoras o mutualidades (si el paciente tiene servicio con ellas).</li>
+          <li>Profesionales sanitarios colaboradores bajo contrato de confidencialidad.</li>
+        </ul>
+        <p>Garantizamos que estos terceros cumplen con el RGPD y la LOPDGDD.</p>
+      </div>
+
+      <div class="pol-block">
+        <h2>6. Derechos del usuario</h2>
+        <p>Puedes ejercer los derechos de acceso, rectificación, supresión, limitación, oposición, portabilidad y retirar el consentimiento.</p>
+        <p>
+          Escríbenos a <strong>hola@dentalsueca.es</strong> con el asunto “Protección de Datos” y adjunta copia de tu DNI
+          o documento acreditativo. Si no quedas satisfecho, puedes reclamar ante la
+          <strong>Agencia Española de Protección de Datos (AEPD)</strong>: <strong>www.aepd.es</strong>.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>7. Seguridad de la información</h2>
+        <p>
+          Aplicamos medidas técnicas y organizativas adecuadas para garantizar la confidencialidad, integridad y disponibilidad
+          de los datos personales, evitando pérdida, mal uso, alteración o acceso no autorizado.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>8. Enlaces a sitios de terceros</h2>
+        <p>
+          Nuestro sitio puede enlazar a otras páginas. No nos responsabilizamos del contenido ni de sus políticas de privacidad.
+          Revisa sus políticas antes de facilitar datos personales.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>9. Modificaciones de esta política</h2>
+        <p>
+          Centro Dental Sueco S.L. puede modificar esta política para adaptarla a cambios legales o mejoras del sitio web.
+          Las modificaciones se publicarán en esta misma página.
+        </p>
+
+        <p class="pol-sign">
+          <strong>Centro Dental Sueco S.L.</strong><br />
+          Carrer de Muntaner 555, Esc A, 3-2<br />
+          08022 Barcelona, España<br />
+          <strong>hola@dentalsueca.es</strong>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <Footer locale="es" />
+</BaseLayout>
+
+
+<!-- ===== Distribución sin cortes: mueve cada .pol-block a la columna más corta ===== -->
+<script is:inline>
+  (function () {
+    const root = document.querySelector('.pol-article');
+    const colsHost = document.getElementById('polColumns');
+    if (!root || !colsHost) return;
+
+    // Crea columnas
+    const left = document.createElement('div');
+    left.className = 'pol-col pol-col--left';
+    const right = document.createElement('div');
+    right.className = 'pol-col pol-col--right';
+    colsHost.append(left, right);
+
+    const blocks = Array.from(root.querySelectorAll('.pol-block'));
+
+    // Helper: ¿desktop?
+    const mq = window.matchMedia('(min-width: 800px)');
+    const isDesktop = () => mq.matches;
+
+    // Helper: altura columna (offsetHeight es más fiable en este caso)
+    const colHeight = (el) => el.offsetHeight || 0;
+
+    // Alternador para desempate (cuando ambas columnas tienen la misma altura)
+    let toggle = 0;
+
+    function pickColumn() {
+      const hL = colHeight(left);
+      const hR = colHeight(right);
+      if (hL === hR) {
+        // alterna izquierda/derecha para evitar acumulación en una sola
+        return (toggle++ % 2 === 0) ? left : right;
+      }
+      return hL < hR ? left : right;
+    }
+
+    function distribute() {
+      // Vaciar columnas
+      [left, right].forEach(c => { while (c.firstChild) c.removeChild(c.firstChild); });
+
+      if (!isDesktop()) {
+        // En móvil: una sola columna (left)
+        blocks.forEach(b => left.appendChild(b));
+        return;
+      }
+
+      // En desktop: reparte por altura (masonry simple sin cortes)
+      toggle = 0;
+      blocks.forEach(b => {
+        const target = pickColumn();
+        target.appendChild(b);
+      });
+    }
+
+    // Distribuye cuando el DOM y estilos ya están listos
+    const go = () => {
+      // pequeña espera para que el layout se asiente antes de medir
+      requestAnimationFrame(() => {
+        distribute();
+      });
+    };
+
+    // Primera pasada
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      go();
+    } else {
+      document.addEventListener('DOMContentLoaded', go, { once: true });
+    }
+    // Tras carga completa (por si fuentes del sistema cambian métricas)
+    window.addEventListener('load', go, { once: true });
+
+    // Redistribuir en resize (debounce)
+    let t;
+    window.addEventListener('resize', () => {
+      clearTimeout(t);
+      t = setTimeout(distribute, 150);
+    });
+
+    // Reaccionar a cambios del media query
+    mq.addEventListener?.('change', distribute);
+  })();
+</script>

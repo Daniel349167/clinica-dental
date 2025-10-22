@@ -1,39 +1,69 @@
 ---
 import "../pages/_app.css";
-const { title = 'Clínica Dental', description = 'Odontología integral en Barcelona', locale='es', alternates } = Astro.props;
+const {
+  title = "Clínica Dental",
+  description = "Odontología integral en Barcelona",
+  locale = "es",
+  alternates
+} = Astro.props;
+
+/* === NUEVO: títulos y descripciones por idioma === */
+const i18n = {
+  es: {
+    title: "Clínica Dental",
+    description: "Odontología integral en Barcelona",
+  },
+  en: {
+    title: "Dental Clinic",
+    description: "Comprehensive dentistry in Barcelona",
+  },
+  ca: {
+    title: "Clínica Dental",
+    description: "Odontologia integral a Barcelona",
+  },
+};
+
+/*
+  Lógica:
+  - Si el layout recibe un `title` distinto al *placeholder* por defecto ("Clínica Dental"),
+    respetamos ese valor (útil para páginas con título propio).
+  - Si recibe el placeholder por defecto, usamos el del idioma.
+*/
+const isDefaultTitle = title === "Clínica Dental";
+const isDefaultDesc  = description === "Odontología integral en Barcelona";
+
+const pageTitle       = isDefaultTitle ? (i18n[locale]?.title ?? title) : title;
+const pageDescription = isDefaultDesc  ? (i18n[locale]?.description ?? description) : description;
 ---
 
 <html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+
+    <!-- USO DEL TÍTULO Y DESCRIPTION LOCALIZADOS -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    {/*
-      PRELOAD del héroe: por ahora solo PNG (tú aún no tienes AVIF/WebP).
-      Cuando generes hero.avif/hero.webp, puedes añadir un segundo preload si quieres.
-    */}
+    <!-- Preload del héroe -->
     <link rel="preload" as="image" href="/assets/hero.png" />
 
-    {/*
-      Acelera el handshake de Google Maps (iframe) para que cuando se inyecte
-      cargue más rápido.
-    */}
-    <link rel="dns-prefetch" href="https://www.google.com">
-    <link rel="preconnect" href="https://www.google.com" crossorigin>
-    <link rel="dns-prefetch" href="https://maps.googleapis.com">
-    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
-    <link rel="dns-prefetch" href="https://maps.gstatic.com">
-    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
+    <!-- Preconexiones para Google Maps -->
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
+    <link rel="dns-prefetch" href="https://maps.gstatic.com" />
+    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
 
     {alternates && (
       <>
-        <link rel="alternate" hrefLang="es" href={alternates.es} />
-        <link rel="alternate" hrefLang="ca" href={alternates.ca} />
-        <link rel="alternate" hrefLang="en" href={alternates.en} />
-        <link rel="alternate" hrefLang="x-default" href={alternates.es} />
+        <link rel="alternate" hreflang="es" href={alternates.es} />
+        <link rel="alternate" hreflang="ca" href={alternates.ca} />
+        <link rel="alternate" hreflang="en" href={alternates.en} />
+        <link rel="alternate" hreflang="x-default" href={alternates.es} />
       </>
     )}
   </head>
@@ -41,96 +71,88 @@ const { title = 'Clínica Dental', description = 'Odontología integral en Barce
   <body>
     <slot />
 
-    <!-- =======================
-         BOTÓN PERSONALIZADO CRISP
-         ======================= -->
+    <!-- Botón personalizado -->
     <button id="chat-fab" class="chat-fab" aria-label="Abrir chat">
       <img src="/assets/icons/chat.svg" alt="Chat" />
     </button>
 
-    <!-- =======================
-         CRISP CHAT (Loader)
-         ======================= -->
+    <!-- Script de Crisp -->
     <script is:inline>
-      // Cola Crisp
       window.$crisp = window.$crisp || [];
-
-      // 1) Ocultar launcher nativo (si tu plan lo soporta)
       window.$crisp.push(["config", "hide:launcher", true]);
-
-      // ID de tu web en Crisp
       window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
-
-      // Carga del script
       (function () {
-        const d = document;
-        const s = d.createElement("script");
+        var d = document;
+        var s = d.createElement("script");
         s.src = "https://client.crisp.chat/l.js";
-        s.async = 1;
-        d.getElementsByTagName("head")[0].appendChild(s);
+        s.async = true;
+        s.defer = true;
+        d.head.appendChild(s);
       })();
     </script>
 
-    <!-- =======================
-         INTEGRACIÓN DEL BOTÓN + FALLBACKS
-         ======================= -->
+    <!-- Botón personalizado: abrir/cerrar -->
     <script is:inline>
-      // 2) Toggle abrir/cerrar chat con el mismo botón
-      document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById("chat-fab");
-        if (btn) {
-          btn.addEventListener("click", function () {
-            try {
-              window.$crisp?.push(["do", "chat:toggle"]);
-            } catch (e) {
-              const opened = document.documentElement.classList.contains("crisp-client");
-              window.$crisp?.push(["do", opened ? "chat:close" : "chat:open"]);
-            }
-          });
-        }
-      });
-
-      // 3) Fallback robusto: ocultar cualquier launcher nativo que aparezca
-      function hideCrispLauncherAggressively() {
-        try {
-          const root = document.querySelector(".crisp-client, #crisp-chatbox");
-          if (!root) return;
-
-          const candidates = root.querySelectorAll(
-            '.crisp-button, [data-testid="chat-widget-button"], a[href*="crisp.chat"], [class*="launcher"], [class*="button"]'
-          );
-          candidates.forEach((el) => {
-            const isButtonLike =
-              (el.tagName === "A" || el.tagName === "BUTTON" || el.getAttribute("role") === "button");
-            if (isButtonLike || /button|launcher/i.test(el.className)) {
-              el.style.setProperty("display", "none", "important");
-              el.style.setProperty("visibility", "hidden", "important");
-              el.style.setProperty("opacity", "0", "important");
-              el.style.setProperty("pointer-events", "none", "important");
-            }
-          });
-        } catch (_) {}
+      function nukeCrispLauncher() {
+        document
+          .querySelectorAll(".cc-yv368 .cc-1kr6o .cc-18ov6 .cc-1qbp0")
+          .forEach((el) => el.remove());
       }
 
-      window.addEventListener("crisp:ready", function () {
-        const style = document.createElement("style");
-        style.textContent = `
-          .crisp-client .crisp-button,
-          .crisp-client [data-testid="chat-widget-button"],
-          .crisp-client [class*="crisp-"][class*="button"],
-          #crisp-chatbox .crisp-button {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-          }
-        `;
-        document.head.appendChild(style);
-        hideCrispLauncherAggressively();
+      const observer = new MutationObserver(nukeCrispLauncher);
+      observer.observe(document.body, { childList: true, subtree: true });
 
-        const obs = new MutationObserver(() => hideCrispLauncherAggressively());
-        obs.observe(document.body, { childList: true, subtree: true });
+      window.addEventListener("crisp:ready", () => {
+        nukeCrispLauncher();
+        setTimeout(nukeCrispLauncher, 500);
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("chat-fab");
+        const toggleChat = () => {
+          if (!window.$crisp || typeof window.$crisp.push !== "function") {
+            setTimeout(toggleChat, 250);
+            return;
+          }
+          window.$crisp.push(["do", "chat:show"]);
+          window.$crisp.push(["do", "chat:toggle"]);
+        };
+        btn.addEventListener("click", toggleChat);
       });
     </script>
+
+    <style>
+      .chat-fab {
+        position: fixed;
+        right: 18px;
+        bottom: 22px;
+        width: 72px;
+        height: 72px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        z-index: 2147483647;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: transform 0.2s ease;
+      }
+      .chat-fab img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .chat-fab:hover {
+        transform: translateY(-1px);
+      }
+      @media (max-width: 640px) {
+        .chat-fab {
+          right: 5px;
+          bottom: 10px;
+          width: 60px;
+          height: 60px;
+        }
+      }
+    </style>
   </body>
 </html>

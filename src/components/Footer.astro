@@ -57,7 +57,7 @@ const i18n = {
       </div>
 
       <!-- CONTACTO -->
-      <div class="footer__col">
+      <div class="footer__col footer__contact">
         <h4>{i18n.contacto}</h4>
         <p>{i18n.dir1}</p>
         <p>{i18n.dir2}</p>
@@ -80,7 +80,7 @@ const i18n = {
       </div>
 
       <!-- HORARIO -->
-      <div class="footer__col">
+      <div class="footer__col footer__hours">
         <h4>{i18n.horario}</h4>
         <p class="footer__bold">{i18n.lv}</p>
         <p>{i18n.horas}</p>
@@ -100,3 +100,127 @@ const i18n = {
     </div>
   </div>
 </footer>
+<style>
+  .site-footer{width:100%; background:var(--brand-50);
+margin-top: 70px;}
+
+/* zona superior */
+.footer__top{
+  background:var(--brand-50);
+  padding-top: 45px;
+  padding-bottom: 35px;
+}
+
+/* grid más a la derecha y con mayor separación logo ↔ columnas */
+.footer__grid{
+  display:grid;
+  grid-template-columns: 1.6fr 1fr 1fr; /* logo | contacto | horario */
+  align-items:flex-start;
+  gap:60px;                               /* separa logo del contacto */
+  margin-left: 140px;                     /* más desplazado a la derecha */
+}
+
+/* logo más pequeño */
+.footer__logo{display:flex; align-items:center;}
+.footer__logo img{height:40px; width:auto; display:block; margin-left: 20px;}
+
+/* columnas (menos grandes / menos negrita) */
+.footer__col h4{
+  margin:0 0 10px;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.2px;
+  color:var(--text-900);
+}
+.footer__col p{margin:8px 0; color:var(--text-900); font-size:15px;}
+.footer__bold{font-weight:700;}
+.footer__phone{margin-top:8px; font-weight:400;} 
+
+/* enlaces políticas */
+.footer__links{display:flex; flex-direction:column; gap:8px; margin-top:8px}
+.footer__links a{color:var(--text-900); text-decoration:none; font-size:15px;}
+.footer__links a:hover{text-decoration:underline}
+
+/* Redes – solo un borde, sin doble contorno */
+.social{
+  display:flex;
+  margin-top:10px;
+  margin-left:-6px;
+}
+.social a{
+  width:40px; height:40px;
+  display:grid; place-items:center;
+  background:transparent;
+  overflow:hidden;
+  padding:0;
+  transition:transform .06s ease-in-out, box-shadow .15s ease-in-out, background .15s;
+}
+.social a:hover{
+  background:#e6f7ff;           /* tono muy suave al hover */
+  box-shadow:0 2px 8px rgba(28,75,142,0.14);
+  transform:translateY(-1px);
+}
+/* iconos sociales: tamaño más grande y centrado */
+.social img{
+  width:80%;                 
+  height:80%;
+  display:block;
+  object-fit:contain;        /* mantiene proporción */
+  margin:auto;               /* lo centra en el círculo */
+  transform:translateY(1px); /* leve corrección vertical óptica */
+}
+
+
+/* barra inferior */
+.footer__bottom{
+  background:var(--brand-500);
+  color:#fff;
+  text-align:center;
+  padding:14px 0;
+}
+.footer__bottom__inner{
+  font-size:16px;
+  font-weight:400; /* sin negrita */
+  letter-spacing:.1px;
+}
+
+/* =================== RESPONSIVE (footer) =================== */
+
+@media (max-width:640px){
+
+  .footer__top{
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+  .footer__grid{
+    display:flex;
+    flex-direction:column;
+    align-items:center;      /* centra horizontal */
+    text-align:center;       /* centra el texto */
+    gap:22px;
+    margin-left:0;
+  }
+
+  /* Orden deseado en móvil */
+  .footer__hours{  order:1; }   /* HORARIO arriba */
+  .footer__contact{order:2; }   /* CONTACTO debajo */
+  .footer__logo{   order:3; }   /* Logo al final (si prefieres arriba, ponlo en 0) */
+
+  /* Centrar tipografías y enlaces dentro de cada columna */
+  .footer__col h4,
+  .footer__col p,
+  .footer__links a{
+    text-align:center;
+  }
+  .footer__logo{
+    display:none !important;
+  }
+
+  /* Redes centradas y sin desplazamientos laterales */
+  .social{
+    justify-content:center;
+    margin:10px auto 0;
+  }
+}
+
+</style>

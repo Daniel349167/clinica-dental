@@ -1,0 +1,167 @@
+---
+// src/pages/en/politicas-de-privacidad.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/politicas-de-privacidad",
+  ca: "/ca/politicas-de-privacidad",
+  en: "/en/politicas-de-privacidad",
+};
+---
+
+<BaseLayout
+  description="Learn how we collect, use, and protect your personal data in compliance with GDPR and Spanish data protection law."
+  locale="en"
+  {alternates}
+>
+  <Header locale="en" currentPath="/en/politicas-de-privacidad" {alternates} />
+
+  <!-- HERO -->
+  <section class="pol-hero" aria-label="Privacy Policy header">
+    <div class="pol-hero__inner container">
+      <img class="pol-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="pol-hero__title">Privacy Policy</h1>
+      <span class="pol-hero__meta">Last update: October 21, 2025</span>
+    </div>
+  </section>
+
+  <!-- CONTENT (lead 1 col; then multi-column via global styles) -->
+  <section class="pol-section container" aria-labelledby="pol-title">
+    <article class="pol-content">
+      <!-- Lead: full width -->
+      <p class="pol-lead">
+        At Centro Dental Sueco S.L. (“Clínica Dental Sueca,” “we,” or “our”), we respect your privacy
+        and protect your personal data. This policy explains how we collect, use, and safeguard the
+        personal information you provide via our website <strong>www.dentalsueca.es</strong>.
+      </p>
+
+      <!-- Blocks (kept whole and in order by your global CSS) -->
+      <div class="pol-block">
+        <h2 id="pol-title">1. Data Controller Identity</h2>
+        <p>
+          <strong>Controller:</strong> Centro Dental Sueco S.L.<br />
+          <strong>Tax ID:</strong> B19974339<br />
+          <strong>Address:</strong> Carrer de Muntaner 555, Esc A, 3-2, 08022, Barcelona, Spain<br />
+          <strong>Contact email:</strong> hola@dentalsueca.es
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>2. Purpose of Processing</h2>
+        <ul>
+          <li>Managing appointment requests or information submitted through website forms.</li>
+          <li>Sending appointment reminders or confirmations (by email or phone).</li>
+          <li>Managing commercial and administrative relationships arising from dental services.</li>
+          <li>Sending information about our services, promotions, or news with your consent.</li>
+        </ul>
+      </div>
+
+      <div class="pol-block">
+        <h2>3. Legal Basis for Processing</h2>
+        <ul>
+          <li>Your consent when completing contact or appointment forms.</li>
+          <li>Performance of a contract or provision of dental services.</li>
+          <li>Compliance with legal obligations (tax, healthcare, or patient safety).</li>
+        </ul>
+      </div>
+
+      <div class="pol-block">
+        <h2>4. Data Retention</h2>
+        <p>
+          We keep personal data for as long as necessary to fulfill the purpose for which it was collected
+          and while a contractual relationship or valid consent exists. Thereafter, it will be kept blocked
+          for the legally required periods.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>5. Disclosure to Third Parties</h2>
+        <p>Your data is not shared with third parties, except as required by law or when necessary to provide healthcare services, for example:</p>
+        <ul>
+          <li>External dental laboratories.</li>
+          <li>Insurance companies or mutual societies (when the patient has contracted their service with them).</li>
+          <li>Partner healthcare professionals under confidentiality agreements.</li>
+        </ul>
+        <p>In all cases, we ensure these third parties comply with the GDPR and the Spanish LOPDGDD.</p>
+      </div>
+
+      <div class="pol-block">
+        <h2>6. Your Rights</h2>
+        <p>You have the right to access, rectify, delete, restrict or object to processing, request portability, and withdraw consent.</p>
+        <p>
+          To exercise these rights, write to <strong>hola@dentalsueca.es</strong> with the subject “Data Protection,”
+          attaching a copy of your ID or equivalent proof of identity. If you believe your rights have not been properly addressed,
+          you may lodge a complaint with the <strong>Spanish Data Protection Agency (AEPD)</strong>: <strong>www.aepd.es</strong>.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>7. Information Security</h2>
+        <p>
+          We implement appropriate technical and organizational measures to ensure the confidentiality, integrity,
+          and availability of your personal data, preventing loss, misuse, alteration, or unauthorized access.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>8. Links to Third-Party Sites</h2>
+        <p>
+          Our website may contain links to other pages. We are not responsible for the content or privacy policies of those external sites.
+          Please review their policies before providing personal information.
+        </p>
+      </div>
+
+      <div class="pol-block">
+        <h2>9. Changes to this Policy</h2>
+        <p>
+          Centro Dental Sueco S.L. reserves the right to modify this Privacy Policy to adapt it to legislative changes or website improvements.
+          Any changes will be published on this page.
+        </p>
+
+        <p class="pol-sign">
+          <strong>Centro Dental Sueco S.L.</strong><br />
+          Carrer de Muntaner 555, Esc A, 3-2<br />
+          08022 Barcelona, Spain<br />
+          <strong>hola@dentalsueca.es</strong>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>
+
+<!-- (Optional) If you keep the distributor JS, include it below; if your global CSS handles columns, it will early-return harmlessly -->
+<script is:inline>
+  (function () {
+    const root = document.querySelector('.pol-article');
+    const colsHost = document.getElementById('polColumns');
+    if (!root || !colsHost) return;
+    const left = document.createElement('div'); left.className = 'pol-col pol-col--left';
+    const right = document.createElement('div'); right.className = 'pol-col pol-col--right';
+    colsHost.append(left, right);
+    const blocks = Array.from(root.querySelectorAll('.pol-block'));
+    const mq = window.matchMedia('(min-width: 800px)');
+    const isDesktop = () => mq.matches;
+    const colHeight = (el) => el.offsetHeight || 0;
+    let toggle = 0;
+    function pickColumn() {
+      const hL = colHeight(left), hR = colHeight(right);
+      if (hL === hR) return (toggle++ % 2 === 0) ? left : right;
+      return hL < hR ? left : right;
+    }
+    function distribute() {
+      [left, right].forEach(c => { while (c.firstChild) c.removeChild(c.firstChild); });
+      if (!isDesktop()) { blocks.forEach(b => left.appendChild(b)); return; }
+      toggle = 0; blocks.forEach(b => { pickColumn().appendChild(b); });
+    }
+    const go = () => requestAnimationFrame(distribute);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') go();
+    else document.addEventListener('DOMContentLoaded', go, { once: true });
+    window.addEventListener('load', go, { once: true });
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(distribute, 150); });
+    mq.addEventListener?.('change', distribute);
+  })();
+</script>

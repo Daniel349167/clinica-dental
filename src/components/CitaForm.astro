@@ -80,7 +80,7 @@ const ux = {
   en: { sending: 'Sending…', ok: 'Done! We received your request. We will contact you shortly.', fail: 'We could not send it. Please try again.' },
 }[locale];
 
-const privacyHref = `/${locale}/politica-de-privacidad`;
+const privacyHref = `/${locale}/politicas-de-privacidad`;
 ---
 
 <form
@@ -154,41 +154,6 @@ const privacyHref = `/${locale}/politica-de-privacidad`;
 
   <button type="submit" class="formc__btn">{i18n.submit}</button>
 </form>
-
-<style>
-  /* Avisos */
-  .formc__notice{
-    margin-top: 12px;
-    font-size: 0.95rem;
-    padding: 10px 12px;
-    border-radius: 10px;
-    display: none;
-  }
-  .formc__notice--ok{
-    display: block;
-    background: #e8f7ef;
-    color: #155e34;
-    border: 1px solid #b1e3c8;
-  }
-  .formc__notice--err{
-    display: block;
-    background: #fde8e8;
-    color: #7a1c1c;
-    border: 1px solid #f5b5b5;
-  }
-
-  /* Botón con ensanchado al enviar */
-  .formc__btn{
-    min-width: 130px;           /* ancho base para 'Enviar' */
-    white-space: nowrap;
-    transition: padding .15s ease, min-width .15s ease, transform .05s ease;
-  }
-  .formc__btn--loading{
-    min-width: 180px;           /* más ancho para 'Enviando…' */
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-</style>
 
 <script is:inline>
   (function () {
