@@ -221,7 +221,7 @@ body{
   /* margen izquierdo del texto */
   .about.about--compact .about__text{
     text-align: left;       /* mantiene alineado el texto a la izquierda */
-    padding: 0px 15px;
+    padding: 0px 25px;
   }
 
   /* centra la imagen en móvil */
@@ -368,6 +368,9 @@ body{
 
 /* Responsive: un poco más de respiro en móviles */
 @media (max-width:560px){
+  .cta-strip__title{
+    font-size: 28px;
+  }
   .cta-strip{ padding: 40px 0; }
   .cta-strip__mark{ height:48px; }
   .btn-cta{ font-size:16px; padding:11px 20px; }
@@ -1992,7 +1995,7 @@ body{
       width: 80px;
     }
     .pol-section {
-      padding: 10px 20px;
+      padding: 10px 25px;
       margin-bottom: -30px;
     }
     .pol-content {
@@ -2001,3 +2004,51 @@ body{
     
   }
   /* ================================ FIN POLITICAS DE PRIVACIDAD PAGE ================================ */
+  
+  /* ================================ POLITICAS DE COOKIES PAGE ================================ */
+
+    /* ===== HERO ===== */
+  .ck-hero{
+    position:relative;
+    min-height: 320px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    background: var(--brand-50);
+  }
+  .ck-hero__bg{
+    position:absolute; inset:0;
+    background:
+      url("/assets/nosotros/hero-nosotros.png") center/cover no-repeat;
+  }
+  .ck-hero__inner{
+    position:relative; z-index:1;
+    display:grid; gap:12px; justify-items:center; text-align:center; color:#fff;
+  }
+  .ck-hero__icon{ width: clamp(42px, 6vw, 72px); filter: drop-shadow(0 2px 12px rgba(0,0,0,.25)); }
+  .ck-hero__title{ margin:0;font-size: 40px; font-weight: 600; letter-spacing:.2px; }
+  .ck-hero__meta{ font-size: 17px; background: rgba(0,0,0,.3); padding: 6px 12px; border-radius: 999px; }
+
+  /* ===== CONTENIDO ===== */
+  .ck-section{ padding: 40px 0 70px; }
+  .ck-content{ display:grid; gap:5px; }
+  .ck-lead{ font-size: 17px; line-height:1.6; color:var(--text-700,#1f2f3d); }
+  .ck-block h2{ margin:14px 0 8px; font-size:22px; color:var(--text-900,#0b1b2a); }
+  .ck-block p, .ck-block li{ font-size:17px; line-height:1.6; color:var(--text-700,#203447); }
+  .ck-block ul{ padding-left:18px; display:grid; gap:8px; }
+  @media (max-width:640px){
+       .ck-hero {
+      min-height: 290px;
+    }
+    .ck-hero__title{
+      font-size: 28px;
+    }
+    .ck-hero__icon {
+      width: 80px;
+    }
+    .ck-section {
+      padding: 10px 25px;
+      margin-bottom: -30px;
+    }
+  }
+  /* ================================ FIN POLITICAS DE COOKIES PAGE ================================ */

@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/cookies",
+  ca: "/ca/cookies",
+  en: "/en/cookies",
+};
+---
+
+<BaseLayout
+  description="Política de Cookies: conoce qué cookies usamos (técnicas, analíticas y publicitarias), su finalidad y cómo configurarlas."
+  locale="es"
+  {alternates}
+>
+  <Header locale="es" currentPath="/es/cookies" {alternates} />
+
+  <!-- =========================
+       HERO COOKIES (imagen distinta)
+       ========================= -->
+  <section class="ck-hero" aria-label="Cabecera Política de Cookies">
+    <div class="ck-hero__bg" aria-hidden="true"></div>
+    <div class="ck-hero__inner container">
+      <img class="ck-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="ck-hero__title">Política de Cookies</h1>
+      <span class="ck-hero__meta">Última actualización: 21 de octubre de 2025</span>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTENIDO
+       ========================= -->
+  <section class="ck-section container" aria-labelledby="ck-title">
+    <article class="ck-content">
+      <p class="ck-lead">
+        En Centro Dental Sueco S.L. (“Clínica Dental Sueca”, “nosotros” o “nuestro”) utilizamos cookies y tecnologías
+        similares para ofrecerte una mejor experiencia de navegación, analizar el tráfico y mostrarte publicidad
+        personalizada de acuerdo con tus intereses. Esta política explica qué son las cookies, qué tipos usamos,
+        con qué finalidad y cómo puedes gestionarlas.
+      </p>
+
+      <div class="ck-block">
+        <h2 id="ck-title">1. ¿Qué son las cookies?</h2>
+        <p>
+          Las cookies son pequeños archivos que se almacenan en tu dispositivo cuando visitas un sitio web. Sirven para
+          recordar tus preferencias, mejorar la funcionalidad o analizar cómo interactúas con la página. Algunas son
+          esenciales para que el sitio funcione correctamente y otras ayudan a mejorar la experiencia del usuario o a
+          personalizar contenidos y anuncios.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>2. Tipos de cookies que utilizamos</h2>
+        <ul>
+          <li><strong>Cookies técnicas o necesarias:</strong> son imprescindibles para el correcto funcionamiento del sitio web y
+              de funciones como el envío de formularios o el chat de soporte (Crisp).</li>
+          <li><strong>Cookies de preferencias o personalización:</strong> recuerdan ajustes como el idioma o la zona horaria.</li>
+          <li><strong>Cookies analíticas:</strong> permiten medir el tráfico y comportamiento de los usuarios. Utilizamos
+              <strong>Google Analytics</strong> y herramientas similares para conocer las estadísticas de uso.</li>
+          <li><strong>Cookies publicitarias:</strong> sirven para mostrar anuncios relevantes o medir la eficacia de nuestras
+              campañas de marketing mediante <strong>Google Ads</strong> y <strong>Meta Pixel (Facebook Pixel)</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>3. Proveedores y finalidades</h2>
+        <ul>
+          <li><strong>Google Analytics:</strong> mide interacciones y rendimiento del sitio. Más información en
+              <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">política de Google</a>.</li>
+          <li><strong>Google Ads:</strong> muestra anuncios personalizados y realiza seguimiento de conversiones.
+              Política disponible en <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Ads</a>.</li>
+          <li><strong>Meta Pixel (Facebook Pixel):</strong> mide el éxito de campañas publicitarias y crea audiencias personalizadas.
+              Más información en <a href="https://www.facebook.com/policies/cookies" target="_blank" rel="noopener">política de Meta</a>.</li>
+          <li><strong>Crisp Chat:</strong> permite la comunicación instantánea con nuestros visitantes. Más información en
+              <a href="https://help.crisp.chat/en/article/crisp-chat-gdpr-compliance-10i9g24/" target="_blank" rel="noopener">Crisp GDPR</a>.</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>4. Consentimiento</h2>
+        <p>
+          Al acceder a nuestro sitio, se mostrará un banner informativo que te permitirá aceptar o rechazar el uso de
+          cookies no esenciales. Puedes configurar tus preferencias en cualquier momento desde el enlace “Configurar
+          cookies” situado en el pie de página.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>5. Cómo modificar o eliminar cookies</h2>
+        <p>
+          Puedes permitir, bloquear o eliminar las cookies desde la configuración de tu navegador. A continuación te
+          indicamos cómo hacerlo en los principales navegadores:
+        </p>
+        <ul>
+          <li><strong>Chrome:</strong> Configuración &gt; Privacidad y seguridad &gt; Cookies y otros datos de sitios</li>
+          <li><strong>Firefox:</strong> Opciones &gt; Privacidad y seguridad &gt; Cookies y datos del sitio</li>
+          <li><strong>Safari:</strong> Preferencias &gt; Privacidad</li>
+          <li><strong>Edge:</strong> Configuración &gt; Privacidad, búsqueda y servicios</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>6. Transferencias internacionales</h2>
+        <p>
+          Los proveedores como Google o Meta pueden procesar datos fuera del Espacio Económico Europeo. En esos casos,
+          garantizamos que existen mecanismos adecuados de protección conforme al RGPD (cláusulas contractuales tipo o
+          decisiones de adecuación).
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>7. Actualizaciones de la política</h2>
+        <p>
+          Podemos modificar esta política para adaptarla a nuevas exigencias legales o cambios técnicos. Las versiones
+          actualizadas estarán siempre disponibles en esta misma página.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>8. Contacto</h2>
+        <p>
+          Si tienes dudas sobre nuestra Política de Cookies, puedes escribirnos a
+          <strong>hola@dentalsueca.es</strong> con el asunto “Cookies”.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <Footer locale="es" />
+</BaseLayout>
+

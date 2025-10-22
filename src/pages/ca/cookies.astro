@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/cookies",
+  ca: "/ca/cookies",
+  en: "/en/cookies",
+};
+---
+
+<BaseLayout
+  description="Política de galetes: coneix quines galetes utilitzem (tècniques, analítiques i publicitàries), la seva finalitat i com configurar-les."
+  locale="ca"
+  {alternates}
+>
+  <Header locale="ca" currentPath="/ca/cookies" {alternates} />
+
+  <!-- =========================
+       HERO COOKIES
+       ========================= -->
+  <section class="ck-hero" aria-label="Capçalera Política de Galetes">
+    <div class="ck-hero__bg" aria-hidden="true"></div>
+    <div class="ck-hero__inner container">
+      <img class="ck-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="ck-hero__title">Política de Galetes</h1>
+      <span class="ck-hero__meta">Darrera actualització: 21 d’octubre de 2025</span>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTINGUT
+       ========================= -->
+  <section class="ck-section container" aria-labelledby="ck-title">
+    <article class="ck-content">
+      <p class="ck-lead">
+        A Centro Dental Sueco S.L. (“Clínica Dental Sueca”, “nosaltres” o “nostre”) utilitzem galetes i tecnologies
+        similars per oferir-te una millor experiència de navegació, analitzar el trànsit i mostrar-te publicitat
+        personalitzada segons els teus interessos. Aquesta política explica què són les galetes, quins tipus utilitzem,
+        amb quina finalitat i com pots gestionar-les.
+      </p>
+
+      <div class="ck-block">
+        <h2 id="ck-title">1. Què són les galetes?</h2>
+        <p>
+          Les galetes són petits fitxers que s’emmagatzemen al teu dispositiu quan visites un lloc web. Serveixen per
+          recordar les teves preferències, millorar la funcionalitat o analitzar com interactues amb la pàgina. Algunes
+          són essencials perquè el lloc funcioni correctament i d’altres ajuden a millorar l’experiència d’usuari o a
+          personalitzar continguts i anuncis.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>2. Tipus de galetes que utilitzem</h2>
+        <ul>
+          <li><strong>Galetes tècniques o necessàries:</strong> imprescindibles per al funcionament correcte del lloc web i
+              de funcions com l’enviament de formularis o el xat de suport (Crisp).</li>
+          <li><strong>Galetes de preferències o personalització:</strong> recorden ajustos com l’idioma o la zona horària.</li>
+          <li><strong>Galetes analítiques:</strong> permeten mesurar el trànsit i el comportament dels usuaris. Utilitzem
+              <strong>Google Analytics</strong> i eines similars per conèixer les estadístiques d’ús.</li>
+          <li><strong>Galetes publicitàries:</strong> serveixen per mostrar anuncis rellevants o mesurar l’eficàcia de les
+              nostres campanyes mitjançant <strong>Google Ads</strong> i <strong>Meta Pixel (Facebook Pixel)</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>3. Proveïdors i finalitats</h2>
+        <ul>
+          <li><strong>Google Analytics:</strong> mesura les interaccions i el rendiment del lloc. Més informació a la
+              <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">política de Google</a>.</li>
+          <li><strong>Google Ads:</strong> mostra anuncis personalitzats i fa seguiment de conversions.
+              Política disponible a <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Ads</a>.</li>
+          <li><strong>Meta Pixel (Facebook Pixel):</strong> mesura l’èxit de les campanyes publicitàries i crea audiències personalitzades.
+              Més informació a la <a href="https://www.facebook.com/policies/cookies" target="_blank" rel="noopener">política de Meta</a>.</li>
+          <li><strong>Crisp Chat:</strong> permet la comunicació instantània amb els nostres visitants. Més informació a
+              <a href="https://help.crisp.chat/en/article/crisp-chat-gdpr-compliance-10i9g24/" target="_blank" rel="noopener">Crisp GDPR</a>.</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>4. Consentiment</h2>
+        <p>
+          En accedir al nostre lloc, es mostrarà un bàner informatiu que et permetrà acceptar o rebutjar l’ús de
+          galetes no essencials. Pots configurar les teves preferències en qualsevol moment mitjançant l’enllaç
+          “Configura les galetes” situat al peu de pàgina.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>5. Com modificar o eliminar galetes</h2>
+        <p>
+          Pots permetre, bloquejar o eliminar les galetes des de la configuració del teu navegador. A continuació t’indiquem
+          com fer-ho als principals navegadors:
+        </p>
+        <ul>
+          <li><strong>Chrome:</strong> Configuració &gt; Privadesa i seguretat &gt; Galetes i altres dades de llocs</li>
+          <li><strong>Firefox:</strong> Opcions &gt; Privadesa i seguretat &gt; Galetes i dades del lloc</li>
+          <li><strong>Safari:</strong> Preferències &gt; Privadesa</li>
+          <li><strong>Edge:</strong> Configuració &gt; Privadesa, cerca i serveis</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>6. Transferències internacionals</h2>
+        <p>
+          Proveïdors com Google o Meta poden processar dades fora de l’Espai Econòmic Europeu. En aquests casos,
+          garantim mecanismes adequats de protecció segons el RGPD (clàusules contractuals tipus o decisions d’adequació).
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>7. Actualitzacions de la política</h2>
+        <p>
+          Podem modificar aquesta política per adaptar-la a noves exigències legals o canvis tècnics. Les versions
+          actualitzades estaran sempre disponibles en aquesta mateixa pàgina.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>8. Contacte</h2>
+        <p>
+          Si tens dubtes sobre la nostra Política de Galetes, pots escriure’ns a
+          <strong>hola@dentalsueca.es</strong> amb l’assumpte “Galetes”.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <Footer locale="ca" />
+</BaseLayout>

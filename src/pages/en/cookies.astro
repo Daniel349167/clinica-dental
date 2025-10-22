@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const alternates = {
+  es: "/es/cookies",
+  ca: "/ca/cookies",
+  en: "/en/cookies",
+};
+---
+
+<BaseLayout
+  description="Cookie Policy: learn which cookies we use (technical, analytical and advertising), their purpose, and how to manage them."
+  locale="en"
+  {alternates}
+>
+  <Header locale="en" currentPath="/en/cookies" {alternates} />
+
+  <!-- =========================
+       HERO COOKIES
+       ========================= -->
+  <section class="ck-hero" aria-label="Cookie Policy Header">
+    <div class="ck-hero__bg" aria-hidden="true"></div>
+    <div class="ck-hero__inner container">
+      <img class="ck-hero__icon" src="/assets/mark-hero.svg" alt="" aria-hidden="true" />
+      <h1 class="ck-hero__title">Cookie Policy</h1>
+      <span class="ck-hero__meta">Last updated: October 21, 2025</span>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTENT
+       ========================= -->
+  <section class="ck-section container" aria-labelledby="ck-title">
+    <article class="ck-content">
+      <p class="ck-lead">
+        At Centro Dental Sueco S.L. (“Clínica Dental Sueca”, “we”, “us” or “our”) we use cookies and similar
+        technologies to provide you with a better browsing experience, analyze traffic and show you personalized
+        advertising based on your interests. This policy explains what cookies are, what types we use, their purpose
+        and how you can manage them.
+      </p>
+
+      <div class="ck-block">
+        <h2 id="ck-title">1. What are cookies?</h2>
+        <p>
+          Cookies are small files stored on your device when you visit a website. They help remember your preferences,
+          improve functionality, or analyze how you interact with the page. Some are essential for the website to work
+          properly, while others help enhance your user experience or personalize content and ads.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>2. Types of cookies we use</h2>
+        <ul>
+          <li><strong>Technical or necessary cookies:</strong> essential for the website to function correctly and for features
+              such as form submission or support chat (Crisp).</li>
+          <li><strong>Preference or customization cookies:</strong> remember settings like language or time zone.</li>
+          <li><strong>Analytical cookies:</strong> allow us to measure traffic and user behavior. We use
+              <strong>Google Analytics</strong> and similar tools to understand website usage.</li>
+          <li><strong>Advertising cookies:</strong> used to display relevant ads or measure the effectiveness of our
+              marketing campaigns through <strong>Google Ads</strong> and <strong>Meta Pixel (Facebook Pixel)</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>3. Providers and purposes</h2>
+        <ul>
+          <li><strong>Google Analytics:</strong> measures interactions and site performance. More info:
+              <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Google policy</a>.</li>
+          <li><strong>Google Ads:</strong> shows personalized ads and tracks conversions.
+              Policy: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Ads</a>.</li>
+          <li><strong>Meta Pixel (Facebook Pixel):</strong> tracks ad performance and creates custom audiences.
+              More info: <a href="https://www.facebook.com/policies/cookies" target="_blank" rel="noopener">Meta policy</a>.</li>
+          <li><strong>Crisp Chat:</strong> allows instant communication with our visitors. More info:
+              <a href="https://help.crisp.chat/en/article/crisp-chat-gdpr-compliance-10i9g24/" target="_blank" rel="noopener">Crisp GDPR</a>.</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>4. Consent</h2>
+        <p>
+          When you access our site, an informational banner will appear allowing you to accept or reject the use of
+          non-essential cookies. You can configure your preferences at any time through the “Cookie Settings” link
+          located in the footer.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>5. How to modify or delete cookies</h2>
+        <p>
+          You can allow, block, or delete cookies from your browser settings. Here’s how to do it in the main browsers:
+        </p>
+        <ul>
+          <li><strong>Chrome:</strong> Settings &gt; Privacy and Security &gt; Cookies and other site data</li>
+          <li><strong>Firefox:</strong> Options &gt; Privacy &amp; Security &gt; Cookies and Site Data</li>
+          <li><strong>Safari:</strong> Preferences &gt; Privacy</li>
+          <li><strong>Edge:</strong> Settings &gt; Privacy, Search, and Services</li>
+        </ul>
+      </div>
+
+      <div class="ck-block">
+        <h2>6. International data transfers</h2>
+        <p>
+          Providers such as Google or Meta may process data outside the European Economic Area (EEA). In such cases,
+          we ensure adequate protection mechanisms are in place according to GDPR (Standard Contractual Clauses or
+          adequacy decisions).
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>7. Policy updates</h2>
+        <p>
+          We may modify this policy to adapt it to legal or technical changes. Updated versions will always be available
+          on this page.
+        </p>
+      </div>
+
+      <div class="ck-block">
+        <h2>8. Contact</h2>
+        <p>
+          If you have questions about this Cookie Policy, you can email us at
+          <strong>hola@dentalsueca.es</strong> with the subject “Cookies”.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <Footer locale="en" />
+</BaseLayout>
