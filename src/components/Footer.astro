@@ -87,8 +87,8 @@ const i18n = {
         <p>{i18n.urgencias}</p>
 
         <div class="footer__links">
-          <a href="/privacidad">{i18n.privacidad}</a>
-          <a href="/cookies">{i18n.cookies}</a>
+          <a href={`/${locale}/politicas-de-privacidad`}>{i18n.privacidad}</a>
+          <a href={`/${locale}/cookies`}>{i18n.cookies}</a>
         </div>
       </div>
     </div>
@@ -154,11 +154,6 @@ margin-top: 70px;}
   overflow:hidden;
   padding:0;
   transition:transform .06s ease-in-out, box-shadow .15s ease-in-out, background .15s;
-}
-.social a:hover{
-  background:#e6f7ff;           /* tono muy suave al hover */
-  box-shadow:0 2px 8px rgba(28,75,142,0.14);
-  transform:translateY(-1px);
 }
 /* iconos sociales: tamaño más grande y centrado */
 .social img{
