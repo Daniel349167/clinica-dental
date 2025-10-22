@@ -220,7 +220,6 @@ body{
 
   /* margen izquierdo del texto */
   .about.about--compact .about__text{
-    margin-left: 8px;      /* 👈 agrega margen para separar del borde */
     text-align: left;       /* mantiene alineado el texto a la izquierda */
     padding: 0px 10px;
   }
