@@ -10,7 +10,7 @@ const i18n = {
     email: 'Correo electrónico',
     treatment: 'Tratamiento (seleccionar)',
     selectPlaceholder: 'Seleccione un tratamiento',
-    comments: 'Comentarios (opcional)',
+    comments: 'Comentarios (máx. 300 caracteres) (opcional)',
     addCalendar: 'Agregar recordatorio Google Calendar',
     privacyPrefix: 'He leído y acepto la',
     privacyLink: 'política de privacidad',
@@ -33,7 +33,7 @@ const i18n = {
     email: 'Correu electrònic',
     treatment: 'Tractament (selecciona)',
     selectPlaceholder: 'Selecciona un tractament',
-    comments: 'Comentaris (opcional)',
+    comments: 'Comentaris (màx. 300 caràcters) (opcional)',
     addCalendar: 'Afegir recordatori Google Calendar',
     privacyPrefix: 'He llegit i accepto la',
     privacyLink: 'política de privacitat',
@@ -56,7 +56,7 @@ const i18n = {
     email: 'Email address',
     treatment: 'Treatment (select)',
     selectPlaceholder: 'Select a treatment',
-    comments: 'Comments (optional)',
+    comments: 'Comments (max. 300 characters) (optional)',
     addCalendar: 'Add Google Calendar reminder',
     privacyPrefix: 'I have read and accept the',
     privacyLink: 'privacy policy',
@@ -131,9 +131,12 @@ const privacyHref = `/${locale}/politicas-de-privacidad`;
   </div>
 
   <div class="formc__group">
-    <label class="formc__label" for="cita_msg">{i18n.comments}</label>
-    <textarea class="formc__input formc__textarea" id="cita_msg" rows="3"></textarea>
-  </div>
+  <label class="formc__label" for="cita_msg">
+    {i18n.comments}
+  </label>
+  <textarea class="formc__input formc__textarea" id="cita_msg" rows="3" maxlength="300"></textarea>
+</div>
+
 
   <div class="formc__checks">
     <label class="formc__check">

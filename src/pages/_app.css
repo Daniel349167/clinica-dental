@@ -1410,7 +1410,10 @@ body{
   transition: border-color .15s, box-shadow .15s;
 }
 
-.formc__textarea{ resize: vertical; }
+.formc__textarea {
+  resize: vertical;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
 
 /* Focus con color marca */
 .formc__input:focus,
