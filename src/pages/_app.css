@@ -221,7 +221,7 @@ body{
   /* margen izquierdo del texto */
   .about.about--compact .about__text{
     text-align: left;       /* mantiene alineado el texto a la izquierda */
-    padding: 0px 10px;
+    padding: 0px 15px;
   }
 
   /* centra la imagen en móvil */
