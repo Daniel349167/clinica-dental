@@ -1328,17 +1328,18 @@ body{
   letter-spacing: .2px;
   margin-bottom: 30px;
 }
-
 /* ============ Before/After ============ */
 .ba{
   position: relative;
   width: 100%;
-  max-width: 920px;       /* ajusta si quieres más ancho */
-  aspect-ratio: 16/6;     /* asegura proporción; quítalo si usas alto fijo */
+  max-width: 920px;
+  aspect-ratio: 16/6;
   margin-inline: auto;
   overflow: hidden;
   border-radius: 16px;
   background: #f5f7fa;
+  /* 🔧 CAMBIO (móvil): permite arrastrar sin bloquear scroll vertical */
+  touch-action: pan-y;
 }
 .ba img{
   position: absolute;
@@ -1349,13 +1350,12 @@ body{
   user-select: none;
   pointer-events: none;
 }
+
+/* Desktop (sin cambios): clip-path suave */
 .ba__after{
-  /* Se recorta dinámicamente con una variable CSS */
   clip-path: inset(0 calc(100% - var(--ba-x, 50%)) 0 0);
   transition: clip-path .08s linear;
 }
-
-/* Slider nativo invisible pero accesible */
 .ba__slider{
   position: absolute;
   inset: 0;
@@ -1364,24 +1364,20 @@ body{
   background: transparent;
   cursor: ew-resize;
 }
-.ba__slider::-webkit-slider-thumb{
-  appearance: none;
-  width: 36px; height: 36px; background: transparent; border: 0;
-}
-.ba__slider::-moz-range-thumb{
-  width: 36px; height: 36px; background: transparent; border: 0;
-}
+.ba__slider::-webkit-slider-thumb{ appearance: none; width: 36px; height: 36px; background: transparent; border: 0; }
+.ba__slider::-moz-range-thumb   { width: 36px; height: 36px; background: transparent; border: 0; }
 
-/* Línea y “botón” central */
 .ba__handle{
   position: absolute;
   top: 0;
-  left: var(--ba-x, 50%);
-  transform: translateX(-50%);
+  left: var(--ba-x, 50%);      /* <- se mueve con la variable */
+  transform: translateX(-50%); /* centrado exacto */
   width: 2px;
   height: 100%;
-  background: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.95);
   box-shadow: 0 0 0 1px rgba(0,0,0,.12);
+  z-index: 2;                  /* <- sobre las imágenes */
+  will-change: left, transform;
 }
 .ba__handle::after{
   content: "";
@@ -1392,15 +1388,27 @@ body{
   height: 44px;
   transform: translate(-50%, -50%);
   border-radius: 999px;
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.98);
   box-shadow: 0 4px 14px rgba(0,0,0,.18), inset 0 0 0 1px rgba(0,0,0,.08);
+  pointer-events: none;        /* no bloquea el slider */
 }
-/* Responsive: apílalas en móvil */
+
+/* =========================
+   SOLO MÓVIL (≤640px)
+   Optimiza interacción
+   ========================= */
 @media (max-width: 640px){
-    .tr-ba__title{
-      color: var(--brand-900);   
-      font-size: 26px;
-      line-height: 1.4;
+  .tr-ba__title{
+    color: var(--brand-900);
+    font-size: 26px;
+    line-height: 1.4;
+  }
+
+  /* 🔧 CAMBIO (móvil): evita repaints caros por clip-path al arrastrar
+     Bajamos la transición para que no acumule frames perdidos */
+  .ba__after{
+    transition: clip-path .04s linear;
+    will-change: clip-path; /* hint */
   }
 
 }
