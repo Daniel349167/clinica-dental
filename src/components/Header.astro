@@ -3,25 +3,35 @@ import LangSwitcher from "./LangSwitcher.astro";
 
 const { locale, currentPath } = Astro.props;
 
-// Navegación por idioma
+// Navegación por idioma (para escritorio se mantiene igual; para móvil añadimos Clínica/Contacto)
+// 🔧 CAMBIO: “Nosotros” -> “Equipo”. Añadimos “Clínica” y “Contacto” con href "#" (placeholders).
 const nav = {
   es: [
     ["/es", "Inicio"],
-    ["/es/nosotros", "Nosotros"],
+    ["/es/tratamientos", "Clínica"],           
+    ["/es/nosotros", "Nosotros"],  
+    ["/es/nosotros", "Equipo"],  
     ["/es/tratamientos", "Tratamientos"],
     ["/es/blog", "Blog"],
+    ["#", "Contacto"],           
   ],
   ca: [
     ["/ca", "Inici"],
-    ["/ca/nosotros", "Nosaltres"],
+    ["/ca/tratamientos", "Clínica"],          
+     ["/ca/nosotros", "Nosaltres"],   
+    ["/ca/nosotros", "Equip"],   
     ["/ca/tratamientos", "Tractaments"],
     ["/ca/blog", "Blog"],
+    ["#", "Contacte"],        
   ],
   en: [
     ["/en", "Home"],
-    ["/en/nosotros", "About"],
+    ["/en/tratamientos", "Clinic"],             
+    ["/en/nosotros", "About us"],
+    ["/en/nosotros", "Team"],    
     ["/en/tratamientos", "Treatments"],
     ["/en/blog", "Blog"],
+    ["#", "Contact"],         
   ],
 }[locale];
 
@@ -30,21 +40,61 @@ const texts = {
   es: {
     address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
     phoneLabel: "Teléfono",
+    phoneAbbr: "Tel.",
     bookCta: "PEDIR CITA",
+    bookCtaMobile:"CITAS",
+    bookDrawerCtaMobile: "Pedir Cita", // 🔧 CAMBIO (estética móvil)
     ariaLang: "Idioma",
+    emergencies: "Urgencias Dentales 9-24h",
   },
   ca: {
     address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
     phoneLabel: "Telèfon",
+    phoneAbbr: "Tel.",
     bookCta: "DEMANA CITA",
+    bookCtaMobile:"CITES",
+    bookDrawerCtaMobile: "Demana cita",
     ariaLang: "Idioma",
+    emergencies: "Urgències Dentals 9-24h",
   },
   en: {
     address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
     phoneLabel: "Phone",
+    phoneAbbr: "Tel.",
     bookCta: "BOOK NOW",
+    bookCtaMobile:"BOOK",
+    bookDrawerCtaMobile: "Book now",
     ariaLang: "Language",
+    emergencies: "Dental Emergencies 9-24h",
   },
+}[locale];
+
+// Submenú de tratamientos (acordeón móvil)
+const treatments = {
+  es: [
+    ["/es/tratamientos/ortodoncia", "Ortodoncia y alineadores"],
+    ["/es/tratamientos/implantes", "Implantes dentales"],
+    ["/es/tratamientos/estetica-dental", "Estética dental"],
+    ["/es/tratamientos/rehabilitacion-oral", "Rehabilitación oral"],
+    ["/es/tratamientos/endodoncia", "Endodoncia"],
+    ["/es/tratamientos/odontopediatria", "Odontopediatría"],
+  ],
+  ca: [
+    ["/ca/tratamientos/ortodoncia", "Ortodòncia i alineadors"],
+    ["/ca/tratamientos/implantes", "Implants dentals"],
+    ["/ca/tratamientos/estetica-dental", "Estètica dental"],
+    ["/ca/tratamientos/rehabilitacion-oral", "Rehabilitació oral"],
+    ["/ca/tratamientos/endodoncia", "Endodòncia"],
+    ["/ca/tratamientos/odontopediatria", "Odontopediatria"],
+  ],
+  en: [
+    ["/en/tratamientos/ortodoncia", "Orthodontics & aligners"],
+    ["/en/tratamientos/implantes", "Dental implants"],
+    ["/en/tratamientos/estetica-dental", "Cosmetic dentistry"],
+    ["/en/tratamientos/rehabilitacion-oral", "Oral rehabilitation"],
+    ["/en/tratamientos/endodoncia", "Endodontics"],
+    ["/en/tratamientos/odontopediatria", "Pediatric dentistry"],
+  ],
 }[locale];
 ---
 
@@ -53,13 +103,11 @@ const texts = {
   <div class="topbar">
     <div class="container topbar__inner">
       <div class="contact">
-        <!-- Dirección (se oculta en móvil por CSS) -->
         <span class="addr">{texts.address}</span>
         <span class="sep">|</span>
-
-        <!-- Teléfono: en móvil ocultamos la etiqueta y mostramos icono + número -->
         <span class="tel">
           <span class="tel-label">{texts.phoneLabel}:</span>
+          <span class="tel-short" aria-hidden="true">{texts.phoneAbbr}</span>
           <span class="telnum">
             <a class="tel-link" href="tel:+34614375792">+34 614 37 57 92</a>
           </span>
@@ -75,13 +123,63 @@ const texts = {
   <!-- MAINBAR -->
   <div class="mainbar">
     <div class="container mainbar__inner">
+      <!-- CTA móvil a la izquierda -->
+      <a class="cta cta--mobile" href={`${nav[0][0]}/cita`}>{texts.bookCtaMobile}</a>
+
+      <!-- Logo -->
       <a href={nav[0][0]} class="logo" aria-label="Dental Sueca">
-        <img src="/assets/logo.svg" alt="Dental Sueca" />
+        <picture>
+          <source srcset="/assets/logo-mark.svg" media="(max-width: 640px)" />
+          <img src="/assets/logo.svg" alt="Dental Sueca" />
+        </picture>
       </a>
 
       <!-- Menú principal -->
       <nav id="site-nav" class="nav" aria-label="Principal">
-        {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+        <!-- 🔧 CAMBIO: estructura del drawer solo aplica en móvil (CSS). En desktop este bloque se comporta como la nav normal. -->
+
+       <!-- Inicio -->
+      <a href={nav[0][0]}>{nav[0][1]}</a>
+
+      <!-- Nosotros (SOLO DESKTOP)  👉 nav[2] -->
+      <a class="only-desktop" href={nav[2][0]}>{nav[2][1]}</a>
+
+      <!-- Tratamientos (link de ESCRITORIO)  👉 nav[4] -->
+      <a class="link-trat--desktop" href={nav[4][0]}>{nav[4][1]}</a>
+
+      <!-- Acordeón TRATAMIENTOS (MÓVIL)  👉 nav[4] -->
+      <details class="nav-acc">
+        <summary>
+          {nav[4][1].toUpperCase()}
+          <svg class="chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </summary>
+        <ul>
+          {treatments.map(([href, label]) => (
+            <li><a href={href}>{label}</a></li>
+          ))}
+        </ul>
+      </details>
+
+      <!-- Clínica / Equipo / Blog / Contacto (solo lo indicado en móvil) -->
+      <a class="only-mobile" href={nav[1][0]}>{nav[1][1]}</a>  <!-- Clínica (MÓVIL) -->
+      <a class="only-mobile" href={nav[3][0]}>{nav[3][1]}</a>  <!-- Equipo (MÓVIL) -->
+      <a href={nav[5][0]}>{nav[5][1]}</a>                      <!-- Blog (AMBOS) -->
+      <a class="only-mobile" href={nav[6][0]}>{nav[6][1]}</a>  <!-- Contacto (MÓVIL) -->
+
+        <!-- Botonera inferior del drawer (solo móvil) -->
+        <div class="drawer-actions">
+          <a class="btn--ghost" href={`${nav[0][0]}/urgencias`}>{texts.emergencies}</a>
+          <a class="btn--cita" href={`${nav[0][0]}/cita`}>{texts.bookDrawerCtaMobile}</a>
+        </div>
+
+        <!-- 🔧 CAMBIO: botón de cierre dentro del drawer (móvil) -->
+        <button class="drawer-close" aria-label="Cerrar menú">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
       </nav>
 
       <!-- Botón hamburguesa (solo móvil) -->
@@ -97,8 +195,8 @@ const texts = {
         </svg>
       </button>
 
-      <!-- CTA (oculto en móvil vía CSS) -->
-      <a class="cta" href={`${nav[0][0]}/cita`}>{texts.bookCta}</a>
+      <!-- CTA escritorio (oculto en móvil) -->
+      <a class="cta cta--desktop" href={`${nav[0][0]}/cita`}>{texts.bookCta}</a>
     </div>
   </div>
 
@@ -113,6 +211,7 @@ const texts = {
     const btn = header?.querySelector('.hamburger');
     const nav = header?.querySelector('#site-nav');
     const overlay = header?.querySelector('.nav-overlay');
+    const closeBtn = header?.querySelector('.drawer-close'); // 🔧 CAMBIO
     if (!btn || !nav || !overlay) return;
 
     function open() {
@@ -133,10 +232,11 @@ const texts = {
     });
     overlay.addEventListener('click', close);
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    closeBtn?.addEventListener('click', close); // 🔧 CAMBIO
   })();
 </script>
 
-<!-- Estilos globales -->
 <style is:global>
 /* ===== Topbar (desktop base) ===== */
 .topbar{
@@ -150,17 +250,16 @@ const texts = {
 }
 .contact{
   display:flex;
-  align-items:baseline;      /* desktop */
+  align-items:baseline;
   gap:10px;
   white-space:nowrap;
   line-height:1.1;
 }
 .topbar .contact .telnum { text-decoration:none !important; color:inherit; cursor:default; }
-.topbar .contact .telnum:hover { text-decoration:none; }
-.contact span{ display:inline-block; }
 .contact .sep{ color:#90a2b5; }
 .contact .tel{ font-size:14px; }
 .contact .telnum{ font-weight:400; color:#2d4a67; }
+.topbar .tel-short{ display:none; margin-right:6px; }
 
 /* ===== Mainbar (desktop base) ===== */
 .mainbar{
@@ -173,7 +272,7 @@ const texts = {
   gap:24px;
 }
 .logo{ display:inline-flex; align-items:center; text-decoration:none; margin-right:96px; }
-.logo img{ height:40px; width:auto; display:block; margin-left:20px; }
+.logo img{ height:40px; width:auto; display:block; margin-left:0px; }
 
 .nav{
   display:flex; align-items:center;
@@ -191,6 +290,7 @@ const texts = {
 }
 .nav > a:hover{ color:var(--brand-500); }
 
+/* CTAs */
 .cta,
 .cta:link,
 .cta:visited{
@@ -208,6 +308,8 @@ const texts = {
   transition:filter .15s ease-in-out, transform .06s ease-in-out;
 }
 .cta:active{ transform:translateY(1px); }
+.cta.cta--mobile{ display:none; }
+.cta--desktop{ display:inline-block; }
 
 .hamburger{
   display:none;
@@ -227,199 +329,179 @@ const texts = {
 }
 .site-header.is-open .nav-overlay{ display:block; }
 
-/* Enlaces del teléfono cuando son tocables */
-.topbar .tel-link{ text-decoration:none; color:inherit; }
-.topbar .tel-link:hover{ text-decoration:none; }
+/* Acordeón y botones solo para móvil; en escritorio oculto */
+.nav-acc{ display:none; }
+.drawer-actions{ display:none; }
+.link-trat--desktop{ display:inline-block; }
+.drawer-close{
+  display: none;            
+}
+/* Por defecto (DESKTOP) */
+#site-nav > a.only-mobile  { display: none !important; }
+#site-nav > a.only-desktop { display: inline-block !important; }
+
 
 /* ====== Móvil ≤640px ====== */
-/* ====== Móvil ≤640px (versión consolidada) ====== */
 @media (max-width: 640px){
 
-  /* ---------- MAINBAR (logo + hamburguesa) ---------- */
+  #site-nav > a.only-mobile  { display: block !important; }
+#site-nav > a.only-desktop { display: none !important; }
+
   .mainbar__inner{
     height:56px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
     gap:8px;
     overflow:hidden;
-    justify-content:space-between;
   }
-  .logo{ margin-right:0; flex:0 0 auto; }
-  .logo img{ height:28px; margin-left:0; transform:translateX(-3px); }
-  .hamburger{ display:inline-flex; align-items:center; justify-content:center; padding:6px; }
+  .cta.cta--mobile{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    font-size:14px;
+    border-radius:8px;
+    margin-left: 15px;
+  }
+  .cta--desktop{ display:none !important; }
 
-  /* ---------- NAV como drawer lateral ---------- */
+  .logo{ margin:0; justify-self:center; }
+  .logo img{ height:38px; margin:0;}
+  .hamburger{ display:inline-flex; align-items:center; justify-content:center; padding:6px; margin-right: 10px;}
+
+  /* ===== Drawer lateral (idéntico a maqueta) ===== */
   #site-nav{
-    position:fixed;
-    top:0; right:0;
-    height:100dvh;
-    width:min(78vw,360px);
-    display:flex; flex-direction:column;
-    gap:12px;
-    padding:80px 20px 20px;
-    background:#fff;
-    border-left:1px solid #eef3f8;
-    box-shadow:-12px 0 30px rgba(0,0,0,.12);
-    transform:translateX(100%);
-    transition:transform .24s ease;
-    z-index:999;
-    overflow-y:auto;
+  position: fixed;
+  top: 0; right: -50px;
+  height: 100dvh;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;   /* <-- clave para evitar centrado */
+  gap: 6px;
+  padding: 68px 12px 14px;
+  background: #fff;
+  border-left: 1px solid rgba(11,27,42,.06);
+  transform: translateX(100%);
+  box-shadow: none;
+  visibility: hidden;
+  transition: transform .24s ease, box-shadow .12s ease, visibility 0s linear .24s;
+  z-index: 999;
+  overflow-y: auto;
+}
+  .site-header.is-open #site-nav{
+    transform: translateX(0%);
+    box-shadow: -12px 0 30px rgba(0,0,0,.12);
+    visibility: visible;
+    transition: transform .24s ease, box-shadow .12s ease, visibility 0s;
   }
-  #site-nav > a{
-    font-size:18px;
-    padding:10px 2px;
-    text-decoration:none;
-    color:#1f2f46;
-    border-bottom:1px solid #f1f4f8;
-  }
-  #site-nav > a:last-child{ border-bottom:0; }
-  .site-header.is-open #site-nav{ transform:translateX(0%); }
 
-  /* ---------- TOPBAR (teléfono izq. + idiomas der.) ---------- */
-  /* Ocultar dirección, separador y etiqueta "Teléfono:" en móvil */
+  /* Enlaces listados alineados a la izquierda (como imagen) */
+  #site-nav > a{
+    display:block;
+    font-size:15px;                 /* 🔧 CAMBIO */
+    line-height:1.4;                /* 🔧 CAMBIO */
+    padding:10px 10px;              /* 🔧 CAMBIO */
+    color:#0b1b2a;
+    text-decoration:none;
+    border-radius:8px;
+    border:1px solid transparent;
+    background:transparent;
+  }
+  #site-nav > a + a{ margin-top:4px; }
+
+  /* Acordeón TRATAMIENTOS */
+  .link-trat--desktop{ display:none !important; }
+  .nav-acc{ display:block; }
+
+  .nav-acc summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:14px;                 /* 🔧 CAMBIO */
+    padding:10px 10px;              /* 🔧 CAMBIO */
+    margin:6px 0 2px;
+    border-radius:8px;
+    color:#0b1b2a;
+    background:transparent;
+  }
+  .nav-acc summary::-webkit-details-marker{ display:none; }
+  .nav-acc .chev{ transition: transform .18s ease; flex:0 0 auto; }
+  .nav-acc[open] .chev{ transform: rotate(180deg); }
+
+  .nav-acc ul{ margin:4px 0 8px 0; padding:0 0 0 6px; list-style:none; }
+  .nav-acc li + li{ margin-top:6px; }
+  .nav-acc a{
+    display:block;
+    font-size:14px;
+    font-weight:400;
+    color:#0b1b2a;
+    text-decoration:none;
+    padding:8px 10px;
+    border-radius:8px;
+  }
+  .nav-acc a:hover,
+  .nav-acc a:focus-visible{
+    background: var(--brand-50, #e9f9ff);
+    outline:none;
+  }
+
+  /* Botonera inferior */
+  .drawer-actions{
+    display:grid;
+    gap:22px;
+    padding:6px 4px 10px;
+    justify-items: start;
+  }
+  .btn--cita{
+    display:flex;
+    align-items:center;
+    height:30px;                    /* 🔧 CAMBIO */
+    padding:0 12px;
+    font-weight: 600;
+    font-size:15px;
+    text-decoration:none;
+    background:#fff;
+    color:var(--brand-900);
+    border:1px solid rgba(11,27,42,.18);
+  }
+  .btn--ghost{
+    background:#fff;
+    color:#0b1b2a;
+    padding:4px 12px;
+    font-size: 15px;
+    border:1px solid rgba(11,27,42,.18);
+    text-decoration:none;
+  }
+  .chev{
+    margin-left: 36px;
+  }
+  /* Botón X de cierre */
+  .drawer-close{                   /* 🔧 CAMBIO */
+    position:absolute;
+    top:10px; right:10px;
+    width:32px; height:32px;
+    border:1px solid rgba(11,27,42,.18);
+    border-radius:8px;
+    background:#fff;
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:0;
+    color:#0b1b2a;
+  }
   .topbar .addr,
   .topbar .sep,
-  .topbar .tel-label{ display:none !important; }
-
-  .topbar__inner{
-    height:42px;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:flex-start;   /* contacto a la izq. */
-    gap:12px;
-    padding:6px 12px;
-    flex-wrap:nowrap;             /* evita salto de fila */
+  .topbar .tel-label{
+    display: none !important;     /* ocultamos dirección, separador y "Teléfono:" */
   }
 
-  /* Contacto (teléfono) SIEMPRE a la izquierda */
-  .topbar .contact{
-    order:0;
-    margin-right:0;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    white-space:nowrap;
-    line-height:1;
-    font-size:14px;
-  }
-
-  /* Idiomas empujados a la derecha y más pequeños */
-  .topbar .langs{
-    order:10;
-    margin-left:auto;
-    transform:translateY(0);
-  }
-  .topbar .langs a{
-    font-size:12px;       /* ↓ más chico */
-    line-height:1;
-  }
-
-  /* Teléfono: número un poco más chico y el icono un pelín más arriba */
-  .topbar .telnum{
-    display:inline-flex;
-    align-items:flex-end; /* baja el texto respecto al alto del icono */
-    gap:6px;
-    font-weight:600;
-    font-size:13px;       /* ↓ más chico */
-    color:var(--text-900, #0b1b2a);
-    line-height:1;
-    transform:translateY(1px); /* baja visualmente el bloque del número */
-  }
-  
-
-  /* Nav horizontal (desktop) no debe afectar en móvil */
-  .nav{ margin-left:0; margin-right:0; gap:0; }
-
-  /* Lateral del mainbar */
-  .mainbar .container{ padding-left:8px; padding-right:12px; }
-
-  /* CTA oculta en móvil */
-  .cta{ display:none !important; }
-}
-
-@media (max-width: 640px){
-.topbar .telnum::before{
-    content:"";
-    width:14px; height:14px; display:inline-block;
-    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f2741' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 16.92v3a2 2 0 0 1-2.18 2A19 19 0 0 1 3.09 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12 .86 .33 1.7 .62 2.5a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.67-1.17a2 2 0 0 1 2.11-.45c.8 .29 1.64 .5 2.5 .62A2 2 0 0 1 22 16.92z'/></svg>")
-              center/contain no-repeat;
-    transform:translateY(-1px);   /* ↑ sube levemente SOLO el icono */
-  }
-/* Iconos ligeros en la lista del drawer */
-/* ===== Drawer móvil “chivo” (mejoras visuales) ===== */
-#site-nav{
-  width: 250px;
-  padding: 24px 18px;                  /* controlamos padding aquí */
- background:
-    radial-gradient(420% 300% at 120% -60%, rgba(0, 0, 0, .07) 0%, rgba(0, 0, 0, 0.03) 60%, transparent 95%),
-    linear-gradient(180deg, var(--brand-50, #e9f9ff) 0%, var(--bg, #ffffff) 80%);
-  border-left: 1px solid rgba(11,27,42,.06);
-
-}
-
-/* Items del menú con look de “cards” ligeras */
-#site-nav > a{
-  display: flex; align-items: center; gap: 10px;
-  font-size: 18px; font-weight: 600;
-  padding: 14px 12px;
-  color: var(--text-900, #0b1b2a); text-decoration: none;
-  border-radius: 12px; border: 1px solid transparent;
-  background: transparent;
-  transition: background .2s ease, border-color .2s ease, transform .06s ease;
-}
-#site-nav > a[href*="/tratamientos"] {
-  gap: 7px;
-}
-#site-nav > a + a{ margin-top: 6px; }
-#site-nav > a:hover,
-#site-nav > a:focus-visible{
-  background: var(--brand-50, #e9f9ff);
-  border-color: color-mix(in oklab, var(--brand-500, #00b1ef) 35%, transparent);
-  outline: none;
-}
-#site-nav > a:active{ transform: translateY(1px); }
-
-/* Activo con highlight suave y “dot” a la derecha */
-#site-nav > a.is-active{
-  background: linear-gradient(180deg, #fff 0%, var(--brand-50, #e9f9ff) 100%);
-  border-color: color-mix(in oklab, var(--brand-500, #00b1ef) 45%, transparent);
-}
-#site-nav > a.is-active::after{
-  content:""; margin-left:auto; width:6px; height:6px; border-radius:50%;
-  background: var(--brand-500, #00b1ef);
-}
-
-/* ===== Iconografía consistente (con tu paleta) ===== */
-#site-nav > a{ position: relative; padding-left: 12px; }
-#site-nav > a::before{
-  content:""; width:20px; height:20px; flex:0 0 20px;
-  background-size: contain; background-repeat: no-repeat; background-position: center;
-  opacity: .95;
-}
-
-/* Home */
-/* Home */
-#site-nav > a[href$="/es"]::before,
-#site-nav > a[href$="/ca"]::before,
-#site-nav > a[href$="/en"]::before{
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2337516d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpath d='M9 22V12h6v10'/%3E%3C/svg%3E");
-}
-
-/* Nosotros */
-#site-nav > a[href*="/nosotros"]::before{
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2337516d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3Cpath d='M5.5 21a7 7 0 0 1 13 0'/%3E%3C/svg%3E");
-}
-
-/* Tratamientos (nuevo icono — diente con cruz médica, en negro) */
-#site-nav > a[href*="/tratamientos"]::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b1b2a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2c3 0 6 2.4 6 6.3 0 5.4-2 11.7-6 11.7S6 13.7 6 8.3C6 4.4 9 2 12 2z'/%3E%3Cpath d='M10.5 9h3M12 7.5v3'/%3E%3C/svg%3E");
+  .topbar__inner{ height:42px; display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:12px; padding:6px 12px; flex-wrap:nowrap; } .topbar .contact{ order:0; margin-right:0; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; line-height:1; transform:translateY(1px); } .topbar .langs{ order:10; margin-left:auto; transform:translateY(0); } .topbar .langs a{ font-size:12px; line-height:1; } .topbar .tel-short{ display:inline-block !important; color:var(--text-900, #0b1b2a); margin-right:4px; } .topbar .telnum{ display:inline-flex; align-items:baseline; gap:6px; font-weight:600; font-size:13px; color:var(--text-900, #0b1b2a); line-height:1; } .topbar .telnum::before{ content:none !important; }
+  /* Enlaces del teléfono tocables */
 }
 
 
-/* Blog */
-#site-nav > a[href*="/blog"]::before{
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2337516d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='16' height='16' rx='2'/%3E%3Cpath d='M8 9h8M8 13h8M8 17h5'/%3E%3C/svg%3E");
-}
-
-
-}
+.topbar .tel-link{ text-decoration:none; color:inherit; }
+.topbar .tel-link:hover{ text-decoration:none; }
 </style>

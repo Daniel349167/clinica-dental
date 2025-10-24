@@ -80,7 +80,7 @@ const ux = {
   en: { sending: 'Sending…', ok: 'Done! We received your request. We will contact you shortly.', fail: 'We could not send it. Please try again.' },
 }[locale];
 
-const privacyHref = `/${locale}/politicas-de-privacidad`;
+const privacyHref = `/${locale}/privacidad`;
 ---
 
 <form
@@ -140,7 +140,7 @@ const privacyHref = `/${locale}/politicas-de-privacidad`;
 
   <div class="formc__checks">
     <label class="formc__check">
-      <input type="checkbox" />
+      <input type="checkbox" id="cita_addcal" />
       <span>{i18n.addCalendar}</span>
     </label>
 

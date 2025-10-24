@@ -7,31 +7,15 @@ const {
   alternates
 } = Astro.props;
 
-/* === NUEVO: títulos y descripciones por idioma === */
+/* Localización por defecto */
 const i18n = {
-  es: {
-    title: "Clínica Dental",
-    description: "Odontología integral en Barcelona",
-  },
-  en: {
-    title: "Dental Clinic",
-    description: "Comprehensive dentistry in Barcelona",
-  },
-  ca: {
-    title: "Clínica Dental",
-    description: "Odontologia integral a Barcelona",
-  },
+  es: { title: "Clínica Dental", description: "Odontología integral en Barcelona" },
+  en: { title: "Dental Clinic", description: "Comprehensive dentistry in Barcelona" },
+  ca: { title: "Clínica Dental", description: "Odontologia integral a Barcelona" },
 };
 
-/*
-  Lógica:
-  - Si el layout recibe un `title` distinto al *placeholder* por defecto ("Clínica Dental"),
-    respetamos ese valor (útil para páginas con título propio).
-  - Si recibe el placeholder por defecto, usamos el del idioma.
-*/
 const isDefaultTitle = title === "Clínica Dental";
 const isDefaultDesc  = description === "Odontología integral en Barcelona";
-
 const pageTitle       = isDefaultTitle ? (i18n[locale]?.title ?? title) : title;
 const pageDescription = isDefaultDesc  ? (i18n[locale]?.description ?? description) : description;
 ---
@@ -40,23 +24,25 @@ const pageDescription = isDefaultDesc  ? (i18n[locale]?.description ?? descripti
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- USO DEL TÍTULO Y DESCRIPTION LOCALIZADOS -->
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Preload del héroe -->
     <link rel="preload" as="image" href="/assets/hero.png" />
 
-    <!-- Preconexiones para Google Maps -->
+    <!-- Preconexiones generales -->
     <link rel="dns-prefetch" href="https://www.google.com" />
     <link rel="preconnect" href="https://www.google.com" crossorigin />
     <link rel="dns-prefetch" href="https://maps.googleapis.com" />
     <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
     <link rel="dns-prefetch" href="https://maps.gstatic.com" />
     <link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
+
+    <!-- Preconexiones Crisp -->
+    <link rel="dns-prefetch" href="https://client.crisp.chat" />
+    <link rel="preconnect" href="https://client.crisp.chat" crossorigin />
+    <link rel="preconnect" href="https://storage.crisp.chat" crossorigin />
+    <link rel="preconnect" href="https://client.relay.crisp.chat" crossorigin />
 
     {alternates && (
       <>
@@ -71,88 +57,157 @@ const pageDescription = isDefaultDesc  ? (i18n[locale]?.description ?? descripti
   <body>
     <slot />
 
-    <!-- Botón personalizado -->
+    <!-- FAB del chat -->
     <button id="chat-fab" class="chat-fab" aria-label="Abrir chat">
       <img src="/assets/icons/chat.svg" alt="Chat" />
     </button>
 
-    <!-- Script de Crisp -->
+    <!-- Banner de cookies (sin fondo) -->
+    <div id="cookie-banner" class="ck-banner" hidden role="dialog" aria-labelledby="ck-title">
+      <div class="ck-content">
+        <h2 id="ck-title">Tu privacidad nos importa</h2>
+        <p class="ck-text">
+          Usamos cookies para funcionalidades opcionales como el chat y contenido de terceros.
+          Solo se activarán si aceptas. Puedes cambiar tu decisión cuando quieras.
+        </p>
+        <div class="ck-actions">
+          <button id="ck-reject" class="btn btn--ghost" type="button">Rechazar</button>
+          <button id="ck-accept" class="btn" type="button">Aceptar</button>
+        </div>
+        <p class="ck-links">
+          <a href="/es/cookies">Política de cookies</a> ·
+          <a href="/es/privacidad">Política de privacidad</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- =============== SCRIPTS UNIFICADOS =============== -->
     <script is:inline>
-      window.$crisp = window.$crisp || [];
-      window.$crisp.push(["config", "hide:launcher", true]);
-      window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
-      (function () {
-        var d = document;
-        var s = d.createElement("script");
-        s.src = "https://client.crisp.chat/l.js";
-        s.async = true;
-        s.defer = true;
-        d.head.appendChild(s);
-      })();
-    </script>
-
-    <!-- Botón personalizado: abrir/cerrar -->
-    <script is:inline>
-      function nukeCrispLauncher() {
-        document
-          .querySelectorAll(".cc-yv368 .cc-1kr6o .cc-18ov6 .cc-1qbp0")
-          .forEach((el) => el.remove());
-      }
-
-      const observer = new MutationObserver(nukeCrispLauncher);
-      observer.observe(document.body, { childList: true, subtree: true });
-
-      window.addEventListener("crisp:ready", () => {
-        nukeCrispLauncher();
-        setTimeout(nukeCrispLauncher, 500);
-      });
-
       document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById("chat-fab");
-        const toggleChat = () => {
-          if (!window.$crisp || typeof window.$crisp.push !== "function") {
-            setTimeout(toggleChat, 250);
+        // ---- Constantes/refs
+        const LS_KEY   = "cookieConsent";     // preferencia global persistente
+        const $fab     = document.getElementById("chat-fab");
+        const $banner  = document.getElementById("cookie-banner");
+        const $accept  = document.getElementById("ck-accept");
+        const $reject  = document.getElementById("ck-reject");
+
+        // ---- Helpers de almacenamiento (seguros)
+        function getConsent(){
+          try{ const raw = localStorage.getItem(LS_KEY); return raw? JSON.parse(raw) : null; }
+          catch(e){ console.warn("localStorage get:", e.message); return null; }
+        }
+        function setConsent(status){
+          const payload = { status, necessary:true, ts:new Date().toISOString() };
+          try{ localStorage.setItem(LS_KEY, JSON.stringify(payload)); } catch(e){ console.warn("localStorage set:", e.message); }
+          return payload;
+        }
+
+        // ===== CRISP loader (Promise) =====
+        function ensureCrispLoaded(){
+          if (window.$crisp && typeof window.$crisp.push === "function") return Promise.resolve();
+          if (window.__crispLoading instanceof Promise) return window.__crispLoading;
+
+          window.$crisp = window.$crisp || [];
+          window.$crisp.push(["config", "hide:launcher", true]);
+          window.CRISP_WEBSITE_ID = "b41a23ca-7594-4f9d-aaa6-3b7ca9cb3157";
+
+          window.__crispLoading = new Promise((resolve, reject) => {
+            const s = document.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = true; s.defer = true;
+            s.onload = () => resolve();
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+
+          return window.__crispLoading;
+        }
+
+        // ---- Banner (sin fondo)
+        function openBanner(){ $banner.hidden = false; }
+        function closeBanner(){ $banner.hidden = true;  }
+
+        // Exponer para otros scripts
+        window.showCookieBanner = openBanner;
+
+        // ---- Estado inicial
+        // => Mostrar SIEMPRE si no hay decisión o si es "rejected"
+        const prev = getConsent();
+        const hasAccepted = prev?.status === "accepted";
+        if (!prev || prev.status === "rejected") {
+          openBanner();
+        } else if (hasAccepted) {
+          // Precargar Crisp en idle para que el primer clic sea inmediato
+          (window.requestIdleCallback ? requestIdleCallback : (fn)=>setTimeout(fn, 800))(
+            () => { ensureCrispLoaded().catch(()=>{}); }
+          );
+        }
+
+        // ---- Acciones del banner
+        $accept?.addEventListener("click", (e)=>{
+          e.preventDefault(); e.stopPropagation();
+          setConsent("accepted");           // consentimiento global persistente
+          closeBanner();
+          ensureCrispLoaded().then(() => {
+            window.dispatchEvent(new Event("cookie:accepted"));
+          }).catch(()=>{});
+        });
+
+        $reject?.addEventListener("click", (e)=>{
+          e.preventDefault(); e.stopPropagation();
+          setConsent("rejected");           // rechazo global; se seguirá mostrando en cada carga
+          closeBanner();
+          window.dispatchEvent(new Event("cookie:rejected"));
+        });
+
+        // ---- Chat helpers
+        function openChat(){
+          try {
+            window.$crisp.push(["do","chat:show"]);
+            window.$crisp.push(["do","chat:toggle"]);
+          } catch {}
+        }
+
+        // 👉 NUEVO: “consentimiento por acción” SOLO DE UNA VEZ (sesión)
+        // - Si NO hay "accepted" global, NO tocamos localStorage.
+        // - Marcamos un flag temporal de sesión, cargamos el script y abrimos.
+        function allowOneTimeCrispForThisSession(){
+          try { sessionStorage.setItem("temp:crisp", "1"); } catch {}
+        }
+        function hasOneTimeCrispThisSession(){
+          try { return sessionStorage.getItem("temp:crisp") === "1"; } catch { return false; }
+        }
+
+        // ---- FAB del chat
+        $fab?.addEventListener("click", ()=>{
+          const global = getConsent();         // puede ser null / accepted / rejected
+          const globallyAccepted = global?.status === "accepted";
+
+          if (globallyAccepted) {
+            // Ya había consentimiento -> aseguramos script listo y abrimos
+            ensureCrispLoaded().then(openChat).catch(()=>{});
             return;
           }
-          window.$crisp.push(["do", "chat:show"]);
-          window.$crisp.push(["do", "chat:toggle"]);
-        };
-        btn.addEventListener("click", toggleChat);
+
+          // Si NO hay aceptado global (null o rejected):
+          // -> NO cambiamos localStorage
+          // -> Permitimos uso puntual (solo esta sesión) y NO ocultamos el banner
+          allowOneTimeCrispForThisSession();
+          ensureCrispLoaded().then(() => {
+            // Nota: NO hacemos closeBanner(); el banner sigue visible
+            window.dispatchEvent(new Event("cookie:one-time:crisp"));
+            openChat();
+          }).catch(()=>{});
+        });
+
+        // ---- Ocultar launcher nativo de Crisp si aparece
+        function nukeCrispLauncher() {
+          document.querySelectorAll(".cc-yv368 .cc-1kr6o .cc-18ov6 .cc-1qbp0").forEach(el => el.remove());
+        }
+        const observer = new MutationObserver(nukeCrispLauncher);
+        observer.observe(document.body, { childList:true, subtree:true });
+        window.addEventListener("crisp:ready", () => { nukeCrispLauncher(); setTimeout(nukeCrispLauncher, 500); });
       });
     </script>
-
-    <style>
-      .chat-fab {
-        position: fixed;
-        right: 18px;
-        bottom: 22px;
-        width: 72px;
-        height: 72px;
-        border: none;
-        border-radius: 50%;
-        background: transparent;
-        z-index: 2147483647;
-        cursor: pointer;
-        display: grid;
-        place-items: center;
-        transition: transform 0.2s ease;
-      }
-      .chat-fab img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-      .chat-fab:hover {
-        transform: translateY(-1px);
-      }
-      @media (max-width: 640px) {
-        .chat-fab {
-          right: 5px;
-          bottom: 10px;
-          width: 60px;
-          height: 60px;
-        }
-      }
-    </style>
   </body>
 </html>

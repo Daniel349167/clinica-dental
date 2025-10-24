@@ -44,7 +44,11 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
         <h2 class="about__title">Clínica Dental Sueca</h2>
         <p class="lead">Tu sonrisa, tu mejor carta de presentación.</p>
 
-        <p>En nuestra clínica dental trabajamos para que cada paciente disfrute de una sonrisa sana, estética y natural. Sabemos que no es solo cuestión de dientes, sino de confianza, bienestar y seguridad personal.</p>
+        <p class="about__confidence">
+          En nuestra clínica dental trabajamos para que cada paciente disfrute de una sonrisa sana, estética y natural.
+          <span class="hide-mobile">Sabemos que no es solo cuestión de dientes, sino de confianza, bienestar y seguridad personal.</span>
+        </p>
+
 
         <p>Unimos innovación tecnológica con la experiencia de nuestros especialistas para ofrecerte tratamientos modernos, eficaces y adaptados a ti. Nuestro espacio está diseñado para transmitirte calma y confianza, con un enfoque claro: cuidar de tu salud y realzar tu mejor versión.</p>
 
@@ -245,19 +249,18 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
     <button class="location__placeholder" id="mapLoader" type="button"
       aria-label="Cargar mapa interactivo">
       <img
-        src="/assets/mapa-placeholder.jpg"
+        src="/assets/mapa-placeholder.png"
         alt="Mapa de la zona de la clínica (pulsa para cargar el mapa)"
         loading="lazy"
         decoding="async"
       />
-      <span class="location__pill">Cargar mapa</span>
     </button>
 
     <!-- Aquí se inyecta el iframe cuando el usuario hace clic o entra al viewport -->
     <div id="mapMount" class="location__mount" hidden></div>
 
     <!-- Tarjeta info: se superpone en desktop y cae debajo en mobile -->
-    <aside class="location__card">
+    <aside class="location__card" data-hidden="true">
       <h3>Encuéntranos en:</h3>
       <p>
         C. de Muntaner 555, Esc. A, Planta 3 - 2,<br>
@@ -357,10 +360,23 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
 </style>
 
 <script is:inline>
-  // Mapa: inyección diferida (clic o al entrar al viewport)
-  const btn = document.getElementById('mapLoader');
+  // --- Elementos
+  const btn   = document.getElementById('mapLoader');
   const mount = document.getElementById('mapMount');
+  const CARD  = document.querySelector('.location__card');
+
+  // --- Constantes
   const SRC = "https://www.google.com/maps?q=41.4050801,2.1352314&z=15&output=embed";
+  const CONSENT_KEY = "cookieConsent";
+
+  // --- Helpers
+  function getConsent(){
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY) || "null"); }
+    catch { return null; }
+  }
+  function hasAccepted(){ return getConsent()?.status === "accepted"; }
+
+  function showCard(){ CARD?.removeAttribute('data-hidden'); }
 
   function loadMap(){
     if (!mount || mount.dataset.loaded) return;
@@ -376,13 +392,28 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
     btn?.remove();
   }
 
-  btn?.addEventListener('click', loadMap);
+  // Estado inicial de la tarjeta (si ya había aceptado antes)
+  if (hasAccepted()) showCard();
 
+  // Al aceptar desde el banner (evento emitido desde BaseLayout)
+  window.addEventListener('cookie:accepted', () => {
+    showCard();
+    // el IO de abajo auto-cargará si ya está en viewport
+  });
+
+  // ✅ Clic en placeholder: SIEMPRE mostrar tarjeta y cargar mapa
+  //    (sin abrir el banner, aunque no haya consentimiento global)
+  btn?.addEventListener('click', () => {
+    showCard();
+    loadMap();
+  });
+
+  // Auto-carga por viewport: SOLO si hay consentimiento previo (prudencia)
   const section = document.querySelector('.location');
   if (section) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
+        if (e.isIntersecting && hasAccepted()) {
           loadMap();
           io.disconnect();
         }
@@ -391,3 +422,5 @@ const alternates = { es:'/es/', ca:'/ca/', en:'/en/' };
     io.observe(section);
   }
 </script>
+
+
