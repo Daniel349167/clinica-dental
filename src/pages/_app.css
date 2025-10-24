@@ -1353,7 +1353,8 @@ body{
 
 /* Desktop (sin cambios): clip-path suave */
 .ba__after{
-  clip-path: inset(0 calc(100% - var(--ba-x, 50%)) 0 0);
+  /* Recorta desde la IZQUIERDA → el “después” aparece a la DERECHA */
+  clip-path: inset(0 0 0 var(--ba-x, 50%));
   transition: clip-path .08s linear;
 }
 .ba__slider{
@@ -1367,6 +1368,13 @@ body{
 .ba__slider::-webkit-slider-thumb{ appearance: none; width: 36px; height: 36px; background: transparent; border: 0; }
 .ba__slider::-moz-range-thumb   { width: 36px; height: 36px; background: transparent; border: 0; }
 
+.ba.is-dragging .ba__after{
+  transition: none !important;
+}
+.ba.is-dragging .ba__handle{
+  transition: none !important;
+}
+
 .ba__handle{
   position: absolute;
   top: 0;
@@ -1378,6 +1386,7 @@ body{
   box-shadow: 0 0 0 1px rgba(0,0,0,.12);
   z-index: 2;                  /* <- sobre las imágenes */
   will-change: left, transform;
+  transition: transform .08s linear, left .08s linear;
 }
 .ba__handle::after{
   content: "";

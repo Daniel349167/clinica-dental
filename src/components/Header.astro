@@ -379,7 +379,7 @@ const treatments = {
     font-size:17px;                 
     line-height:1.4;                
     padding:10px 10px;              
-    color:#0b1b2a;
+    color:var(--text-900);
     text-decoration:none;
     border-radius:8px;
     border:1px solid transparent;
@@ -442,14 +442,6 @@ const treatments = {
     border:1px solid rgba(11,27,42,.18);
     margin-top: 20px;
   }
-  .btn--ghost{
-    background:#fff;
-    color:#0b1b2a;
-    padding:4px 12px;
-    font-size: 15px;
-    border:1px solid rgba(11,27,42,.18);
-    text-decoration:none;
-  }
   .chev{
     margin-left: 36px;
   }
@@ -471,11 +463,11 @@ const treatments = {
     display: none !important;     /* ocultamos dirección, separador y "Teléfono:" */
   }
 
-  .topbar__inner{ height:42px; display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:12px; padding:6px 12px; flex-wrap:nowrap; } .topbar .contact{ order:0; margin-right:0; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; line-height:1; transform:translateY(1px); } .topbar .langs{ order:10; margin-left:auto; transform:translateY(0); } .topbar .langs a{ font-size:12px; line-height:1; } .topbar .tel-short{ display:inline-block !important; color:var(--text-600, #0b1b2a); margin-right:-2px; } .topbar .telnum{ display:inline-flex; align-items:baseline; gap:6px; font-size:14px; color:var(--text-600, #0b1b2a); line-height:1; } .topbar .telnum::before{ content:none !important; }
+  .topbar__inner{ height:42px; display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:12px; padding:6px 12px; flex-wrap:nowrap; } .topbar .contact{ order:0; margin-right:0; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; line-height:1; transform:translateY(1px); } .topbar .langs{ order:10; margin-left:auto; transform:translateY(0); } .topbar .langs a{ font-size:12px; line-height:1; } .topbar .tel-short{ display:inline-block !important; color:var(--text-900, #0b1b2a); margin-right:-2px; } .topbar .telnum{ display:inline-flex; align-items:baseline; gap:6px; font-size:14px; color:var(--text-900, #0b1b2a); line-height:1; } .topbar .telnum::before{ content:none !important; }
   /* Enlaces del teléfono tocables */
 }
 
 
-.topbar .tel-link{ text-decoration:none; color:inherit; }
+.topbar .tel-link{ text-decoration:none; color:var(--text-900); }
 .topbar .tel-link:hover{ text-decoration:none; }
 </style>

@@ -91,33 +91,125 @@ const alternates = { es: "/es/tratamientos", ca: "/ca/tratamientos", en: "/en/tr
 </BaseLayout>
 
 <script>
-  // Inicializa todos los comparadores de la página (a futuro si agregas más)
+  // Solo “optimización móvil” pero sin romper desktop
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
   document.querySelectorAll('[data-init-ba]').forEach((ba) => {
     const slider = ba.querySelector('.ba__slider');
-    const update = (v) => {
-      const pct = Math.max(0, Math.min(100, Number(v)||0));
-      ba.style.setProperty('--ba-x', pct + '%');
+
+    // Utilidad: clamp y setter de variable CSS
+    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+    const setPct = (p) => ba.style.setProperty('--ba-x', clamp(p, 0, 100) + '%');
+
+    // ✅ Estado inicial robusto (centro)
+    slider.value = 50;
+    setPct(50);
+    requestAnimationFrame(() => setPct(50));
+    window.addEventListener('load', () => setPct(Number(slider.value) || 50), { once: true });
+
+    // Desktop: comportamiento que ya te funciona bien
+    if (!isMobile) {
+      slider.addEventListener('input', (e) => setPct(e.target.value));
+      ba.addEventListener('pointerdown', (ev) => {
+        const rect = ba.getBoundingClientRect();
+        const move = (e) => {
+          const x = (e.clientX ?? e.touches?.[0]?.clientX) - rect.left;
+          const pct = (x / rect.width) * 100;
+          setPct(pct);
+          slider.value = Math.round(pct);
+        };
+        move(ev);
+        const up = () => {
+          window.removeEventListener('pointermove', move);
+          window.removeEventListener('pointerup', up);
+        };
+        window.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', up, { once: true });
+      });
+      return;
+    }
+
+    // ======== 🔧 MÓVIL: firme y sin jitter ========
+    let dragging = false;
+    let activePointerId = null;
+    let pctTarget = 50;
+    let pctSmoothed = 50;
+    let rafId = null;
+
+    // Suavizado EMA: alpha más alto = sigue más “pegado” al dedo
+    const ALPHA = 0.4; // 0.35–0.5 va bien; ajusta si quieres aún más firme
+
+    const apply = () => {
+      // EMA: suaviza ruido del dedo
+      pctSmoothed = pctSmoothed + ALPHA * (pctTarget - pctSmoothed);
+
+      setPct(pctSmoothed);
+
+      // opcional: sincroniza el input sin forzar cada píxel
+      slider.value = Math.round(pctSmoothed);
+
+      rafId = null;
     };
-    // Estado inicial
-    update(slider.value);
-    // En vivo
-    slider.addEventListener('input', (e) => update(e.target.value));
-    // Drag sobre toda el área (opcional pero se siente mejor)
-    ba.addEventListener('pointerdown', (ev) => {
+
+    const scheduleTo = (pct) => {
+      pctTarget = clamp(pct, 0, 100);
+      if (rafId == null) rafId = requestAnimationFrame(apply);
+    };
+
+    // En móvil: el input puede producir jitter si también hacemos drag
+    // => Sólo usamos el input cuando NO estamos arrastrando
+    slider.addEventListener('input', (e) => {
+      if (!dragging) scheduleTo(Number(e.target.value));
+    }, { passive: true });
+
+    const startDrag = (ev) => {
+      // Lock al dedo que inicia el gesto
+      activePointerId = ev.pointerId ?? 'mouse';
+      dragging = true;
+      ba.classList.add('is-dragging');
+      ba.setPointerCapture && ba.setPointerCapture(ev.pointerId);
+
+      // Pre-cálculo del rect (evita jitter por reflow)
       const rect = ba.getBoundingClientRect();
-      const move = (e) => {
-        const x = (e.clientX ?? e.touches?.[0]?.clientX) - rect.left;
-        update((x / rect.width) * 100);
-        slider.value = Math.round((x / rect.width) * 100);
+
+      const toPct = (clientX) => {
+        const x = clamp(clientX - rect.left, 0, rect.width);
+        return (x / rect.width) * 100;
       };
-      move(ev);
-      const up = () => {
-        window.removeEventListener('pointermove', move);
-        window.removeEventListener('pointerup', up);
+
+      // Primer frame
+      scheduleTo(toPct(ev.clientX));
+
+      const onMove = (e) => {
+        // Ignora otros dedos
+        if ((e.pointerId ?? 'mouse') !== activePointerId) return;
+        // Evita scroll “pegajoso” que introduce ruido
+        e.preventDefault?.();
+        scheduleTo(toPct(e.clientX));
       };
-      window.addEventListener('pointermove', move);
-      window.addEventListener('pointerup', up, { once: true });
-    });
+
+      const endDrag = (e) => {
+        if ((e.pointerId ?? 'mouse') !== activePointerId) return;
+        dragging = false;
+        activePointerId = null;
+        ba.classList.remove('is-dragging');
+        ba.releasePointerCapture && ba.releasePointerCapture(e.pointerId);
+        ba.removeEventListener('pointermove', onMove);
+        ba.removeEventListener('pointerup', endDrag);
+        ba.removeEventListener('pointercancel', endDrag);
+      };
+
+      // Importante: no pasivos para poder preventDefault y quitar micro scrolls
+      ba.addEventListener('pointermove', onMove, { passive: false });
+      ba.addEventListener('pointerup', endDrag, { once: true });
+      ba.addEventListener('pointercancel', endDrag, { once: true });
+    };
+
+    // Inicia el drag
+    ba.addEventListener('pointerdown', (ev) => {
+      // Sólo si el toque ocurre dentro de la zona visible
+      ev.preventDefault?.();
+      startDrag(ev);
+    }, { passive: false });
   });
 </script>
-
