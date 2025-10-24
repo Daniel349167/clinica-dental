@@ -79,15 +79,45 @@ const alternates = { es: "/es/tratamientos", ca: "/ca/tratamientos", en: "/en/tr
   <!-- ========================= CASOS REALS (ABANS / DESPRÉS) ========================= -->
   <section class="tr-ba container">
     <h2 class="tr-ba__title">Casos reals d’Abans i Després</h2>
-    <div class="tr-ba__simple">
-      <figure>
-        <img src="/assets/casos/caso1-antes.png" alt="Abans" />
-      </figure>
-      <figure>
-        <img src="/assets/casos/caso1-despues.png" alt="Després" />
-      </figure>
+    <div class="ba" data-init-ba>
+      <img class="ba__before" src="/assets/casos/caso1-antes.png" alt="Antes" />
+      <img class="ba__after"  src="/assets/casos/caso1-despues.png" alt="Después" />
+      <input type="range" class="ba__slider" min="0" max="100" value="50" aria-label="Comparador antes/después" />
+      <span class="ba__handle" aria-hidden="true"></span>
     </div>
   </section>
 
   <Footer locale="ca" />
 </BaseLayout>
+
+<script>
+  // Inicializa todos los comparadores de la página (a futuro si agregas más)
+  document.querySelectorAll('[data-init-ba]').forEach((ba) => {
+    const slider = ba.querySelector('.ba__slider');
+    const update = (v) => {
+      const pct = Math.max(0, Math.min(100, Number(v)||0));
+      ba.style.setProperty('--ba-x', pct + '%');
+    };
+    // Estado inicial
+    update(slider.value);
+    // En vivo
+    slider.addEventListener('input', (e) => update(e.target.value));
+    // Drag sobre toda el área (opcional pero se siente mejor)
+    ba.addEventListener('pointerdown', (ev) => {
+      const rect = ba.getBoundingClientRect();
+      const move = (e) => {
+        const x = (e.clientX ?? e.touches?.[0]?.clientX) - rect.left;
+        update((x / rect.width) * 100);
+        slider.value = Math.round((x / rect.width) * 100);
+      };
+      move(ev);
+      const up = () => {
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', up);
+      };
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', up, { once: true });
+    });
+  });
+</script>
+

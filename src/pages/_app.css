@@ -398,6 +398,7 @@ body{
 .facilities__grid{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
+  row-gap: 20px;
 }
 .facility{
   width:96%;
@@ -418,10 +419,11 @@ body{
   .facilities__grid{ 
     grid-template-columns: 1fr; 
     gap:20px;
-    width: 90%;
+    width: 80%;
     margin: 0 auto 0;
   }
-  .facility img{ height:200px; }
+  .facility img{ width: 100%;
+  height: 100%;}
 }
 
 /* =================== RESEÑAS (GOOGLE) =================== */
@@ -1313,7 +1315,7 @@ body{
    ========================= */
 /* ======= TR-BA (antes/después simple) ======= */
 .tr-ba{
-  padding: 70px 0 0px;
+  padding: 70px 20px 0px;
 }
 
 /* Título centrado + azul claro */
@@ -1325,49 +1327,80 @@ body{
   font-size: 36px;
   letter-spacing: .2px;
   margin-bottom: 30px;
-  padding: 0 20px;
 }
 
-/* Dos columnas y “empuje” hacia adentro */
-.tr-ba__simple{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 50px;                            /* ← controla qué tan juntas están */
+/* ============ Before/After ============ */
+.ba{
+  position: relative;
+  width: 100%;
+  max-width: 920px;       /* ajusta si quieres más ancho */
+  aspect-ratio: 16/6;     /* asegura proporción; quítalo si usas alto fijo */
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f5f7fa;
+}
+.ba img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+.ba__after{
+  /* Se recorta dinámicamente con una variable CSS */
+  clip-path: inset(0 calc(100% - var(--ba-x, 50%)) 0 0);
+  transition: clip-path .08s linear;
 }
 
-/* Quita márgenes por defecto del <figure> */
-.tr-ba__simple figure{ margin: 0; }
-
-/* Truco clave: que se “miren” hacia adentro */
-.tr-ba__simple figure:first-child{ justify-self: end; }   /* izq → derecha */
-.tr-ba__simple figure:last-child{  justify-self: start; } /* der → izquierda */
-
-/* Estilo de las imágenes */
-.tr-ba__simple img{
-  display: block;
-  width: 380px;              /* tamaño fluido similar a la ref */
-  height: auto;
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(16,24,40,.12);
+/* Slider nativo invisible pero accesible */
+.ba__slider{
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+.ba__slider::-webkit-slider-thumb{
+  appearance: none;
+  width: 36px; height: 36px; background: transparent; border: 0;
+}
+.ba__slider::-moz-range-thumb{
+  width: 36px; height: 36px; background: transparent; border: 0;
 }
 
+/* Línea y “botón” central */
+.ba__handle{
+  position: absolute;
+  top: 0;
+  left: var(--ba-x, 50%);
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.12);
+}
+.ba__handle::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 4px 14px rgba(0,0,0,.18), inset 0 0 0 1px rgba(0,0,0,.08);
+}
 /* Responsive: apílalas en móvil */
 @media (max-width: 640px){
     .tr-ba__title{
       color: var(--brand-900);   
       font-size: 26px;
       line-height: 1.4;
-  }
-  .tr-ba__simple{
-    grid-template-columns: 1fr;
-    gap: 20px;
-    width: 80%;
-    margin: 0 auto 0;
-  }
-
-  .tr-ba__simple img{
-    width: 100%
   }
 
 }
@@ -1632,11 +1665,12 @@ body{
     max-height: 290px;
   }
   .blog-hero__title {
-    font-size: 26px;
+    font-size: 28px;
   }
+
   .blog-hero__logo {
-    width: 68px;
-    margin-top: 10px;
+    width: 80px;
+    margin-top: -5px;
   }
 }
 
@@ -1659,6 +1693,7 @@ body{
   font-size: 22px;
   line-height: 1.2;
   margin: 0;
+  padding: 0 20px;
 }
 .blog-list__title .sub {
   display: block;
@@ -1764,7 +1799,8 @@ body{
   font-weight: 600;
   color: var(--brand-900, #1f3f75);
   font-size: 36px; 
-  line-height: 1.15;                 /* compacto */
+  line-height: 1.15;               
+  padding: 0 20px;
 }
 
 /* Formulario */

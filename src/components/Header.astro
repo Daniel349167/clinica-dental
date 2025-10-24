@@ -3,35 +3,24 @@ import LangSwitcher from "./LangSwitcher.astro";
 
 const { locale, currentPath } = Astro.props;
 
-// Navegación por idioma (para escritorio se mantiene igual; para móvil añadimos Clínica/Contacto)
-// 🔧 CAMBIO: “Nosotros” -> “Equipo”. Añadimos “Clínica” y “Contacto” con href "#" (placeholders).
 const nav = {
   es: [
-    ["/es", "Inicio"],
-    ["/es/tratamientos", "Clínica"],           
+    ["/es", "Inicio"],    
     ["/es/nosotros", "Nosotros"],  
-    ["/es/nosotros", "Equipo"],  
     ["/es/tratamientos", "Tratamientos"],
-    ["/es/blog", "Blog"],
-    ["#", "Contacto"],           
+    ["/es/blog", "Blog"],         
   ],
   ca: [
-    ["/ca", "Inici"],
-    ["/ca/tratamientos", "Clínica"],          
-     ["/ca/nosotros", "Nosaltres"],   
-    ["/ca/nosotros", "Equip"],   
+    ["/ca", "Inici"],    
+     ["/ca/nosotros", "Nosaltres"],     
     ["/ca/tratamientos", "Tractaments"],
-    ["/ca/blog", "Blog"],
-    ["#", "Contacte"],        
+    ["/ca/blog", "Blog"],    
   ],
   en: [
-    ["/en", "Home"],
-    ["/en/tratamientos", "Clinic"],             
-    ["/en/nosotros", "About us"],
-    ["/en/nosotros", "Team"],    
+    ["/en", "Home"],           
+    ["/en/nosotros", "About us"],  
     ["/en/tratamientos", "Treatments"],
-    ["/en/blog", "Blog"],
-    ["#", "Contact"],         
+    ["/en/blog", "Blog"],    
   ],
 }[locale];
 
@@ -43,9 +32,8 @@ const texts = {
     phoneAbbr: "Tel.",
     bookCta: "PEDIR CITA",
     bookCtaMobile:"CITAS",
-    bookDrawerCtaMobile: "Pedir Cita", // 🔧 CAMBIO (estética móvil)
+    bookDrawerCtaMobile: "Pedir Cita",
     ariaLang: "Idioma",
-    emergencies: "Urgencias Dentales 9-24h",
   },
   ca: {
     address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
@@ -55,7 +43,6 @@ const texts = {
     bookCtaMobile:"CITES",
     bookDrawerCtaMobile: "Demana cita",
     ariaLang: "Idioma",
-    emergencies: "Urgències Dentals 9-24h",
   },
   en: {
     address: "C. de Muntaner 555, Sarrià-Sant Gervasi, Barcelona",
@@ -65,7 +52,6 @@ const texts = {
     bookCtaMobile:"BOOK",
     bookDrawerCtaMobile: "Book now",
     ariaLang: "Language",
-    emergencies: "Dental Emergencies 9-24h",
   },
 }[locale];
 
@@ -141,14 +127,14 @@ const treatments = {
        <!-- Inicio -->
       <a href={nav[0][0]}>{nav[0][1]}</a>
 
-      <!-- Nosotros (SOLO DESKTOP)  👉 nav[2] -->
-      <a class="only-desktop" href={nav[2][0]}>{nav[2][1]}</a>
+      <!-- Nosotros 👉 nav[2] -->
+      <a href={nav[1][0]}>{nav[1][1]}</a>
 
       <!-- Tratamientos (link de ESCRITORIO)  👉 nav[4] -->
-      <a class="link-trat--desktop" href={nav[4][0]}>{nav[4][1]}</a>
+      <a class="link-trat--desktop" href={nav[2][0]}>{nav[2][1]}</a>
 
       <!-- Acordeón TRATAMIENTOS (MÓVIL)  👉 nav[4] -->
-      <details class="nav-acc">
+      <!-- <details class="nav-acc">
         <summary>
           {nav[4][1].toUpperCase()}
           <svg class="chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -160,17 +146,12 @@ const treatments = {
             <li><a href={href}>{label}</a></li>
           ))}
         </ul>
-      </details>
+      </details> -->
 
-      <!-- Clínica / Equipo / Blog / Contacto (solo lo indicado en móvil) -->
-      <a class="only-mobile" href={nav[1][0]}>{nav[1][1]}</a>  <!-- Clínica (MÓVIL) -->
-      <a class="only-mobile" href={nav[3][0]}>{nav[3][1]}</a>  <!-- Equipo (MÓVIL) -->
-      <a href={nav[5][0]}>{nav[5][1]}</a>                      <!-- Blog (AMBOS) -->
-      <a class="only-mobile" href={nav[6][0]}>{nav[6][1]}</a>  <!-- Contacto (MÓVIL) -->
+      <a href={nav[3][0]}>{nav[3][1]}</a>                      <!-- Blog (AMBOS) -->
 
         <!-- Botonera inferior del drawer (solo móvil) -->
         <div class="drawer-actions">
-          <a class="btn--ghost" href={`${nav[0][0]}/urgencias`}>{texts.emergencies}</a>
           <a class="btn--cita" href={`${nav[0][0]}/cita`}>{texts.bookDrawerCtaMobile}</a>
         </div>
 
@@ -336,16 +317,11 @@ const treatments = {
 .drawer-close{
   display: none;            
 }
-/* Por defecto (DESKTOP) */
-#site-nav > a.only-mobile  { display: none !important; }
-#site-nav > a.only-desktop { display: inline-block !important; }
 
 
 /* ====== Móvil ≤640px ====== */
 @media (max-width: 640px){
 
-  #site-nav > a.only-mobile  { display: block !important; }
-#site-nav > a.only-desktop { display: none !important; }
 
   .mainbar__inner{
     height:56px;
@@ -400,9 +376,9 @@ const treatments = {
   /* Enlaces listados alineados a la izquierda (como imagen) */
   #site-nav > a{
     display:block;
-    font-size:15px;                 /* 🔧 CAMBIO */
-    line-height:1.4;                /* 🔧 CAMBIO */
-    padding:10px 10px;              /* 🔧 CAMBIO */
+    font-size:17px;                 
+    line-height:1.4;                
+    padding:10px 10px;              
     color:#0b1b2a;
     text-decoration:none;
     border-radius:8px;
@@ -412,7 +388,6 @@ const treatments = {
   #site-nav > a + a{ margin-top:4px; }
 
   /* Acordeón TRATAMIENTOS */
-  .link-trat--desktop{ display:none !important; }
   .nav-acc{ display:block; }
 
   .nav-acc summary{
@@ -452,7 +427,6 @@ const treatments = {
   /* Botonera inferior */
   .drawer-actions{
     display:grid;
-    gap:22px;
     padding:6px 4px 10px;
     justify-items: start;
   }
@@ -467,6 +441,7 @@ const treatments = {
     background:#fff;
     color:var(--brand-900);
     border:1px solid rgba(11,27,42,.18);
+    margin-top: 20px;
   }
   .btn--ghost{
     background:#fff;
